@@ -45,17 +45,22 @@ public class Settings : MonoBehaviour
 				if ( deserializedObject != null )
 				{
 					data = (SettingsData) deserializedObject;
+
+					dataIsValid = true;
 				}
 
 				fileStream.Close();
 			}
-			catch ( Exception )
+			catch ( Exception exception )
+			{
+				Debug.Log( exception.Message );
+			}
+
+			if ( data == null )
 			{
 				data = new SettingsData();
 			}
 		}
-
-		dataIsValid = true;
 
 		for ( var fontIndex = 0; fontIndex < MaxNumFonts; fontIndex++ )
 		{

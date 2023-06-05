@@ -234,67 +234,70 @@ public class NormalizedCar
 
 		var car = IRSDK.data.Cars[ carIdx ];
 
-		if ( !hasCrossedStartLine )
-		{
-			if ( ( car.CarIdxLap >= 2 ) || ( ( car.CarIdxLap >= 1 ) && ( car.CarIdxLapDistPct >= 0 ) && ( car.CarIdxLapDistPct < 0.5f ) ) )
-			{
-				hasCrossedStartLine = true;
-			}
-		}
-
 		isOnPitRoad = car.CarIdxOnPitRoad;
 		isOutOfCar = car.CarIdxLapDistPct == -1;
 
-		var newCarIdxLapDistPct = Math.Max( 0, car.CarIdxLapDistPct );
-
-		lapDistPctDelta = newCarIdxLapDistPct - lapDistPct;
-		lapDistPct = newCarIdxLapDistPct;
-
-		if ( lapDistPctDelta > 0.5f )
+		if ( !isOutOfCar )
 		{
-			lapDistPctDelta -= 1.0f;
-		}
-		else if ( lapDistPctDelta < -0.5f )
-		{
-			lapDistPctDelta += 1.0f;
-		}
+			f2Time = Math.Max( 0, car.CarIdxF2Time );
 
-		f2Time = Math.Max( 0, car.CarIdxF2Time );
+			var newCarIdxLapDistPct = Math.Max( 0, car.CarIdxLapDistPct );
 
-		if ( hasCrossedStartLine )
-		{
-			var newLapPosition = car.CarIdxLap + car.CarIdxLapDistPct - 1;
+			lapDistPctDelta = newCarIdxLapDistPct - lapDistPct;
+			lapDistPct = newCarIdxLapDistPct;
 
-			lapPositionErrorCount++;
-
-			if ( ( lapPositionErrorCount >= 10 ) || ( Math.Abs( newLapPosition - lapPosition ) < 0.05f ) )
+			if ( lapDistPctDelta > 0.5f )
 			{
-				lapPositionErrorCount = 0;
-				lapPosition = newLapPosition;
+				lapDistPctDelta -= 1.0f;
+			}
+			else if ( lapDistPctDelta < -0.5f )
+			{
+				lapDistPctDelta += 1.0f;
+			}
+
+			if ( !hasCrossedStartLine )
+			{
+				if ( ( car.CarIdxLap >= 2 ) || ( ( car.CarIdxLap >= 1 ) && ( newCarIdxLapDistPct > 0 ) && ( newCarIdxLapDistPct < 0.5f ) ) )
+				{
+					hasCrossedStartLine = true;
+				}
+			}
+
+			if ( hasCrossedStartLine )
+			{
+				var newLapPosition = car.CarIdxLap + car.CarIdxLapDistPct - 1;
+
+				lapPositionErrorCount++;
+
+				if ( ( lapPositionErrorCount >= 10 ) || ( Math.Abs( newLapPosition - lapPosition ) < 0.05f ) )
+				{
+					lapPositionErrorCount = 0;
+					lapPosition = newLapPosition;
+				}
+				else
+				{
+					lapPosition += lapDistPctDelta;
+				}
+
+				var checkpointIdx = (int) Math.Floor( lapDistPct * Settings.data.numberOfCheckpoints ) % Settings.data.numberOfCheckpoints;
+
+				if ( checkpointIdx != this.checkpointIdx )
+				{
+					this.checkpointIdx = checkpointIdx;
+
+					checkpoints[ checkpointIdx ] = IRSDK.normalizedData.sessionTime;
+				}
 			}
 			else
 			{
-				lapPosition += lapDistPctDelta;
+				lapPosition = 0;
 			}
 
-			var checkpointIdx = (int) Math.Floor( lapDistPct * Settings.data.numberOfCheckpoints ) % Settings.data.numberOfCheckpoints;
+			officialPosition = car.CarIdxPosition;
 
-			if ( checkpointIdx != this.checkpointIdx )
-			{
-				this.checkpointIdx = checkpointIdx;
-
-				checkpoints[ checkpointIdx ] = IRSDK.normalizedData.sessionTime;
-			}
+			distanceMovedInMeters = lapDistPctDelta * IRSDK.normalizedSession.trackLengthInMeters;
+			speedInMetersPerSecond = distanceMovedInMeters / (float) IRSDK.normalizedData.sessionTimeDelta;
 		}
-		else
-		{
-			lapPosition = 0;
-		}
-
-		officialPosition = car.CarIdxPosition;
-
-		distanceMovedInMeters = lapDistPctDelta * IRSDK.normalizedSession.trackLengthInMeters;
-		speedInMetersPerSecond = distanceMovedInMeters / (float) IRSDK.normalizedData.sessionTimeDelta;
 	}
 
 	public void GenerateAbbrevName( bool includeFirstNameInitial )

@@ -31,6 +31,16 @@ public class OverlayRaceStatus : MonoBehaviour
 		currentLap_Text = currentLap.GetComponent<TextMeshProUGUI>();
 	}
 
+	public void Start()
+	{
+		transform.localPosition = new Vector2( Settings.data.raceStatusOverlayPosition.x, -Settings.data.raceStatusOverlayPosition.y );
+
+		if ( !Settings.data.showRaceStatusOverlay )
+		{
+			gameObject.SetActive( false );
+		}
+	}
+
 	public void Update()
 	{
 		if ( !IRSDK.isConnected )

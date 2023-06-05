@@ -8,6 +8,7 @@ ScriptsOnlyBuild:
     - OverlayLeaderboard
     - OverlayPlace
     - OverlayRaceStatus
+    - OverlaySubtitle
     - OverlayVoiceOf
     - Settings
     - TextSettings
@@ -25,8 +26,6 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    Unity.Timeline.Editor.dll:
-    - TimelinePreferences
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
@@ -44,7 +43,9 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.Image
     - UnityEngine.UI.RawImage
+    - UnityEngine.UI.VerticalLayoutGroup
   serializedClasses:
     Unity.TextMeshPro:
     - TMPro.FaceInfo_Legacy
@@ -63,6 +64,7 @@ ScriptsOnlyBuild:
     - TMPro.VertexGradient
     UnityEngine.CoreModule:
     - UnityEngine.Events.PersistentCallGroup
+    - UnityEngine.RectOffset
     UnityEngine.TextCoreFontEngineModule:
     - UnityEngine.TextCore.FaceInfo
     - UnityEngine.TextCore.Glyph
@@ -102,6 +104,8 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 1658}
+    - Class: 114
       Script: {instanceID: 2236}
     - Class: 114
       Script: {instanceID: 2364}
@@ -116,33 +120,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3614}
     - Class: 114
-      Script: {instanceID: 4122}
+      Script: {instanceID: 3738}
     - Class: 114
-      Script: {instanceID: 4370}
+      Script: {instanceID: 4124}
     - Class: 114
-      Script: {instanceID: 4754}
+      Script: {instanceID: 4372}
     - Class: 114
-      Script: {instanceID: 5058}
+      Script: {instanceID: 4756}
     - Class: 114
-      Script: {instanceID: 5596}
+      Script: {instanceID: 5060}
     - Class: 114
-      Script: {instanceID: 5744}
+      Script: {instanceID: 5598}
     - Class: 114
-      Script: {instanceID: 5804}
+      Script: {instanceID: 5746}
     - Class: 114
-      Script: {instanceID: 6060}
+      Script: {instanceID: 5806}
     - Class: 114
-      Script: {instanceID: 6594}
+      Script: {instanceID: 6062}
     - Class: 114
-      Script: {instanceID: 7062}
+      Script: {instanceID: 6464}
     - Class: 114
-      Script: {instanceID: 7400}
+      Script: {instanceID: 6596}
     - Class: 114
-      Script: {instanceID: 7516}
+      Script: {instanceID: 7064}
     - Class: 114
-      Script: {instanceID: 7528}
+      Script: {instanceID: 7402}
     - Class: 114
-      Script: {instanceID: 34898}
+      Script: {instanceID: 7518}
+    - Class: 114
+      Script: {instanceID: 7530}
+    - Class: 114
+      Script: {instanceID: 26940}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -151,11 +159,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 225
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -482,6 +494,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Flow
     namespaceName: Unity.VisualScripting
     className: ScriptGraphAsset
+  - hash:
+      serializedVersion: 2
+      Hash: d12f30e9b18678c7964c7d07f854e3ed
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: OverlayVoiceOf
   - hash:
       serializedVersion: 2
       Hash: 0286ed84936a6e3c4dba049ae21a7b1c
@@ -1042,10 +1060,10 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: d12f30e9b18678c7964c7d07f854e3ed
+      Hash: ded6bfe51f3524f377946962bbf2457a
     assemblyName: Assembly-CSharp
     namespaceName: 
-    className: OverlayVoiceOf
+    className: OverlaySubtitle
   platform: 19
   scenePathNames:
   - Assets/Scenes/iRacing-TV.unity

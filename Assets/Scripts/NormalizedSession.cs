@@ -44,6 +44,7 @@ public class NormalizedSession
 		seriesTexture = null;
 
 		SessionFlagsPlayback.Close();
+		ChatLogPlayback.Close();
 	}
 
 	public void SessionChange()
@@ -87,6 +88,7 @@ public class NormalizedSession
 		if ( isReplay )
 		{
 			SessionFlagsPlayback.LoadRecording();
+			ChatLogPlayback.LoadRecording();
 		}
 		else
 		{

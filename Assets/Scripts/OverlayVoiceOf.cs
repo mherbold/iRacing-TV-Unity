@@ -28,6 +28,11 @@ public class OverlayVoiceOf : MonoBehaviour
 	public void Start()
 	{
 		transform.localPosition = new Vector2( Settings.data.voiceOfOverlayPosition.x, -Settings.data.voiceOfOverlayPosition.y );
+
+		if ( !Settings.data.showVoiceOfOverlay )
+		{
+			gameObject.SetActive( false );
+		}
 	}
 
 	public void Update()
@@ -36,14 +41,17 @@ public class OverlayVoiceOf : MonoBehaviour
 		{
 			radioTransmitCarIdx = IRSDK.normalizedData.radioTransmitCarIdx;
 
-			var normalizedCar = IRSDK.normalizedData.FindNormalizedCarByCarIdx( radioTransmitCarIdx );
-
 			animationRoot_Animator.SetBool( "Show", radioTransmitCarIdx != -1 );
 
-			voiceOf_Text.text = Settings.data.GetTranslation( "Voice of", "VOICE OF" );
-			driverName_Text.text = normalizedCar.userName;
+			var normalizedCar = IRSDK.normalizedData.FindNormalizedCarByCarIdx( radioTransmitCarIdx );
 
-			car_ImageSettings.SetCarIdx( radioTransmitCarIdx );
+			if ( normalizedCar != null )
+			{
+				voiceOf_Text.text = Settings.data.GetTranslation( "Voice of", "VOICE OF" );
+				driverName_Text.text = normalizedCar.userName;
+
+				car_ImageSettings.SetCarIdx( radioTransmitCarIdx );
+			}
 		}
 	}
 }

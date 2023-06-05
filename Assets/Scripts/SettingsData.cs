@@ -21,8 +21,20 @@ public class SettingsData
 
 	public float carHeatMaximumDistance = 100;
 
+	public bool showRaceStatusOverlay = true;
+	public Vector2 raceStatusOverlayPosition = new( 44, 9 );
+
+	public bool showLeaderboardOverlay = true;
+	public Vector2 leaderboardOverlayPosition = new( 44, 244 );
+
 	public bool showVoiceOfOverlay = true;
 	public Vector2 voiceOfOverlayPosition = new( 1920, 41 );
+
+	public bool showSubtitleOverlay = true;
+	public Vector2 subtitleOverlayPosition = new( 1089, 918 );
+	public Vector2 subtitleOverlayMaxSize = new( 1250, 190 );
+	public Color subtitleOverlayBackgroundColor = new( 0, 0, 0, 0.9f );
+	public Vector2Int subtitleTextPadding = new( 12, 6 );
 
 	public bool useClassColorsForDriverNames = true;
 	public float classColorStrength = 0.5f;

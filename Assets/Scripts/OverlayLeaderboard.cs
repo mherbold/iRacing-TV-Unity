@@ -18,6 +18,8 @@ public class OverlayLeaderboard : MonoBehaviour
 
 	public void Awake()
 	{
+		placeTemplate.SetActive( false );
+
 		places = new GameObject[ Settings.data.leaderboardPlaceCount ];
 
 		overlayPlaces = new OverlayPlace[ Settings.data.leaderboardPlaceCount ];
@@ -31,6 +33,16 @@ public class OverlayLeaderboard : MonoBehaviour
 			places[ placeIndex ].SetActive( true );
 
 			overlayPlaces[ placeIndex ] = places[ placeIndex ].GetComponent<OverlayPlace>();
+		}
+	}
+
+	public void Start()
+	{
+		transform.localPosition = new Vector2( Settings.data.leaderboardOverlayPosition.x, -Settings.data.leaderboardOverlayPosition.y );
+
+		if ( !Settings.data.showLeaderboardOverlay )
+		{
+			gameObject.SetActive( false );
 		}
 	}
 

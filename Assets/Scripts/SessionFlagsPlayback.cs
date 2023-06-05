@@ -1,14 +1,14 @@
 
+using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Text.RegularExpressions;
 
 public static class SessionFlagsPlayback
 {
 	public static string sessionFlagsPath = Program.documentsFolder + "SessionFlags";
 
-	public static List<SessionFlagsData> sessionFlagsDataList = null;
+	public static List<SessionFlagsData> sessionFlagsDataList = new();
 
 	public static string sessionFlagsFileName = string.Empty;
 	public static StreamWriter streamWriter = null;
@@ -49,7 +49,7 @@ public static class SessionFlagsPlayback
 		{
 			sessionFlagsFileName = newSessionFlagsFileName;
 
-			sessionFlagsDataList = new List<SessionFlagsData>();
+			sessionFlagsDataList.Clear();
 
 			if ( File.Exists( sessionFlagsFileName ) )
 			{
@@ -80,7 +80,8 @@ public static class SessionFlagsPlayback
 	public static void Close()
 	{
 		sessionFlagsFileName = string.Empty;
-		sessionFlagsDataList = new List<SessionFlagsData>();
+
+		sessionFlagsDataList.Clear();
 	}
 
 	public static void Record( int sessionNumber, double sessionTime, uint sessionFlags )
