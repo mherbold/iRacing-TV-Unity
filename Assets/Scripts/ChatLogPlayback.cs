@@ -6,30 +6,28 @@ using System.Text.RegularExpressions;
 
 public static class ChatLogPlayback
 {
-	public static string chatLogPath = Program.documentsFolderSTT + "ChatLogs";
-
 	public static List<ChatLogData> chatLogList = new();
 
-	public static string chatLogFileName = string.Empty;
+	public static string chatLogFilePath = string.Empty;
 
-	public static string GetChatLogFileName()
+	public static string GetChatLogFilePath()
 	{
-		return $"{chatLogPath}\\{IRSDK.normalizedSession.sessionId}-{IRSDK.normalizedSession.subSessionId}.csv";
+		return $"{Program.documentsFolderSTT}ChatLogs\\{IRSDK.normalizedSession.sessionId}-{IRSDK.normalizedSession.subSessionId}.csv";
 	}
 
 	public static void LoadRecording()
 	{
-		var newChatLogFileName = GetChatLogFileName();
+		var newChatLogFilePath = GetChatLogFilePath();
 
-		if ( newChatLogFileName != chatLogFileName )
+		if ( newChatLogFilePath != chatLogFilePath )
 		{
-			chatLogFileName = newChatLogFileName;
+			chatLogFilePath = newChatLogFilePath;
 
 			chatLogList.Clear();
 
-			if ( File.Exists( chatLogFileName ) )
+			if ( File.Exists( chatLogFilePath ) )
 			{
-				var streamReader = File.OpenText( chatLogFileName );
+				var streamReader = File.OpenText( chatLogFilePath );
 
 				var startSessionTime = 0.0;
 
@@ -76,7 +74,7 @@ public static class ChatLogPlayback
 
 	public static void Close()
 	{
-		chatLogFileName = string.Empty;
+		chatLogFilePath = string.Empty;
 
 		chatLogList.Clear();
 	}

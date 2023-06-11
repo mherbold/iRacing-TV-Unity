@@ -1,57 +1,38 @@
 ﻿
 using System;
-using System.Runtime.InteropServices;
 
 using UnityEngine;
 
 public class TransparentWindow : MonoBehaviour
 {
-#if !UNITY_EDITOR
-
-	public struct MARGINS
+	public void Awake()
 	{
-		public int Left;
-		public int Right;
-		public int Top;
-		public int Bottom;
+		QualitySettings.vSyncCount = 0;
+		Application.targetFrameRate = 60;
 	}
 
-	[DllImport( "user32.dll" )]
-	public static extern IntPtr GetActiveWindow();
+#if !UNITY_EDITOR
 
-	[DllImport( "user32.dll" )]
-	public static extern int SetWindowLong( IntPtr hWnd, int nIndex, uint dwNewLong );
-
-	[DllImport( "user32.dll" )]
-	public static extern bool SetWindowPos( IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags );
-
-	[DllImport( "Dwmapi.dll" )]
-	public static extern uint DwmExtendFrameIntoClientArea( IntPtr hWnd, ref MARGINS margins );
-
-	public const int GWL_EXSTYLE = -20;
-
-	public const uint WS_EX_TOPMOST = 0x00000008;
-	public const uint WS_EX_TRANSPARENT = 0x00000020;
-	public const uint WS_EX_LAYERED = 0x00080000;
-
-	public static readonly IntPtr HWND_TOPMOST = new IntPtr( -1 );
-
-	public const uint SWP_NOSIZE = 0x0001;
-	public const uint SWP_NOMOVE = 0x0002;
-
-	public IntPtr hWnd;
+	IntPtr hWnd;
 
 	public void Start()
 	{
-		hWnd = GetActiveWindow();
+		hWnd = WinApi.GetActiveWindow();
 
-		MARGINS margins = new() { Left = -1, Right = -1, Top = -1, Bottom = -1 };
+		WinApi.MARGINS margins = new() { Left = -1, Right = -1, Top = -1, Bottom = -1 };
 
-		DwmExtendFrameIntoClientArea( hWnd, ref margins );
+		WinApi.DwmExtendFrameIntoClientArea( hWnd, ref margins );
 
-		SetWindowLong( hWnd, GWL_EXSTYLE, WS_EX_TOPMOST | WS_EX_TRANSPARENT | WS_EX_LAYERED );
+		WinApi.SetWindowLong( hWnd, WinApi.GWL_STYLE, WinApi.WS_POPUP | WinApi.WS_VISIBLE );
 
-		SetWindowPos( hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE );
+		WinApi.SetWindowLong( hWnd, WinApi.GWL_EXSTYLE, WinApi.WS_EX_LAYERED | WinApi.WS_EX_TRANSPARENT | WinApi.WS_EX_TOPMOST );
+
+		OverlayUpdated();
+	}
+
+	public void OverlayUpdated()
+	{
+		WinApi.SetWindowPos( hWnd, WinApi.HWND_TOPMOST, Settings.data.overlayPosition.x, Settings.data.overlayPosition.y, Settings.data.overlaySize.x, Settings.data.overlaySize.y, 0 );
 	}
 
 #endif

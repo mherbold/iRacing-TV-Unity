@@ -1,4 +1,6 @@
 
+using System;
+
 using UnityEngine;
 
 using TMPro;
@@ -10,12 +12,12 @@ public class OverlayVoiceOf : MonoBehaviour
 	public GameObject driverName;
 	public GameObject car;
 
-	private Animator animationRoot_Animator;
-	private TextMeshProUGUI voiceOf_Text;
-	private TextMeshProUGUI driverName_Text;
-	private ImageSettings car_ImageSettings;
+	[NonSerialized] public Animator animationRoot_Animator;
+	[NonSerialized] public TextMeshProUGUI voiceOf_Text;
+	[NonSerialized] public TextMeshProUGUI driverName_Text;
+	[NonSerialized] public ImageSettings car_ImageSettings;
 
-	private int radioTransmitCarIdx = -1;
+	[NonSerialized] public int radioTransmitCarIdx = -1;
 
 	public void Awake()
 	{
@@ -27,9 +29,9 @@ public class OverlayVoiceOf : MonoBehaviour
 
 	public void Start()
 	{
-		transform.localPosition = new Vector2( Settings.data.voiceOfOverlayPosition.x, -Settings.data.voiceOfOverlayPosition.y );
+		transform.localPosition = new Vector2( Settings.overlay.voiceOfOverlayPosition.x, -Settings.overlay.voiceOfOverlayPosition.y );
 
-		if ( !Settings.data.showVoiceOfOverlay )
+		if ( !Settings.overlay.showVoiceOfOverlay )
 		{
 			gameObject.SetActive( false );
 		}
@@ -47,7 +49,7 @@ public class OverlayVoiceOf : MonoBehaviour
 
 			if ( normalizedCar != null )
 			{
-				voiceOf_Text.text = Settings.data.GetTranslation( "Voice of", "VOICE OF" );
+				voiceOf_Text.text = Settings.overlay.GetTranslation( "Voice of", "VOICE OF" );
 				driverName_Text.text = normalizedCar.userName;
 
 				car_ImageSettings.SetCarIdx( radioTransmitCarIdx );

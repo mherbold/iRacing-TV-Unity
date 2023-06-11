@@ -6,20 +6,24 @@ using UnityEngine;
 using TMPro;
 
 [Serializable]
-public class SettingsData
+public class SettingsOverlay
 {
+	[NonSerialized] public const int MaxNumFonts = 4;
+
 	public Vector2Int overlayPosition = new( 0, 0 );
 	public Vector2Int overlaySize = new( 1920, 1080 );
 
-	public string[] fontFileNames = new string[ Settings.MaxNumFonts ];
+	public string[] fontNames = new string[ MaxNumFonts ];
 
-	public Vector2 leaderboardFirstPlacePosition = new( 44, 244 );
+	public Vector2 leaderboardFirstPlacePosition = new( 0, 0 );
 	public float leaderboardPlaceSpacing = 41;
 	public int leaderboardPlaceCount = 20;
 
 	public int numberOfCheckpoints = 100;
 
-	public float carHeatMaximumDistance = 100;
+	public float CarLength = 4.91f;
+	public float HeatFalloff = 20.0f;
+	public float HeatBias = 0.5f;
 
 	public bool showRaceStatusOverlay = true;
 	public Vector2 raceStatusOverlayPosition = new( 44, 9 );
@@ -57,66 +61,33 @@ public class SettingsData
 
 	public string customPaintsDirectory = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ) + "\\iRacing\\paint";
 
-	public class TextSettingsData
-	{
-		public int fontIndex = 0;
-		public int fontSize = 0;
-
-		public TextAlignmentOptions alignment = TextAlignmentOptions.TopLeft;
-
-		public Vector2 position = Vector2.zero;
-		public Vector2 size = Vector2.zero;
-		public Color tintColor = Color.white;
-	}
-
-	public SerializableDictionary<string, TextSettingsData> textSettingsDataDictionary = new();
-
-	public enum ImageType
-	{
-		Custom,
-		SeriesLogo,
-		CarNumber,
-		Car
-	}
-
-	public class ImageSettingsData
-	{
-		public ImageType imageType = ImageType.Custom;
-
-		public string fileName = string.Empty;
-
-		public Vector2 position;
-		public Vector2 size;
-		public Color tintColor;
-	}
-
-	public SerializableDictionary<string, ImageSettingsData> imageSettingsDataDictionary = new();
-
+	public SerializableDictionary<string, SettingsText> textSettingsDataDictionary = new();
+	public SerializableDictionary<string, SettingsImage> imageSettingsDataDictionary = new();
 	public SerializableDictionary<string, string> translationDictionary = new();
 
-	public SettingsData()
+	public SettingsOverlay()
 	{
-		for ( var fontIndex = 0; fontIndex < Settings.MaxNumFonts; fontIndex++ )
+		for ( var fontIndex = 0; fontIndex < MaxNumFonts; fontIndex++ )
 		{
-			fontFileNames[ fontIndex ] = string.Empty;
+			fontNames[ fontIndex ] = string.Empty;
 		}
 	}
 
-	public TextSettingsData GetTextSettingsData( string id )
+	public SettingsText GetTextSettingsData( string id )
 	{
 		if ( !textSettingsDataDictionary.ContainsKey( id ) )
 		{
-			textSettingsDataDictionary[ id ] = new TextSettingsData();
+			textSettingsDataDictionary[ id ] = new SettingsText();
 		}
 
 		return textSettingsDataDictionary[ id ];
 	}
 
-	public ImageSettingsData GetImageSettingsData( string id )
+	public SettingsImage GetImageSettings( string id )
 	{
 		if ( !imageSettingsDataDictionary.ContainsKey( id ) )
 		{
-			imageSettingsDataDictionary[ id ] = new ImageSettingsData();
+			imageSettingsDataDictionary[ id ] = new SettingsImage();
 		}
 
 		return imageSettingsDataDictionary[ id ];

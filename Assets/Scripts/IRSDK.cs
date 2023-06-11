@@ -1,4 +1,6 @@
 
+using System;
+
 using UnityEngine;
 
 using irsdkSharp;
@@ -8,18 +10,18 @@ using irsdkSharp.Serialization;
 
 public class IRSDK : MonoBehaviour
 {
-	public static readonly IRacingSDK iRacingSdk = new();
+	[NonSerialized] public static readonly IRacingSDK iRacingSdk = new();
 
-	public static bool isConnected = false;
-	public static bool wasConnected = false;
+	[NonSerialized] public static bool isConnected = false;
+	[NonSerialized] public static bool wasConnected = false;
 
-	public static int sessionInfoUpdate = -1;
+	[NonSerialized] public static int sessionInfoUpdate = -1;
 
-	public static IRacingSessionModel session = null;
-	public static DataModel data = null;
+	[NonSerialized] public static IRacingSessionModel session = null;
+	[NonSerialized] public static DataModel data = null;
 
-	public static NormalizedSession normalizedSession = new();
-	public static NormalizedData normalizedData = new();
+	[NonSerialized] public static NormalizedSession normalizedSession = new();
+	[NonSerialized] public static NormalizedData normalizedData = new();
 
 	public void Update()
 	{

@@ -58,16 +58,17 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CanvasScaler.cs" />
+    <Compile Include="Assets\Scripts\SettingsImage.cs" />
     <Compile Include="Assets\Scripts\TextSettings.cs" />
     <Compile Include="Assets\Scripts\NormalizedSession.cs" />
     <Compile Include="Assets\Scripts\NormalizedCar.cs" />
+    <Compile Include="Assets\Scripts\SettingsText.cs" />
     <Compile Include="Assets\Scripts\SessionFlagsPlayback.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
+    <Compile Include="Assets\Scripts\Fonts.cs" />
     <Compile Include="Assets\Scripts\IPC.cs" />
-    <Compile Include="Assets\Scripts\SettingsData.cs" />
-    <Compile Include="Assets\Scripts\CanvasOffset.cs" />
+    <Compile Include="Assets\Scripts\WinApi.cs" />
     <Compile Include="Assets\Scripts\OverlayVoiceOf.cs" />
     <Compile Include="Assets\Scripts\IRSDK.cs" />
     <Compile Include="Assets\Scripts\RemoteTexture.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Assets\Scripts\ChatLogPlayback.cs" />
     <Compile Include="Assets\Scripts\NormalizedData.cs" />
     <Compile Include="Assets\Scripts\OverlayRaceStatus.cs" />
+    <Compile Include="Assets\Scripts\SettingsOverlay.cs" />
     <Compile Include="Assets\Scripts\SessionFlagsData.cs" />
     <Compile Include="Assets\Scripts\Program.cs" />
   </ItemGroup>

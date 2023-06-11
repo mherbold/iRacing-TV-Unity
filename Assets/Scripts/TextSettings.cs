@@ -1,4 +1,6 @@
 
+using System;
+
 using UnityEngine;
 
 using TMPro;
@@ -7,10 +9,10 @@ public class TextSettings : MonoBehaviour
 {
 	public string id;
 
-	private RectTransform rectTransform;
-	private TextMeshProUGUI text;
+	[NonSerialized] public RectTransform rectTransform;
+	[NonSerialized] public TextMeshProUGUI text;
 
-	public SettingsData.TextSettingsData textSettingsData;
+	[NonSerialized] public SettingsText settings;
 
 	public void Awake()
 	{
@@ -22,21 +24,21 @@ public class TextSettings : MonoBehaviour
 	{
 		if ( id != string.Empty )
 		{
-			textSettingsData = Settings.data.GetTextSettingsData( id );
+			settings = Settings.overlay.GetTextSettingsData( id );
 
-			var fontAsset = Settings.GetFontAsset( textSettingsData.fontIndex );
+			var fontAsset = Fonts.GetFontAsset( settings.fontIndex );
 
 			if ( fontAsset != null )
 			{
 				text.font = fontAsset;
 			}
 
-			text.fontSize = textSettingsData.fontSize;
-			text.color = textSettingsData.tintColor;
-			text.alignment = textSettingsData.alignment;
+			text.fontSize = settings.fontSize;
+			text.color = settings.tintColor;
+			text.alignment = settings.alignment;
 
-			rectTransform.localPosition = new Vector2( textSettingsData.position.x, -textSettingsData.position.y );
-			rectTransform.sizeDelta = textSettingsData.size;
+			rectTransform.localPosition = new Vector2( settings.position.x, -settings.position.y );
+			rectTransform.sizeDelta = settings.size;
 		}
 	}
 }

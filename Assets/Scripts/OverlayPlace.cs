@@ -1,4 +1,6 @@
 
+using System;
+
 using UnityEngine;
 
 using TMPro;
@@ -12,15 +14,15 @@ public class OverlayPlace : MonoBehaviour
 	public GameObject highlight;
 	public GameObject speed;
 
-	public TextMeshProUGUI place_Text;
-	public TextMeshProUGUI driverName_Text;
-	public TextMeshProUGUI telemetry_Text;
-	public TextMeshProUGUI speed_Text;
+	[NonSerialized] public TextMeshProUGUI place_Text;
+	[NonSerialized] public TextMeshProUGUI driverName_Text;
+	[NonSerialized] public TextMeshProUGUI telemetry_Text;
+	[NonSerialized] public TextMeshProUGUI speed_Text;
 
-	public ImageSettings carNumber_ImageSettings;
-	public TextSettings driverName_TextSettings;
+	[NonSerialized] public ImageSettings carNumber_ImageSettings;
+	[NonSerialized] public TextSettings driverName_TextSettings;
 
-	public bool shouldBeVisible;
+	[NonSerialized] public bool shouldBeVisible;
 
 	public void Awake()
 	{

@@ -18,10 +18,10 @@ public class OverlayRaceStatus : MonoBehaviour
 	public GameObject units;
 	public GameObject currentLap;
 
-	private TextMeshProUGUI sessionName_Text;
-	private TextMeshProUGUI lapsRemaining_Text;
-	private TextMeshProUGUI units_Text;
-	private TextMeshProUGUI currentLap_Text;
+	[NonSerialized] public TextMeshProUGUI sessionName_Text;
+	[NonSerialized] public TextMeshProUGUI lapsRemaining_Text;
+	[NonSerialized] public TextMeshProUGUI units_Text;
+	[NonSerialized] public TextMeshProUGUI currentLap_Text;
 
 	public void Awake()
 	{
@@ -33,9 +33,9 @@ public class OverlayRaceStatus : MonoBehaviour
 
 	public void Start()
 	{
-		transform.localPosition = new Vector2( Settings.data.raceStatusOverlayPosition.x, -Settings.data.raceStatusOverlayPosition.y );
+		transform.localPosition = new Vector2( Settings.overlay.raceStatusOverlayPosition.x, -Settings.overlay.raceStatusOverlayPosition.y );
 
-		if ( !Settings.data.showRaceStatusOverlay )
+		if ( !Settings.overlay.showRaceStatusOverlay )
 		{
 			gameObject.SetActive( false );
 		}
@@ -60,13 +60,13 @@ public class OverlayRaceStatus : MonoBehaviour
 		}
 		else if ( IRSDK.normalizedData.sessionLapsRemaining == 0 )
 		{
-			lapsRemaining_Text.text = Settings.data.GetTranslation( "FinalLap", "FINAL LAP" );
+			lapsRemaining_Text.text = Settings.overlay.GetTranslation( "FinalLap", "FINAL LAP" );
 		}
 		else
 		{
 			var lapsRemaining = Math.Min( IRSDK.normalizedData.sessionLapsTotal, IRSDK.normalizedData.sessionLapsRemaining + 1 );
 
-			lapsRemaining_Text.text = lapsRemaining.ToString() + " " + Settings.data.GetTranslation( "ToGo", "TO GO" );
+			lapsRemaining_Text.text = lapsRemaining.ToString() + " " + Settings.overlay.GetTranslation( "ToGo", "TO GO" );
 		}
 
 		// lights
@@ -99,11 +99,11 @@ public class OverlayRaceStatus : MonoBehaviour
 
 		if ( IRSDK.normalizedData.isInTimedRace || !IRSDK.normalizedSession.isInRaceSession )
 		{
-			units_Text.text = Settings.data.GetTranslation( "Time", "TIME" );
+			units_Text.text = Settings.overlay.GetTranslation( "Time", "TIME" );
 		}
 		else
 		{
-			units_Text.text = Settings.data.GetTranslation( "Lap", "LAP" );
+			units_Text.text = Settings.overlay.GetTranslation( "Lap", "LAP" );
 		}
 
 		// current lap

@@ -36,7 +36,7 @@ public class NormalizedData
 
 	public NormalizedCar[] normalizedCars = new NormalizedCar[ MaxNumCars ];
 	public List<NormalizedCar> leaderboardSortedNormalizedCars = new( MaxNumCars );
-	public List<NormalizedCar> heatSortedNormalizedCars = new( MaxNumCars );
+	public List<NormalizedCar> attackingHeatSortedNormalizedCars = new( MaxNumCars );
 
 	public NormalizedData()
 	{
@@ -45,7 +45,7 @@ public class NormalizedData
 			normalizedCars[ i ] = new NormalizedCar( i );
 
 			leaderboardSortedNormalizedCars.Add( normalizedCars[ i ] );
-			heatSortedNormalizedCars.Add( normalizedCars[ i ] );
+			attackingHeatSortedNormalizedCars.Add( normalizedCars[ i ] );
 		}
 
 		Reset();
@@ -161,15 +161,17 @@ public class NormalizedData
 
 			foreach ( var normalizedCar in normalizedCars )
 			{
-				normalizedCar.heat = 0;
+				normalizedCar.attackingHeat = 0;
+				normalizedCar.defendingHeat = 0;
+
 				normalizedCar.distanceToCarInFrontInMeters = float.MaxValue;
 				normalizedCar.distanceToCarBehindInMeters = float.MaxValue;
 
-				foreach ( var otherNormalizedCar in normalizedCars )
+				if ( normalizedCar.includeInLeaderboard && !normalizedCar.isOnPitRoad && !normalizedCar.isOutOfCar )
 				{
-					if ( normalizedCar != otherNormalizedCar )
+					foreach ( var otherNormalizedCar in normalizedCars )
 					{
-						if ( normalizedCar.includeInLeaderboard && !normalizedCar.isOnPitRoad && !normalizedCar.isOutOfCar )
+						if ( normalizedCar != otherNormalizedCar )
 						{
 							if ( otherNormalizedCar.includeInLeaderboard && !otherNormalizedCar.isOnPitRoad && !otherNormalizedCar.isOutOfCar )
 							{
@@ -177,32 +179,30 @@ public class NormalizedData
 
 								if ( signedDistanceToOtherCar > 0.5f )
 								{
-									signedDistanceToOtherCar -= 1.0f;
+									signedDistanceToOtherCar -= 1;
 								}
 								else if ( signedDistanceToOtherCar < -0.5f )
 								{
-									signedDistanceToOtherCar += 1.0f;
+									signedDistanceToOtherCar += 1;
 								}
 
 								var signedDistanceToOtherCarInMeters = signedDistanceToOtherCar * IRSDK.normalizedSession.trackLengthInMeters;
 
-								var x = Math.Abs( signedDistanceToOtherCarInMeters / 100.0f );
+								var heat = 1 - Math.Max( 0, Math.Abs( signedDistanceToOtherCarInMeters ) - Settings.overlay.CarLength ) / Math.Max( 1, Settings.overlay.HeatFalloff );
 
-								x = Math.Min( x, 1 );
+								if ( heat > 0 )
+								{
+									if ( signedDistanceToOtherCar >= 0 )
+									{
+										normalizedCar.attackingHeat += heat;
+									}
+									else
+									{
+										normalizedCar.defendingHeat += heat;
+									}
+								}
 
-								x = x * -2 + 1;
-
-								x *= (float) Math.PI / 3.5f;
-
-								var y = (float) Math.Tan( x );
-
-								y /= 2.5079206753254076751418219566729f;
-
-								y += 0.5f;
-
-								normalizedCar.heat += y;
-
-								if ( signedDistanceToOtherCarInMeters >= 0.0f )
+								if ( signedDistanceToOtherCarInMeters >= 0 )
 								{
 									normalizedCar.distanceToCarInFrontInMeters = Math.Min( normalizedCar.distanceToCarInFrontInMeters, signedDistanceToOtherCarInMeters );
 								}
@@ -217,8 +217,6 @@ public class NormalizedData
 			}
 
 			leaderboardSortedNormalizedCars.Sort( NormalizedCar.LapPositionComparison );
-
-			heatSortedNormalizedCars.Sort( NormalizedCar.HeatComparison );
 
 			var leaderboardPosition = 1;
 			var leaderLapPosition = leaderboardSortedNormalizedCars[ 0 ].lapPosition;
@@ -266,7 +264,18 @@ public class NormalizedData
 			foreach ( var normalizedCar in leaderboardSortedNormalizedCars )
 			{
 				normalizedCar.leaderboardPosition = leaderboardPosition++;
+
+				if ( normalizedCar.includeInLeaderboard && ( normalizedCar.attackingHeat > 0 ) )
+				{
+					var positionAsSignedPct = ( ( numLeaderboardCars / 2.0f ) - normalizedCar.leaderboardPosition ) / ( numLeaderboardCars / 2.0f );
+
+					var heatBias = Settings.overlay.HeatBias * positionAsSignedPct + Math.Abs( Settings.overlay.HeatBias );
+
+					normalizedCar.attackingHeat += heatBias;
+				}
 			}
+
+			attackingHeatSortedNormalizedCars.Sort( NormalizedCar.HeatComparison );
 		}
 	}
 

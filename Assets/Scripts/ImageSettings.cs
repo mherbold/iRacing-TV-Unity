@@ -1,4 +1,5 @@
 
+using System;
 using System.IO;
 
 using UnityEngine;
@@ -8,13 +9,17 @@ public class ImageSettings : MonoBehaviour
 {
 	public string id;
 
-	private RectTransform rectTransform;
-	private RawImage rawImage;
+	[NonSerialized] public RectTransform rectTransform;
+	[NonSerialized] public RawImage rawImage;
 
-	public SettingsData.ImageSettingsData imageSettingsData;
+	[NonSerialized] public SettingsImage settings;
 
-	public bool carIdxIsValid = false;
-	public int carIdx;
+	[NonSerialized] public bool carIdxIsValid = false;
+	[NonSerialized] public int carIdx;
+
+	[NonSerialized] public bool waitingForStreamedTexture;
+	[NonSerialized] public SettingsImage.ImageType imageType;
+	[NonSerialized] public string imageFilePath;
 
 	public void Awake()
 	{
@@ -24,63 +29,22 @@ public class ImageSettings : MonoBehaviour
 
 	public void Start()
 	{
-		rawImage.enabled = false;
-
-		if ( id != string.Empty )
-		{
-			imageSettingsData = Settings.data.GetImageSettingsData( id );
-
-			if ( imageSettingsData.imageType == SettingsData.ImageType.Custom )
-			{
-				var imageFileName = imageSettingsData.fileName;
-
-				if ( imageFileName != string.Empty )
-				{
-					if ( !File.Exists( imageFileName ) )
-					{
-						imageFileName = Program.documentsFolder + imageFileName;
-					}
-
-					if ( File.Exists( imageFileName ) )
-					{
-						var bytes = File.ReadAllBytes( imageFileName );
-
-						var texture = new Texture2D( 1, 1 );
-
-						texture.LoadImage( bytes );
-
-						SetTexture( texture );
-					}
-					else
-					{
-						enabled = false;
-					}
-				}
-				else
-				{
-					enabled = false;
-				}
-			}
-		}
-		else
-		{
-			enabled = false;
-		}
+		OverlayUpdated();
 	}
 
 	public void Update()
 	{
-		if ( !rawImage.enabled )
+		if ( waitingForStreamedTexture )
 		{
 			Texture2D texture = null;
 
-			switch ( imageSettingsData.imageType )
+			switch ( settings.imageType )
 			{
-				case SettingsData.ImageType.SeriesLogo:
+				case SettingsImage.ImageType.SeriesLogo:
 					texture = IRSDK.normalizedSession.seriesTexture;
 					break;
 
-				case SettingsData.ImageType.CarNumber:
+				case SettingsImage.ImageType.CarNumber:
 
 					if ( carIdxIsValid )
 					{
@@ -89,7 +53,7 @@ public class ImageSettings : MonoBehaviour
 
 					break;
 
-				case SettingsData.ImageType.Car:
+				case SettingsImage.ImageType.Car:
 
 					if ( carIdxIsValid )
 					{
@@ -99,30 +63,28 @@ public class ImageSettings : MonoBehaviour
 					break;
 			}
 
-			SetTexture( texture );
+			if ( texture != null )
+			{
+				waitingForStreamedTexture = false;
+
+				SetTexture( texture );
+			}
 		}
 	}
 
 	public void SetCarIdx( int carIdx )
 	{
-		this.carIdx = carIdx;
-
-		carIdxIsValid = true;
-
-		Texture2D texture = null;
-
-		switch ( imageSettingsData.imageType )
+		if ( this.carIdx != carIdx )
 		{
-			case SettingsData.ImageType.CarNumber:
-				texture = IRSDK.normalizedData.normalizedCars[ carIdx ].carNumberTexture;
-				break;
+			this.carIdx = carIdx;
 
-			case SettingsData.ImageType.Car:
-				texture = IRSDK.normalizedData.normalizedCars[ carIdx ].carTexture;
-				break;
+			carIdxIsValid = true;
+
+			if ( ( settings.imageType == SettingsImage.ImageType.CarNumber ) || ( settings.imageType == SettingsImage.ImageType.Car ) )
+			{
+				waitingForStreamedTexture = true;
+			}
 		}
-
-		SetTexture( texture );
 	}
 
 	public void SetTexture( Texture2D texture )
@@ -136,31 +98,96 @@ public class ImageSettings : MonoBehaviour
 		{
 			rawImage.enabled = true;
 			rawImage.texture = texture;
-			rawImage.color = imageSettingsData.tintColor;
+			rawImage.color = settings.tintColor;
 
-			if ( imageSettingsData.size == Vector2.zero )
+			if ( settings.size == Vector2.zero )
 			{
-				rectTransform.localPosition = new Vector2( imageSettingsData.position.x, -imageSettingsData.position.y );
+				rectTransform.localPosition = new Vector2( settings.position.x, -settings.position.y );
 				rectTransform.sizeDelta = new Vector2( texture.width, texture.height );
 			}
 			else
 			{
-				var widthRatio = imageSettingsData.size.x / texture.width;
-				var heightRatio = imageSettingsData.size.y / texture.height;
+				var widthRatio = settings.size.x / texture.width;
+				var heightRatio = settings.size.y / texture.height;
 
 				var width = texture.width * widthRatio;
 				var height = texture.height * widthRatio;
 
-				if ( height > imageSettingsData.size.y )
+				if ( height > settings.size.y )
 				{
 					width = texture.width * heightRatio;
 					height = texture.height * heightRatio;
 				}
 
-				var offset = new Vector2( ( imageSettingsData.size.x - width ) / 2, ( imageSettingsData.size.y - height ) / 2 );
+				var offset = new Vector2( ( settings.size.x - width ) / 2, ( settings.size.y - height ) / -2 );
 
-				rectTransform.localPosition = new Vector2( imageSettingsData.position.x, -imageSettingsData.position.y ) + offset;
+				rectTransform.localPosition = new Vector2( settings.position.x, -settings.position.y ) + offset;
 				rectTransform.sizeDelta = new Vector2( width, height );
+			}
+		}
+	}
+
+	public void OverlayUpdated()
+	{
+		if ( id == string.Empty )
+		{
+			enabled = false;
+		}
+		else
+		{
+			settings = Settings.overlay.GetImageSettings( id );
+
+			if ( imageType != settings.imageType )
+			{
+				imageType = settings.imageType;
+
+				imageFilePath = string.Empty;
+
+				SetTexture( null );
+			}
+
+			switch ( settings.imageType )
+			{
+				case SettingsImage.ImageType.None:
+
+					SetTexture( null );
+
+					break;
+
+				case SettingsImage.ImageType.ImageFile:
+
+					var texture = ( rawImage.texture != null ) ? (Texture2D) rawImage.texture : null;
+
+					if ( imageFilePath != settings.filePath )
+					{
+						imageFilePath = settings.filePath;
+
+						texture = null;
+
+						if ( settings.filePath != string.Empty )
+						{
+							if ( File.Exists( settings.filePath ) )
+							{
+								var bytes = File.ReadAllBytes( settings.filePath );
+
+								texture = new Texture2D( 1, 1 );
+
+								texture.LoadImage( bytes );
+							}
+						}
+					}
+
+					SetTexture( texture );
+
+					break;
+
+				case SettingsImage.ImageType.SeriesLogo:
+				case SettingsImage.ImageType.CarNumber:
+				case SettingsImage.ImageType.Car:
+
+					waitingForStreamedTexture = true;
+
+					break;
 			}
 		}
 	}

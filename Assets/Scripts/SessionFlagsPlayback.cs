@@ -10,21 +10,21 @@ public static class SessionFlagsPlayback
 
 	public static List<SessionFlagsData> sessionFlagsDataList = new();
 
-	public static string sessionFlagsFileName = string.Empty;
+	public static string sessionFlagsFilePath = string.Empty;
 	public static StreamWriter streamWriter = null;
 
-	public static string GetSessionFlagsFileName()
+	public static string GetSessionFlagsFilePath()
 	{
 		return $"{sessionFlagsPath}\\{IRSDK.normalizedSession.sessionId}-{IRSDK.normalizedSession.subSessionId}.csv";
 	}
 
 	public static void OpenForRecording()
 	{
-		var newSessionFlagsFileName = GetSessionFlagsFileName();
+		var newSessionFlagsFilePath = GetSessionFlagsFilePath();
 
-		if ( newSessionFlagsFileName != sessionFlagsFileName )
+		if ( newSessionFlagsFilePath != sessionFlagsFilePath )
 		{
-			sessionFlagsFileName = newSessionFlagsFileName;
+			sessionFlagsFilePath = newSessionFlagsFilePath;
 
 			sessionFlagsDataList = new List<SessionFlagsData>();
 
@@ -37,23 +37,23 @@ public static class SessionFlagsPlayback
 
 			Directory.CreateDirectory( sessionFlagsPath );
 
-			streamWriter = File.AppendText( sessionFlagsFileName );
+			streamWriter = File.AppendText( sessionFlagsFilePath );
 		}
 	}
 
 	public static void LoadRecording()
 	{
-		var newSessionFlagsFileName = GetSessionFlagsFileName();
+		var newSessionFlagsFilePath = GetSessionFlagsFilePath();
 
-		if ( newSessionFlagsFileName != sessionFlagsFileName )
+		if ( newSessionFlagsFilePath != sessionFlagsFilePath )
 		{
-			sessionFlagsFileName = newSessionFlagsFileName;
+			sessionFlagsFilePath = newSessionFlagsFilePath;
 
 			sessionFlagsDataList.Clear();
 
-			if ( File.Exists( sessionFlagsFileName ) )
+			if ( File.Exists( sessionFlagsFilePath ) )
 			{
-				var streamReader = File.OpenText( sessionFlagsFileName );
+				var streamReader = File.OpenText( sessionFlagsFilePath );
 
 				while ( true )
 				{
@@ -79,7 +79,7 @@ public static class SessionFlagsPlayback
 
 	public static void Close()
 	{
-		sessionFlagsFileName = string.Empty;
+		sessionFlagsFilePath = string.Empty;
 
 		sessionFlagsDataList.Clear();
 	}

@@ -1,4 +1,6 @@
 
+using System;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,10 +12,10 @@ public class OverlaySubtitle : MonoBehaviour
 	public GameObject panel;
 	public GameObject text;
 
-	private RectTransform maxSizeContainer_RectTransform;
-	private Image panel_Image;
-	private VerticalLayoutGroup panel_VerticalLayoutGroup;
-	private TextMeshProUGUI text_Text;
+	[NonSerialized] public RectTransform maxSizeContainer_RectTransform;
+	[NonSerialized] public Image panel_Image;
+	[NonSerialized] public VerticalLayoutGroup panel_VerticalLayoutGroup;
+	[NonSerialized] public TextMeshProUGUI text_Text;
 
 	public void Awake()
 	{
@@ -25,14 +27,14 @@ public class OverlaySubtitle : MonoBehaviour
 
 	public void Start()
 	{
-		transform.localPosition = new Vector2( Settings.data.subtitleOverlayPosition.x, -Settings.data.subtitleOverlayPosition.y );
+		transform.localPosition = new Vector2( Settings.overlay.subtitleOverlayPosition.x, -Settings.overlay.subtitleOverlayPosition.y );
 
-		maxSizeContainer_RectTransform.sizeDelta = Settings.data.subtitleOverlayMaxSize;
+		maxSizeContainer_RectTransform.sizeDelta = Settings.overlay.subtitleOverlayMaxSize;
 
-		panel_Image.color = Settings.data.subtitleOverlayBackgroundColor;
-		panel_VerticalLayoutGroup.padding = new RectOffset( Settings.data.subtitleTextPadding.x, Settings.data.subtitleTextPadding.x, Settings.data.subtitleTextPadding.y, Settings.data.subtitleTextPadding.y );
+		panel_Image.color = Settings.overlay.subtitleOverlayBackgroundColor;
+		panel_VerticalLayoutGroup.padding = new RectOffset( Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.y, Settings.overlay.subtitleTextPadding.y );
 
-		if ( !Settings.data.showSubtitleOverlay )
+		if ( !Settings.overlay.showSubtitleOverlay )
 		{
 			gameObject.SetActive( false );
 		}

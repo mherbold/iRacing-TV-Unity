@@ -9,20 +9,19 @@ public class OverlayLeaderboard : MonoBehaviour
 {
 	public GameObject leaderboardBackground;
 	public GameObject positionSplitter;
-
 	public GameObject placeTemplate;
 
-	private GameObject[] places;
+	[NonSerialized] public GameObject[] places;
 
-	private OverlayPlace[] overlayPlaces;
+	[NonSerialized] public OverlayPlace[] overlayPlaces;
 
 	public void Awake()
 	{
 		placeTemplate.SetActive( false );
 
-		places = new GameObject[ Settings.data.leaderboardPlaceCount ];
+		places = new GameObject[ Settings.overlay.leaderboardPlaceCount ];
 
-		overlayPlaces = new OverlayPlace[ Settings.data.leaderboardPlaceCount ];
+		overlayPlaces = new OverlayPlace[ Settings.overlay.leaderboardPlaceCount ];
 
 		for ( var placeIndex = 0; placeIndex < places.Length; placeIndex++ )
 		{
@@ -38,9 +37,9 @@ public class OverlayLeaderboard : MonoBehaviour
 
 	public void Start()
 	{
-		transform.localPosition = new Vector2( Settings.data.leaderboardOverlayPosition.x, -Settings.data.leaderboardOverlayPosition.y );
+		transform.localPosition = new Vector2( Settings.overlay.leaderboardOverlayPosition.x, -Settings.overlay.leaderboardOverlayPosition.y );
 
-		if ( !Settings.data.showLeaderboardOverlay )
+		if ( !Settings.overlay.showLeaderboardOverlay )
 		{
 			gameObject.SetActive( false );
 		}
@@ -55,8 +54,8 @@ public class OverlayLeaderboard : MonoBehaviour
 
 		// leaderboard splits
 
-		var bottomSplitCount = Settings.data.leaderboardPlaceCount / 2;
-		var bottomSplitLastPosition = Settings.data.leaderboardPlaceCount;
+		var bottomSplitCount = Settings.overlay.leaderboardPlaceCount / 2;
+		var bottomSplitLastPosition = Settings.overlay.leaderboardPlaceCount;
 
 		if ( IRSDK.normalizedSession.isInRaceSession && ( IRSDK.normalizedData.sessionState == SessionState.StateRacing ) )
 		{
@@ -88,7 +87,7 @@ public class OverlayLeaderboard : MonoBehaviour
 		}
 
 		var topSplitFirstPosition = 1;
-		var topSplitLastPosition = Settings.data.leaderboardPlaceCount - bottomSplitCount;
+		var topSplitLastPosition = Settings.overlay.leaderboardPlaceCount - bottomSplitCount;
 		var bottomSplitFirstPosition = bottomSplitLastPosition - bottomSplitCount + 1;
 
 		// reset cars
@@ -165,7 +164,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 			// compute place offset
 
-			var targetOffsetPosition = new Vector2( 0.0f, Settings.data.leaderboardPlaceSpacing * placeIndex );
+			var targetOffsetPosition = new Vector2( 0.0f, Settings.overlay.leaderboardPlaceSpacing * placeIndex );
 
 			if ( !normalizedCar.leaderboardPlacePositionOffsetIsValid )
 			{
@@ -190,7 +189,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 			// update place position
 
-			overlayPlaces[ placeIndex ].transform.localPosition = new Vector2( Settings.data.leaderboardFirstPlacePosition.x, -Settings.data.leaderboardFirstPlacePosition.y ) - normalizedCar.leaderboardPlacePositionOffset;
+			overlayPlaces[ placeIndex ].transform.localPosition = new Vector2( Settings.overlay.leaderboardFirstPlacePosition.x, -Settings.overlay.leaderboardFirstPlacePosition.y ) - normalizedCar.leaderboardPlacePositionOffset;
 
 			// update place text
 
@@ -204,11 +203,11 @@ public class OverlayLeaderboard : MonoBehaviour
 
 			overlayPlaces[ placeIndex ].driverName_Text.text = normalizedCar.abbrevName;
 
-			if ( Settings.data.useClassColorsForDriverNames )
+			if ( Settings.overlay.useClassColorsForDriverNames )
 			{
-				if ( overlayPlaces[ placeIndex ].driverName_TextSettings.textSettingsData != null )
+				if ( overlayPlaces[ placeIndex ].driverName_TextSettings.settings != null )
 				{
-					overlayPlaces[ placeIndex ].driverName_Text.color = Color.Lerp( overlayPlaces[ placeIndex ].driverName_TextSettings.textSettingsData.tintColor, normalizedCar.classColor, Settings.data.classColorStrength );
+					overlayPlaces[ placeIndex ].driverName_Text.color = Color.Lerp( overlayPlaces[ placeIndex ].driverName_TextSettings.settings.tintColor, normalizedCar.classColor, Settings.overlay.classColorStrength );
 				}
 			}
 
@@ -230,39 +229,39 @@ public class OverlayLeaderboard : MonoBehaviour
 					telemetryString = $"-{deltaTime:0.000}";
 				}
 
-				telemetryColor = Settings.data.telemetryTextColor;
+				telemetryColor = Settings.overlay.telemetryTextColor;
 			}
 			else if ( normalizedCar.isOnPitRoad )
 			{
-				telemetryString = Settings.data.GetTranslation( "Pit", "PIT" );
-				telemetryColor = Settings.data.pitTextColor;
+				telemetryString = Settings.overlay.GetTranslation( "Pit", "PIT" );
+				telemetryColor = Settings.overlay.pitTextColor;
 			}
 			else if ( normalizedCar.isOutOfCar )
 			{
-				telemetryString = Settings.data.GetTranslation( "Out", "OUT" );
-				telemetryColor = Settings.data.outTextColor;
+				telemetryString = Settings.overlay.GetTranslation( "Out", "OUT" );
+				telemetryColor = Settings.overlay.outTextColor;
 			}
 			else if ( IRSDK.normalizedSession.isInRaceSession )
 			{
 				if ( ( IRSDK.normalizedData.sessionState == SessionState.StateRacing ) && normalizedCar.hasCrossedStartLine )
 				{
-					if ( !Settings.data.telemetryIsBetweenCars && normalizedCar.lapPositionRelativeToLeader >= 1.0f )
+					if ( !Settings.overlay.telemetryIsBetweenCars && normalizedCar.lapPositionRelativeToLeader >= 1.0f )
 					{
 						var wholeLapsDown = Math.Floor( normalizedCar.lapPositionRelativeToLeader );
 
-						telemetryString = $"-{wholeLapsDown:0} {Settings.data.GetTranslation( "LapsAbbreviation", "L" )}";
+						telemetryString = $"-{wholeLapsDown:0} {Settings.overlay.GetTranslation( "LapsAbbreviation", "L" )}";
 					}
 					else if ( !IRSDK.normalizedData.isUnderCaution )
 					{
-						var lapPosition = Settings.data.telemetryIsBetweenCars ? carInFrontLapPosition - normalizedCar.lapPosition : normalizedCar.lapPositionRelativeToLeader;
+						var lapPosition = Settings.overlay.telemetryIsBetweenCars ? carInFrontLapPosition - normalizedCar.lapPosition : normalizedCar.lapPositionRelativeToLeader;
 
 						if ( lapPosition > 0 )
 						{
-							if ( Settings.data.telemetryShowLaps )
+							if ( Settings.overlay.telemetryShowLaps )
 							{
-								telemetryString = $"-{lapPosition:0.000} {Settings.data.GetTranslation( "LapsAbbreviation", "L" )}";
+								telemetryString = $"-{lapPosition:0.000} {Settings.overlay.GetTranslation( "LapsAbbreviation", "L" )}";
 							}
-							else if ( Settings.data.telemetryShowDistance )
+							else if ( Settings.overlay.telemetryShowDistance )
 							{
 								var distance = lapPosition * IRSDK.normalizedSession.trackLengthInMeters;
 
@@ -272,7 +271,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 									if ( distanceString != "0" )
 									{
-										telemetryString = $"-{distanceString} {Settings.data.GetTranslation( "MetersAbbreviation", "M" )}";
+										telemetryString = $"-{distanceString} {Settings.overlay.GetTranslation( "MetersAbbreviation", "M" )}";
 									}
 								}
 								else
@@ -283,7 +282,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 									if ( distanceString != "0" )
 									{
-										telemetryString = $"-{distanceString} {Settings.data.GetTranslation( "FeetAbbreviation", "FT" )}";
+										telemetryString = $"-{distanceString} {Settings.overlay.GetTranslation( "FeetAbbreviation", "FT" )}";
 									}
 								}
 							}
@@ -301,7 +300,7 @@ public class OverlayLeaderboard : MonoBehaviour
 						}
 					}
 
-					telemetryColor = Settings.data.telemetryTextColor;
+					telemetryColor = Settings.overlay.telemetryTextColor;
 				}
 			}
 
@@ -319,7 +318,7 @@ public class OverlayLeaderboard : MonoBehaviour
 					overlayPlaces[ placeIndex ].highlight.SetActive( true );
 					overlayPlaces[ placeIndex ].speed.SetActive( true );
 
-					overlayPlaces[ placeIndex ].speed_Text.text = $"{normalizedCar.speedInMetersPerSecond * ( IRSDK.normalizedData.displayIsMetric ? 3.6f : 2.23694f ):0} {( IRSDK.normalizedData.displayIsMetric ? Settings.data.GetTranslation( "KPH", "KPH" ) : Settings.data.GetTranslation( "MPH", "MPH" ) )}";
+					overlayPlaces[ placeIndex ].speed_Text.text = $"{normalizedCar.speedInMetersPerSecond * ( IRSDK.normalizedData.displayIsMetric ? 3.6f : 2.23694f ):0} {( IRSDK.normalizedData.displayIsMetric ? Settings.overlay.GetTranslation( "KPH", "KPH" ) : Settings.overlay.GetTranslation( "MPH", "MPH" ) )}";
 				}
 				else
 				{
@@ -335,7 +334,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 			//
 
-			if ( normalizedCarInFront == null || Settings.data.telemetryIsBetweenCars )
+			if ( normalizedCarInFront == null || Settings.overlay.telemetryIsBetweenCars )
 			{
 				normalizedCarInFront = normalizedCar;
 			}

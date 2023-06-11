@@ -44,7 +44,9 @@ public class NormalizedCar
 	public int qualifyingPosition;
 	public float qualifyingTime;
 
-	public float heat;
+	public float attackingHeat;
+	public float defendingHeat;
+
 	public float distanceToCarInFrontInMeters;
 	public float distanceToCarBehindInMeters;
 
@@ -62,7 +64,7 @@ public class NormalizedCar
 	{
 		this.carIdx = carIdx;
 
-		checkpoints = new double[ Settings.data.numberOfCheckpoints ];
+		checkpoints = new double[ Settings.overlay.numberOfCheckpoints ];
 
 		Reset();
 	}
@@ -102,7 +104,9 @@ public class NormalizedCar
 		qualifyingPosition = int.MaxValue;
 		qualifyingTime = 0;
 
-		heat = 0;
+		attackingHeat = 0;
+		defendingHeat = 0;
+
 		distanceToCarInFrontInMeters = float.MaxValue;
 		distanceToCarBehindInMeters = float.MaxValue;
 
@@ -165,7 +169,7 @@ public class NormalizedCar
 
 				ColorUtility.TryParseHtmlString( $"#{driver.CarClassColor[ 2.. ]}", out classColor );
 
-				includeInLeaderboard = ( driver.IsSpectator == 0 ) && ( driver.CarIsPaceCar == "0" );
+				includeInLeaderboard = ( driver.IsSpectator == 0 ) && ( driver.CarIsPaceCar == 0 );
 
 				if ( includeInLeaderboard )
 				{
@@ -189,16 +193,16 @@ public class NormalizedCar
 
 					if ( numberDesignMatch.Success )
 					{
-						var imageSettingsData = Settings.data.GetImageSettingsData( "CarNumber" );
+						var settings = Settings.overlay.GetImageSettings( "CarNumber" );
 
-						var colorA = ( Settings.data.carNumberColorOverrideA != string.Empty ) ? Settings.data.carNumberColorOverrideA : numberDesignMatch.Groups[ 3 ].Value;
-						var colorB = ( Settings.data.carNumberColorOverrideB != string.Empty ) ? Settings.data.carNumberColorOverrideB : numberDesignMatch.Groups[ 4 ].Value;
-						var colorC = ( Settings.data.carNumberColorOverrideC != string.Empty ) ? Settings.data.carNumberColorOverrideC : numberDesignMatch.Groups[ 5 ].Value;
+						var colorA = ( Settings.overlay.carNumberColorOverrideA != string.Empty ) ? Settings.overlay.carNumberColorOverrideA : numberDesignMatch.Groups[ 3 ].Value;
+						var colorB = ( Settings.overlay.carNumberColorOverrideB != string.Empty ) ? Settings.overlay.carNumberColorOverrideB : numberDesignMatch.Groups[ 4 ].Value;
+						var colorC = ( Settings.overlay.carNumberColorOverrideC != string.Empty ) ? Settings.overlay.carNumberColorOverrideC : numberDesignMatch.Groups[ 5 ].Value;
 
-						var pattern = ( Settings.data.carNumberPatternOverride != string.Empty ) ? Settings.data.carNumberPatternOverride : numberDesignMatch.Groups[ 1 ].Value;
-						var slant = ( Settings.data.carNumberSlantOverride != string.Empty ) ? Settings.data.carNumberSlantOverride : numberDesignMatch.Groups[ 2 ].Value;
+						var pattern = ( Settings.overlay.carNumberPatternOverride != string.Empty ) ? Settings.overlay.carNumberPatternOverride : numberDesignMatch.Groups[ 1 ].Value;
+						var slant = ( Settings.overlay.carNumberSlantOverride != string.Empty ) ? Settings.overlay.carNumberSlantOverride : numberDesignMatch.Groups[ 2 ].Value;
 
-						var url = $"http://localhost:32034/pk_number.png?size={imageSettingsData.size.y}&view=0&number={carNumber}&numPat={pattern}&numCol={colorA},{colorB},{colorC}&numSlnt={slant}";
+						var url = $"http://localhost:32034/pk_number.png?size={settings.size.y}&view=0&number={carNumber}&numPat={pattern}&numCol={colorA},{colorB},{colorC}&numSlnt={slant}";
 
 						carNumberTexture = await RemoteTexture.Get( url );
 					}
@@ -209,14 +213,14 @@ public class NormalizedCar
 					{
 						var licColor = driver.LicColor[ 2.. ];
 						var carPath = driver.CarPath.Replace( " ", "%5C" );
-						var customCarTgaFileName = $"{Settings.data.customPaintsDirectory}\\{driver.CarPath}\\car_{driver.UserID}.tga".Replace( " ", "%5C" );
+						var customCarTgaFilePath = $"{Settings.overlay.customPaintsDirectory}\\{driver.CarPath}\\car_{driver.UserID}.tga".Replace( " ", "%5C" );
 
-						if ( !File.Exists( customCarTgaFileName ) )
+						if ( !File.Exists( customCarTgaFilePath ) )
 						{
-							customCarTgaFileName = string.Empty;
+							customCarTgaFilePath = string.Empty;
 						}
 
-						var url = $"http://localhost:32034/pk_car.png?size=2&view=1&licCol={licColor}&club={driver.ClubID}&sponsors={driver.CarSponsor_1},{driver.CarSponsor_2}&numPat={numberDesignMatch.Groups[ 1 ].Value}&numCol={numberDesignMatch.Groups[ 3 ].Value},{numberDesignMatch.Groups[ 4 ].Value},{numberDesignMatch.Groups[ 5 ].Value}&numSlnt={numberDesignMatch.Groups[ 2 ].Value}&number={carNumber}&carPath={carPath}&carPat={carDesignMatch.Groups[ 1 ].Value}&carCol={carDesignMatch.Groups[ 2 ].Value},{carDesignMatch.Groups[ 3 ].Value},{carDesignMatch.Groups[ 4 ].Value}&carRimType=2&carRimCol={carDesignMatch.Groups[ 5 ].Value}&carCustPaint={customCarTgaFileName}";
+						var url = $"http://localhost:32034/pk_car.png?size=2&view=1&licCol={licColor}&club={driver.ClubID}&sponsors={driver.CarSponsor_1},{driver.CarSponsor_2}&numPat={numberDesignMatch.Groups[ 1 ].Value}&numCol={numberDesignMatch.Groups[ 3 ].Value},{numberDesignMatch.Groups[ 4 ].Value},{numberDesignMatch.Groups[ 5 ].Value}&numSlnt={numberDesignMatch.Groups[ 2 ].Value}&number={carNumber}&carPath={carPath}&carPat={carDesignMatch.Groups[ 1 ].Value}&carCol={carDesignMatch.Groups[ 2 ].Value},{carDesignMatch.Groups[ 3 ].Value},{carDesignMatch.Groups[ 4 ].Value}&carRimType=2&carRimCol={carDesignMatch.Groups[ 5 ].Value}&carCustPaint={customCarTgaFilePath}";
 
 						carTexture = await RemoteTexture.Get( url );
 					}
@@ -279,7 +283,7 @@ public class NormalizedCar
 					lapPosition += lapDistPctDelta;
 				}
 
-				var checkpointIdx = (int) Math.Floor( lapDistPct * Settings.data.numberOfCheckpoints ) % Settings.data.numberOfCheckpoints;
+				var checkpointIdx = (int) Math.Floor( lapDistPct * Settings.overlay.numberOfCheckpoints ) % Settings.overlay.numberOfCheckpoints;
 
 				if ( checkpointIdx != this.checkpointIdx )
 				{
@@ -353,13 +357,13 @@ public class NormalizedCar
 	{
 		if ( object1.includeInLeaderboard && object2.includeInLeaderboard )
 		{
-			if ( object1.heat == object2.heat )
+			if ( object1.attackingHeat == object2.attackingHeat )
 			{
-				return object1.carIdx.CompareTo( object2.carIdx );
+				return object1.officialPosition.CompareTo( object2.officialPosition );
 			}
 			else
 			{
-				return object2.heat.CompareTo( object1.heat );
+				return object2.attackingHeat.CompareTo( object1.attackingHeat );
 			}
 		}
 		else if ( object1.includeInLeaderboard )
@@ -382,7 +386,7 @@ public class NormalizedCar
 		{
 			if ( object1.leaderboardPosition == object2.leaderboardPosition )
 			{
-				return object1.carIdx.CompareTo( object2.carIdx );
+				return object1.officialPosition.CompareTo( object2.officialPosition );
 			}
 			else
 			{
