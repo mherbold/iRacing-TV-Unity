@@ -22,23 +22,35 @@ public class TextSettings : MonoBehaviour
 
 	public void Start()
 	{
-		if ( id != string.Empty )
+		OverlayUpdated();
+	}
+
+	public void OverlayUpdated()
+	{
+		if ( id == string.Empty )
+		{
+			enabled = false;
+		}
+		else
 		{
 			settings = Settings.overlay.GetTextSettingsData( id );
 
-			var fontAsset = Fonts.GetFontAsset( settings.fontIndex );
-
-			if ( fontAsset != null )
+			if ( settings.fontIndex == SettingsText.FontIndex.None )
 			{
-				text.font = fontAsset;
+				enabled = false;
 			}
+			else
+			{
+				enabled = true;
 
-			text.fontSize = settings.fontSize;
-			text.color = settings.tintColor;
-			text.alignment = settings.alignment;
+				text.font = Fonts.GetFontAsset( settings.fontIndex );
+				text.fontSize = settings.fontSize;
+				text.color = settings.tintColor;
+				text.alignment = settings.alignment;
 
-			rectTransform.localPosition = new Vector2( settings.position.x, -settings.position.y );
-			rectTransform.sizeDelta = settings.size;
+				rectTransform.localPosition = new Vector2( settings.position.x, -settings.position.y );
+				rectTransform.sizeDelta = settings.size;
+			}
 		}
 	}
 }

@@ -7,6 +7,7 @@ using irsdkSharp.Serialization.Enums.Fastest;
 
 public class OverlayLeaderboard : MonoBehaviour
 {
+	public GameObject enable;
 	public GameObject leaderboardBackground;
 	public GameObject positionSplitter;
 	public GameObject placeTemplate;
@@ -37,12 +38,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 	public void Start()
 	{
-		transform.localPosition = new Vector2( Settings.overlay.leaderboardOverlayPosition.x, -Settings.overlay.leaderboardOverlayPosition.y );
-
-		if ( !Settings.overlay.showLeaderboardOverlay )
-		{
-			gameObject.SetActive( false );
-		}
+		OverlayUpdated();
 	}
 
 	public void Update()
@@ -164,7 +160,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 			// compute place offset
 
-			var targetOffsetPosition = new Vector2( 0.0f, Settings.overlay.leaderboardPlaceSpacing * placeIndex );
+			var targetOffsetPosition = Settings.overlay.leaderboardPlaceSpacing * placeIndex;
 
 			if ( !normalizedCar.leaderboardPlacePositionOffsetIsValid )
 			{
@@ -379,5 +375,12 @@ public class OverlayLeaderboard : MonoBehaviour
 		{
 			overlayPlace.gameObject.SetActive( overlayPlace.shouldBeVisible );
 		}
+	}
+
+	public void OverlayUpdated()
+	{
+		transform.localPosition = new Vector2( Settings.overlay.leaderboardOverlayPosition.x, -Settings.overlay.leaderboardOverlayPosition.y );
+
+		enable.SetActive( Settings.overlay.leaderboardOverlayEnabled );
 	}
 }

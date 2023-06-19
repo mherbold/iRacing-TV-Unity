@@ -96,6 +96,10 @@ public class ImageSettings : MonoBehaviour
 		}
 		else
 		{
+			texture.wrapMode = TextureWrapMode.Clamp;
+			texture.filterMode = FilterMode.Trilinear;
+			texture.anisoLevel = 16;
+
 			rawImage.enabled = true;
 			rawImage.texture = texture;
 			rawImage.color = settings.tintColor;

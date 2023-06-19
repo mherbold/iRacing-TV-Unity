@@ -13,11 +13,13 @@ public class SettingsOverlay
 	public Vector2Int overlayPosition = new( 0, 0 );
 	public Vector2Int overlaySize = new( 1920, 1080 );
 
-	public string[] fontNames = new string[ MaxNumFonts ];
+	public string[] fontPaths = new string[ MaxNumFonts ];
 
+	public bool leaderboardOverlayEnabled = true;
+	public Vector2 leaderboardOverlayPosition = new( 44, 244 );
 	public Vector2 leaderboardFirstPlacePosition = new( 0, 0 );
-	public float leaderboardPlaceSpacing = 41;
 	public int leaderboardPlaceCount = 20;
+	public Vector2 leaderboardPlaceSpacing = new( 0, 41 );
 
 	public int numberOfCheckpoints = 100;
 
@@ -27,9 +29,6 @@ public class SettingsOverlay
 
 	public bool showRaceStatusOverlay = true;
 	public Vector2 raceStatusOverlayPosition = new( 44, 9 );
-
-	public bool showLeaderboardOverlay = true;
-	public Vector2 leaderboardOverlayPosition = new( 44, 244 );
 
 	public bool showVoiceOfOverlay = true;
 	public Vector2 voiceOfOverlayPosition = new( 1920, 41 );
@@ -63,13 +62,13 @@ public class SettingsOverlay
 
 	public SerializableDictionary<string, SettingsText> textSettingsDataDictionary = new();
 	public SerializableDictionary<string, SettingsImage> imageSettingsDataDictionary = new();
-	public SerializableDictionary<string, string> translationDictionary = new();
+	public SerializableDictionary<string, SettingsTranslation> translationDictionary = new();
 
 	public SettingsOverlay()
 	{
 		for ( var fontIndex = 0; fontIndex < MaxNumFonts; fontIndex++ )
 		{
-			fontNames[ fontIndex ] = string.Empty;
+			fontPaths[ fontIndex ] = string.Empty;
 		}
 	}
 
@@ -97,9 +96,9 @@ public class SettingsOverlay
 	{
 		if ( !translationDictionary.ContainsKey( id ) )
 		{
-			translationDictionary[ id ] = defaultTranslation;
+			translationDictionary[ id ] = new SettingsTranslation() { translation = defaultTranslation };
 		}
 
-		return translationDictionary[ id ];
+		return translationDictionary[ id ].translation;
 	}
 }

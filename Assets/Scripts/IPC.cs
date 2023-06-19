@@ -9,24 +9,30 @@ using UnityEngine;
 
 public class IPC : MonoBehaviour
 {
+	public const int MAX_MEMORY_MAPPED_FILE_SIZE = 1 * 1024 * 1024;
+
 	[NonSerialized] public MemoryMappedFile memoryMappedFile;
 
-	[NonSerialized] public uint index = 0;
+	[NonSerialized] public long index = 0;
 
 	public void Awake()
 	{
-		memoryMappedFile = MemoryMappedFile.CreateOrOpen( Program.IpcName, 1 * 1024 * 1024 );
+		memoryMappedFile = MemoryMappedFile.CreateOrOpen( Program.IpcName, MAX_MEMORY_MAPPED_FILE_SIZE );
 	}
 
 	public void Update()
 	{
-		var viewAccessor = memoryMappedFile.CreateViewAccessor( 0, 4 );
+		var viewAccessor = memoryMappedFile.CreateViewAccessor( 0, MAX_MEMORY_MAPPED_FILE_SIZE );
 
-		var index = viewAccessor.ReadUInt32( 0 );
+		var index = viewAccessor.ReadInt64( 0 );
 
 		viewAccessor.Dispose();
 
-		if ( index != this.index )
+		if ( index == this.index )
+		{
+			viewAccessor.Dispose();
+		}
+		else
 		{
 			this.index = index;
 
@@ -44,17 +50,11 @@ public class IPC : MonoBehaviour
 				}
 			}
 
-			viewAccessor = memoryMappedFile.CreateViewAccessor( 4, 4 );
-
-			var size = viewAccessor.ReadUInt32( 0 );
-
-			viewAccessor.Dispose();
-
-			viewAccessor = memoryMappedFile.CreateViewAccessor( 8, size );
+			var size = viewAccessor.ReadUInt32( 8 );
 
 			var buffer = new byte[ size ];
 
-			viewAccessor.ReadArray( 0, buffer, 0, buffer.Length );
+			viewAccessor.ReadArray( 12, buffer, 0, buffer.Length );
 
 			viewAccessor.Dispose();
 

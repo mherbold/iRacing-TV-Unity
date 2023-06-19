@@ -9,6 +9,8 @@ using irsdkSharp.Serialization.Models.Session.DriverInfo;
 
 public class NormalizedCar
 {
+	public const int MAX_NUM_CHECKPOINTS = 100;
+
 	public int carIdx;
 	public int driverIdx;
 

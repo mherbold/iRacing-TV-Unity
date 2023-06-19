@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\SettingsText.cs" />
     <Compile Include="Assets\Scripts\SessionFlagsPlayback.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary.cs" />
+    <Compile Include="Assets\Scripts\SettingsTranslation.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
     <Compile Include="Assets\Scripts\Fonts.cs" />
     <Compile Include="Assets\Scripts\IPC.cs" />

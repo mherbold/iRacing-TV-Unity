@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Fonts : MonoBehaviour
 {
-	[NonSerialized] public static readonly string[] fontNames = new string[ SettingsOverlay.MaxNumFonts ];
+	[NonSerialized] public static readonly string[] fontPaths = new string[ SettingsOverlay.MaxNumFonts ];
 	[NonSerialized] public static readonly TMP_FontAsset[] fontAssets = new TMP_FontAsset[ SettingsOverlay.MaxNumFonts ];
 
 	public void Start()
@@ -19,13 +19,15 @@ public class Fonts : MonoBehaviour
 	{
 		for ( var fontIndex = 0; fontIndex < SettingsOverlay.MaxNumFonts; fontIndex++ )
 		{
-			var fontName = Settings.overlay.fontNames[ fontIndex ];
+			var fontPath = Settings.overlay.fontPaths[ fontIndex ];
 
-			if ( fontName != fontNames[ fontIndex ] )
+			if ( fontPath != fontPaths[ fontIndex ] )
 			{
-				if ( fontName != string.Empty )
+				fontPaths[ fontIndex ] = fontPath;
+
+				if ( fontPath != string.Empty )
 				{
-					var font = new Font( fontName );
+					var font = new Font( fontPath );
 
 					fontAssets[ fontIndex ] = TMP_FontAsset.CreateFontAsset( font );
 				}
@@ -33,8 +35,6 @@ public class Fonts : MonoBehaviour
 				{
 					fontAssets[ fontIndex ] = null;
 				}
-
-				fontNames[ fontIndex ] = fontName;
 			}
 		}
 	}
