@@ -8,6 +8,7 @@ using TMPro;
 
 public class OverlaySubtitle : MonoBehaviour
 {
+	public GameObject enable;
 	public GameObject maxSizeContainer;
 	public GameObject panel;
 	public GameObject text;
@@ -27,6 +28,11 @@ public class OverlaySubtitle : MonoBehaviour
 
 	public void Start()
 	{
+		SettingsUpdated();
+	}
+
+	public void SettingsUpdated()
+	{
 		transform.localPosition = new Vector2( Settings.overlay.subtitleOverlayPosition.x, -Settings.overlay.subtitleOverlayPosition.y );
 
 		maxSizeContainer_RectTransform.sizeDelta = Settings.overlay.subtitleOverlayMaxSize;
@@ -34,17 +40,12 @@ public class OverlaySubtitle : MonoBehaviour
 		panel_Image.color = Settings.overlay.subtitleOverlayBackgroundColor;
 		panel_VerticalLayoutGroup.padding = new RectOffset( Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.y, Settings.overlay.subtitleTextPadding.y );
 
-		if ( !Settings.overlay.showSubtitleOverlay )
-		{
-			gameObject.SetActive( false );
-		}
+		enable.SetActive( Settings.overlay.subtitleOverlayEnabled );
 	}
 
-	public void Update()
+	public void LiveDataUpdated()
 	{
-		string text = ChatLogPlayback.Playback( IRSDK.normalizedSession.sessionNumber, IRSDK.normalizedData.sessionTime );
-
-		if ( text == null )
+		if ( LiveData.Instance.liveDataSubtitle.text == string.Empty )
 		{
 			panel.SetActive( false );
 		}
@@ -52,7 +53,7 @@ public class OverlaySubtitle : MonoBehaviour
 		{
 			panel.SetActive( true );
 
-			text_Text.text = text;
+			text_Text.text = LiveData.Instance.liveDataSubtitle.text;
 		}
 	}
 }

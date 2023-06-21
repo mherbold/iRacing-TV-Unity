@@ -12,10 +12,10 @@ public class Fonts : MonoBehaviour
 
 	public void Start()
 	{
-		OverlayUpdated();
+		SettingsUpdated();
 	}
 
-	public void OverlayUpdated()
+	public void SettingsUpdated()
 	{
 		for ( var fontIndex = 0; fontIndex < SettingsOverlay.MaxNumFonts; fontIndex++ )
 		{

@@ -7,6 +7,7 @@ using TMPro;
 
 public class OverlayVoiceOf : MonoBehaviour
 {
+	public GameObject enable;
 	public GameObject animationRoot;
 	public GameObject voiceOf;
 	public GameObject driverName;
@@ -16,8 +17,6 @@ public class OverlayVoiceOf : MonoBehaviour
 	[NonSerialized] public TextMeshProUGUI voiceOf_Text;
 	[NonSerialized] public TextMeshProUGUI driverName_Text;
 	[NonSerialized] public ImageSettings car_ImageSettings;
-
-	[NonSerialized] public int radioTransmitCarIdx = -1;
 
 	public void Awake()
 	{
@@ -29,31 +28,27 @@ public class OverlayVoiceOf : MonoBehaviour
 
 	public void Start()
 	{
-		transform.localPosition = new Vector2( Settings.overlay.voiceOfOverlayPosition.x, -Settings.overlay.voiceOfOverlayPosition.y );
-
-		if ( !Settings.overlay.showVoiceOfOverlay )
-		{
-			gameObject.SetActive( false );
-		}
+		SettingsUpdated();
 	}
 
-	public void Update()
+	public void SettingsUpdated()
 	{
-		if ( radioTransmitCarIdx != IRSDK.normalizedData.radioTransmitCarIdx )
+		transform.localPosition = new Vector2( Settings.overlay.voiceOfOverlayPosition.x, -Settings.overlay.voiceOfOverlayPosition.y );
+
+		enable.SetActive( Settings.overlay.voiceOfOverlayEnabled );
+	}
+
+	public void LiveDataUpdated()
+	{
+		animationRoot_Animator.SetBool( "Show", LiveData.Instance.liveDataVoiceOf.show );
+
+		voiceOf_Text.text = LiveData.Instance.liveDataVoiceOf.voiceOfText;
+
+		driverName_Text.text = LiveData.Instance.liveDataVoiceOf.driverNameText;
+
+		if ( LiveData.Instance.liveDataVoiceOf.carIdx != -1 )
 		{
-			radioTransmitCarIdx = IRSDK.normalizedData.radioTransmitCarIdx;
-
-			animationRoot_Animator.SetBool( "Show", radioTransmitCarIdx != -1 );
-
-			var normalizedCar = IRSDK.normalizedData.FindNormalizedCarByCarIdx( radioTransmitCarIdx );
-
-			if ( normalizedCar != null )
-			{
-				voiceOf_Text.text = Settings.overlay.GetTranslation( "Voice of", "VOICE OF" );
-				driverName_Text.text = normalizedCar.userName;
-
-				car_ImageSettings.SetCarIdx( radioTransmitCarIdx );
-			}
+			car_ImageSettings.carIdx = LiveData.Instance.liveDataVoiceOf.carIdx;
 		}
 	}
 }

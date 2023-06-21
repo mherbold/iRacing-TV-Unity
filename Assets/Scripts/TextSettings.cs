@@ -22,10 +22,10 @@ public class TextSettings : MonoBehaviour
 
 	public void Start()
 	{
-		OverlayUpdated();
+		SettingsUpdated();
 	}
 
-	public void OverlayUpdated()
+	public void SettingsUpdated()
 	{
 		if ( id == string.Empty )
 		{

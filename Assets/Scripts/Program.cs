@@ -3,12 +3,9 @@ using System;
 
 public static class Program
 {
-	public const string IpcName = "iRacing-TV IPC";
-	public const string MutexName = "iRacing-TV Mutex";
+	public const string IpcNameSettings = "iRacing-TV IPC Settings";
+	public const string IpcNameLiveData = "iRacing-TV IPC Live Data";
 
-	public const string AppName = "iRacing-TV";
-	public const string AppNameSTT = "iRacing-STT-VR";
-
-	public static readonly string documentsFolder = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ) + $"\\{AppName}\\";
-	public static readonly string documentsFolderSTT = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ) + $"\\{AppNameSTT}\\";
+	public const string MutexNameSettings = "iRacing-TV Mutex Settings";
+	public const string MutexNameLiveData = "iRacing-TV Mutex Live Data";
 }

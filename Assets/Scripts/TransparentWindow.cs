@@ -27,12 +27,12 @@ public class TransparentWindow : MonoBehaviour
 
 		WinApi.SetWindowLong( hWnd, WinApi.GWL_EXSTYLE, WinApi.WS_EX_LAYERED | WinApi.WS_EX_TRANSPARENT | WinApi.WS_EX_TOPMOST );
 
-		OverlayUpdated();
+		SettingsUpdated();
 	}
 
-	public void OverlayUpdated()
+	public void SettingsUpdated()
 	{
-		WinApi.SetWindowPos( hWnd, WinApi.HWND_TOPMOST, Settings.data.overlayPosition.x, Settings.data.overlayPosition.y, Settings.data.overlaySize.x, Settings.data.overlaySize.y, 0 );
+		WinApi.SetWindowPos( hWnd, WinApi.HWND_TOPMOST, Settings.overlay.overlayPosition.x, Settings.overlay.overlayPosition.y, Settings.overlay.overlaySize.x, Settings.overlay.overlaySize.y, 0 );
 	}
 
 #endif

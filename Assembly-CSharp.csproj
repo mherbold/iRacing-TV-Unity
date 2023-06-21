@@ -60,30 +60,29 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\SettingsImage.cs" />
     <Compile Include="Assets\Scripts\TextSettings.cs" />
-    <Compile Include="Assets\Scripts\NormalizedSession.cs" />
-    <Compile Include="Assets\Scripts\NormalizedCar.cs" />
+    <Compile Include="Assets\Scripts\LiveDataPlace.cs" />
     <Compile Include="Assets\Scripts\SettingsText.cs" />
-    <Compile Include="Assets\Scripts\SessionFlagsPlayback.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\SettingsTranslation.cs" />
+    <Compile Include="Assets\Scripts\LiveDataSubtitle.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
     <Compile Include="Assets\Scripts\Fonts.cs" />
     <Compile Include="Assets\Scripts\IPC.cs" />
     <Compile Include="Assets\Scripts\WinApi.cs" />
+    <Compile Include="Assets\Scripts\StreamedTexture.cs" />
     <Compile Include="Assets\Scripts\OverlayVoiceOf.cs" />
-    <Compile Include="Assets\Scripts\IRSDK.cs" />
-    <Compile Include="Assets\Scripts\RemoteTexture.cs" />
+    <Compile Include="Assets\Scripts\LiveDataRaceStatus.cs" />
+    <Compile Include="Assets\Scripts\LiveDataVoiceOf.cs" />
     <Compile Include="Assets\Scripts\OverlaySubtitle.cs" />
     <Compile Include="Assets\Scripts\OverlayPlace.cs" />
     <Compile Include="Assets\Scripts\OverlayLeaderboard.cs" />
     <Compile Include="Assets\Scripts\TransparentWindow.cs" />
-    <Compile Include="Assets\Scripts\ChatLogData.cs" />
     <Compile Include="Assets\Scripts\ImageSettings.cs" />
-    <Compile Include="Assets\Scripts\ChatLogPlayback.cs" />
-    <Compile Include="Assets\Scripts\NormalizedData.cs" />
+    <Compile Include="Assets\Scripts\StreamingTextures.cs" />
+    <Compile Include="Assets\Scripts\LiveDataLeaderboard.cs" />
+    <Compile Include="Assets\Scripts\LiveData.cs" />
     <Compile Include="Assets\Scripts\OverlayRaceStatus.cs" />
     <Compile Include="Assets\Scripts\SettingsOverlay.cs" />
-    <Compile Include="Assets\Scripts\SessionFlagsData.cs" />
     <Compile Include="Assets\Scripts\Program.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -359,44 +358,11 @@
     <Reference Include="UnityEditor.UnityConnectModule">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Assets\Plugins\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Win32.SystemEvents">
-      <HintPath>Assets\Plugins\Microsoft.Win32.SystemEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces">
-      <HintPath>Assets\Plugins\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="YamlDotNet">
-      <HintPath>Assets\Plugins\YamlDotNet.dll</HintPath>
-    </Reference>
     <Reference Include="ReportGeneratorMerged">
       <HintPath>Library\PackageCache\com.unity.testtools.codecoverage@1.2.3\lib\ReportGenerator\ReportGeneratorMerged.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Encodings.Web">
-      <HintPath>Assets\Plugins\System.Text.Encodings.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Encoding.CodePages">
-      <HintPath>Assets\Plugins\System.Text.Encoding.CodePages.dll</HintPath>
-    </Reference>
-    <Reference Include="irsdkSharp.Serialization">
-      <HintPath>Assets\Plugins\irsdkSharp.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="irsdkSharp.Calculation">
-      <HintPath>Assets\Plugins\irsdkSharp.Calculation.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Text.Json">
-      <HintPath>Assets\Plugins\System.Text.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="irsdkSharp">
-      <HintPath>Assets\Plugins\irsdkSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="IRSDKUnity">
-      <HintPath>Assets\Plugins\IRSDKUnity.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

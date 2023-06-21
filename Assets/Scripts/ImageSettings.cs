@@ -14,12 +14,11 @@ public class ImageSettings : MonoBehaviour
 
 	[NonSerialized] public SettingsImage settings;
 
-	[NonSerialized] public bool carIdxIsValid = false;
-	[NonSerialized] public int carIdx;
+	[NonSerialized] public int carIdx = 0;
 
-	[NonSerialized] public bool waitingForStreamedTexture;
 	[NonSerialized] public SettingsImage.ImageType imageType;
 	[NonSerialized] public string imageFilePath;
+	[NonSerialized] public Texture2D texture;
 
 	public void Awake()
 	{
@@ -29,73 +28,55 @@ public class ImageSettings : MonoBehaviour
 
 	public void Start()
 	{
-		OverlayUpdated();
+		SettingsUpdated();
 	}
 
 	public void Update()
 	{
-		if ( waitingForStreamedTexture )
+		Texture2D texture = null;
+
+		switch ( settings.imageType )
 		{
-			Texture2D texture = null;
+			case SettingsImage.ImageType.ImageFile:
+				texture = (Texture2D) rawImage.texture;
+				break;
 
-			switch ( settings.imageType )
-			{
-				case SettingsImage.ImageType.SeriesLogo:
-					texture = IRSDK.normalizedSession.seriesTexture;
-					break;
+			case SettingsImage.ImageType.SeriesLogo:
+				texture = StreamingTextures.seriesLogoStreamedTexture.GetTexture();
+				break;
 
-				case SettingsImage.ImageType.CarNumber:
+			case SettingsImage.ImageType.CarNumber:
+				texture = StreamingTextures.carNumberStreamedTexture[ carIdx ].GetTexture();
+				break;
 
-					if ( carIdxIsValid )
-					{
-						texture = IRSDK.normalizedData.normalizedCars[ carIdx ].carNumberTexture;
-					}
+			case SettingsImage.ImageType.Car:
+				texture = StreamingTextures.carStreamedTexture[ carIdx ].GetTexture();
+				break;
 
-					break;
-
-				case SettingsImage.ImageType.Car:
-
-					if ( carIdxIsValid )
-					{
-						texture = IRSDK.normalizedData.normalizedCars[ carIdx ].carTexture;
-					}
-
-					break;
-			}
-
-			if ( texture != null )
-			{
-				waitingForStreamedTexture = false;
-
-				SetTexture( texture );
-			}
+			case SettingsImage.ImageType.Helmet:
+				texture = StreamingTextures.helmetStreamedTexture[ carIdx ].GetTexture();
+				break;
 		}
+
+		SetTexture( texture );
 	}
 
-	public void SetCarIdx( int carIdx )
-	{
-		if ( this.carIdx != carIdx )
-		{
-			this.carIdx = carIdx;
-
-			carIdxIsValid = true;
-
-			if ( ( settings.imageType == SettingsImage.ImageType.CarNumber ) || ( settings.imageType == SettingsImage.ImageType.Car ) )
-			{
-				waitingForStreamedTexture = true;
-			}
-		}
-	}
-
-	public void SetTexture( Texture2D texture )
+	public void SetTexture( Texture2D texture, bool forceUpate = false )
 	{
 		if ( texture == null )
 		{
-			rawImage.enabled = false;
-			rawImage.texture = null;
+			if ( rawImage.enabled || ( this.texture != null ) )
+			{
+				this.texture = null;
+
+				rawImage.enabled = false;
+				rawImage.texture = null;
+			}
 		}
-		else
+		else if ( ( texture != this.texture ) || forceUpate )
 		{
+			this.texture = texture;
+
 			texture.wrapMode = TextureWrapMode.Clamp;
 			texture.filterMode = FilterMode.Trilinear;
 			texture.anisoLevel = 16;
@@ -131,7 +112,7 @@ public class ImageSettings : MonoBehaviour
 		}
 	}
 
-	public void OverlayUpdated()
+	public void SettingsUpdated()
 	{
 		if ( id == string.Empty )
 		{
@@ -141,58 +122,44 @@ public class ImageSettings : MonoBehaviour
 		{
 			settings = Settings.overlay.GetImageSettings( id );
 
+			Texture2D texture;
+
 			if ( imageType != settings.imageType )
 			{
 				imageType = settings.imageType;
 
 				imageFilePath = string.Empty;
-
-				SetTexture( null );
 			}
 
-			switch ( settings.imageType )
+			if ( imageType == SettingsImage.ImageType.ImageFile )
 			{
-				case SettingsImage.ImageType.None:
+				texture = ( rawImage.texture != null ) ? (Texture2D) rawImage.texture : null;
 
-					SetTexture( null );
+				if ( imageFilePath != settings.filePath )
+				{
+					imageFilePath = settings.filePath;
 
-					break;
+					texture = null;
 
-				case SettingsImage.ImageType.ImageFile:
-
-					var texture = ( rawImage.texture != null ) ? (Texture2D) rawImage.texture : null;
-
-					if ( imageFilePath != settings.filePath )
+					if ( settings.filePath != string.Empty )
 					{
-						imageFilePath = settings.filePath;
-
-						texture = null;
-
-						if ( settings.filePath != string.Empty )
+						if ( File.Exists( settings.filePath ) )
 						{
-							if ( File.Exists( settings.filePath ) )
-							{
-								var bytes = File.ReadAllBytes( settings.filePath );
+							var bytes = File.ReadAllBytes( settings.filePath );
 
-								texture = new Texture2D( 1, 1 );
+							texture = new Texture2D( 1, 1 );
 
-								texture.LoadImage( bytes );
-							}
+							texture.LoadImage( bytes );
 						}
 					}
-
-					SetTexture( texture );
-
-					break;
-
-				case SettingsImage.ImageType.SeriesLogo:
-				case SettingsImage.ImageType.CarNumber:
-				case SettingsImage.ImageType.Car:
-
-					waitingForStreamedTexture = true;
-
-					break;
+				}
 			}
+			else
+			{
+				texture = null;
+			}
+
+			SetTexture( texture, true );
 		}
 	}
 }
