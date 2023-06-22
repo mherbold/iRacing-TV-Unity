@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 public class StreamedTexture
 {
 	public string textureUrl = string.Empty;
+
 	private Texture2D texture = null;
 
 	public bool requestPending = false;
@@ -15,6 +16,7 @@ public class StreamedTexture
 	public void ChangeTexture( string url )
 	{
 		textureUrl = url;
+
 		requestPending = true;
 	}
 
@@ -44,7 +46,13 @@ public class StreamedTexture
 				}
 				else
 				{
-					texture = DownloadHandlerTexture.GetContent( unityWebRequest );
+					var downloadedTexture = DownloadHandlerTexture.GetContent( unityWebRequest );
+
+					texture = new Texture2D( downloadedTexture.width, downloadedTexture.height, downloadedTexture.format, true );
+
+					texture.LoadImage( unityWebRequest.downloadHandler.data );
+
+					texture.Apply();
 
 					requestCompleted = true;
 				}

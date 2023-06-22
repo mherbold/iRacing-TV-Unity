@@ -16,6 +16,9 @@ public class OverlayRaceStatus : MonoBehaviour
 	public GameObject yellowLight;
 	public GameObject units;
 	public GameObject currentLap;
+	public GameObject greenFlag;
+	public GameObject yellowFlag;
+	public GameObject checkeredFlag;
 
 	[NonSerialized] public TextMeshProUGUI sessionName_Text;
 	[NonSerialized] public TextMeshProUGUI lapsRemaining_Text;
@@ -56,5 +59,9 @@ public class OverlayRaceStatus : MonoBehaviour
 		units_Text.text = LiveData.Instance.liveDataRaceStatus.unitsText;
 
 		currentLap_Text.text = LiveData.Instance.liveDataRaceStatus.currentLapText;
+
+		greenFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showGreenFlag );
+		yellowFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showYellowFlag );
+		checkeredFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showCheckeredFlag );
 	}
 }

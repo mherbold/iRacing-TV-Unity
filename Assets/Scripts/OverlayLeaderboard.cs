@@ -10,6 +10,9 @@ public class OverlayLeaderboard : MonoBehaviour
 	public GameObject positionSplitter;
 	public GameObject placeTemplate;
 
+	[NonSerialized] public ImageSettings leaderboardBackground_ImageSettings;
+	[NonSerialized] public ImageSettings positionSplitter_ImageSettings;
+
 	[NonSerialized] public GameObject[] places;
 
 	[NonSerialized] public OverlayPlace[] overlayPlaces;
@@ -17,6 +20,9 @@ public class OverlayLeaderboard : MonoBehaviour
 	public void Awake()
 	{
 		placeTemplate.SetActive( false );
+
+		leaderboardBackground_ImageSettings = leaderboardBackground.GetComponent<ImageSettings>();
+		positionSplitter_ImageSettings = positionSplitter.GetComponent<ImageSettings>();
 
 		places = new GameObject[ LiveDataLeaderboard.MaxNumPlaces ];
 
@@ -51,6 +57,9 @@ public class OverlayLeaderboard : MonoBehaviour
 	public void LiveDataUpdated()
 	{
 		enable.SetActive( Settings.overlay.leaderboardOverlayEnabled && LiveData.Instance.liveDataLeaderboard.show );
+
+		leaderboardBackground_ImageSettings.SetSize( LiveData.Instance.liveDataLeaderboard.backgroundSize );
+		positionSplitter_ImageSettings.SetPosition( LiveData.Instance.liveDataLeaderboard.splitterPosition );
 
 		// leaderboard
 

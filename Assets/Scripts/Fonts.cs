@@ -10,7 +10,7 @@ public class Fonts : MonoBehaviour
 	[NonSerialized] public static readonly string[] fontPaths = new string[ SettingsOverlay.MaxNumFonts ];
 	[NonSerialized] public static readonly TMP_FontAsset[] fontAssets = new TMP_FontAsset[ SettingsOverlay.MaxNumFonts ];
 
-	public void Start()
+	public void OnEnable()
 	{
 		SettingsUpdated();
 	}

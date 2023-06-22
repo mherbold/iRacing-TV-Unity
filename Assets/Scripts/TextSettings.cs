@@ -20,7 +20,7 @@ public class TextSettings : MonoBehaviour
 		text = GetComponent<TextMeshProUGUI>();
 	}
 
-	public void Start()
+	public void OnEnable()
 	{
 		SettingsUpdated();
 	}

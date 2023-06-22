@@ -23,4 +23,5 @@ public class SettingsImage
 	public Vector2 position = Vector2.zero;
 	public Vector2 size = Vector2.zero;
 	public Color tintColor = Color.white;
+	public Vector4 border = Vector4.zero;
 }
