@@ -33,14 +33,14 @@ public class OverlaySubtitle : MonoBehaviour
 
 	public void SettingsUpdated()
 	{
-		transform.localPosition = new Vector2( Settings.overlay.subtitleOverlayPosition.x, -Settings.overlay.subtitleOverlayPosition.y );
+		transform.localPosition = new Vector2( Settings.overlay.subtitlePosition.x, -Settings.overlay.subtitlePosition.y );
 
-		maxSizeContainer_RectTransform.sizeDelta = Settings.overlay.subtitleOverlayMaxSize;
+		maxSizeContainer_RectTransform.sizeDelta = Settings.overlay.subtitleMaxSize;
 
-		panel_Image.color = Settings.overlay.subtitleOverlayBackgroundColor;
+		panel_Image.color = Settings.overlay.subtitleBackgroundColor;
 		panel_VerticalLayoutGroup.padding = new RectOffset( Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.y, Settings.overlay.subtitleTextPadding.y );
 
-		enable.SetActive( Settings.overlay.subtitleOverlayEnabled );
+		enable.SetActive( Settings.overlay.subtitleEnabled );
 	}
 
 	public void LiveDataUpdated()

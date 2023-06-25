@@ -33,9 +33,9 @@ public class OverlayVoiceOf : MonoBehaviour
 
 	public void SettingsUpdated()
 	{
-		transform.localPosition = new Vector2( Settings.overlay.voiceOfOverlayPosition.x, -Settings.overlay.voiceOfOverlayPosition.y );
+		transform.localPosition = new Vector2( Settings.overlay.voiceOfPosition.x, -Settings.overlay.voiceOfPosition.y );
 
-		enable.SetActive( Settings.overlay.voiceOfOverlayEnabled );
+		enable.SetActive( Settings.overlay.voiceOfEnabled );
 	}
 
 	public void LiveDataUpdated()

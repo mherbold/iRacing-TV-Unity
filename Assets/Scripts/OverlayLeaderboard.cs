@@ -49,14 +49,14 @@ public class OverlayLeaderboard : MonoBehaviour
 
 	public void SettingsUpdated()
 	{
-		transform.localPosition = new Vector2( Settings.overlay.leaderboardOverlayPosition.x, -Settings.overlay.leaderboardOverlayPosition.y );
+		transform.localPosition = new Vector2( Settings.overlay.leaderboardPosition.x, -Settings.overlay.leaderboardPosition.y );
 
-		enable.SetActive( Settings.overlay.leaderboardOverlayEnabled );
+		enable.SetActive( Settings.overlay.leaderboardEnabled );
 	}
 
 	public void LiveDataUpdated()
 	{
-		enable.SetActive( Settings.overlay.leaderboardOverlayEnabled && LiveData.Instance.liveDataLeaderboard.show );
+		enable.SetActive( Settings.overlay.leaderboardEnabled && LiveData.Instance.liveDataLeaderboard.show );
 
 		leaderboardBackground_ImageSettings.SetSize( LiveData.Instance.liveDataLeaderboard.backgroundSize );
 		positionSplitter_ImageSettings.SetPosition( LiveData.Instance.liveDataLeaderboard.splitterPosition );

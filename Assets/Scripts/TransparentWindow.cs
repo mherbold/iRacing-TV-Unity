@@ -32,7 +32,7 @@ public class TransparentWindow : MonoBehaviour
 
 	public void SettingsUpdated()
 	{
-		WinApi.SetWindowPos( hWnd, WinApi.HWND_TOPMOST, Settings.overlay.overlayPosition.x, Settings.overlay.overlayPosition.y, Settings.overlay.overlaySize.x, Settings.overlay.overlaySize.y, 0 );
+		WinApi.SetWindowPos( hWnd, WinApi.HWND_TOPMOST, Settings.overlay.position.x, Settings.overlay.position.y, Settings.overlay.size.x, Settings.overlay.size.y, 0 );
 	}
 
 #endif

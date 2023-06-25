@@ -8,24 +8,24 @@ public class SettingsOverlay
 {
 	[NonSerialized] public const int MaxNumFonts = 4;
 
-	public Vector2Int overlayPosition = new( 0, 0 );
-	public Vector2Int overlaySize = new( 1920, 1080 );
+	public Vector2Int position = new( 0, 0 );
+	public Vector2Int size = new( 1920, 1080 );
 
 	public string[] fontPaths = new string[ MaxNumFonts ];
 
-	public bool raceStatusOverlayEnabled = true;
-	public Vector2 raceStatusOverlayPosition = new( 44, 9 );
+	public bool raceStatusEnabled = true;
+	public Vector2 raceStatusPosition = new( 44, 9 );
 
-	public bool leaderboardOverlayEnabled = true;
-	public Vector2 leaderboardOverlayPosition = new( 44, 244 );
+	public bool leaderboardEnabled = true;
+	public Vector2 leaderboardPosition = new( 44, 244 );
 
-	public bool voiceOfOverlayEnabled = true;
-	public Vector2 voiceOfOverlayPosition = new( 1920, 41 );
+	public bool voiceOfEnabled = true;
+	public Vector2 voiceOfPosition = new( 1920, 41 );
 
-	public bool subtitleOverlayEnabled = true;
-	public Vector2 subtitleOverlayPosition = new( 1089, 918 );
-	public Vector2 subtitleOverlayMaxSize = new( 1250, 190 );
-	public Color subtitleOverlayBackgroundColor = new( 0, 0, 0, 0.9f );
+	public bool subtitleEnabled = true;
+	public Vector2 subtitlePosition = new( 1089, 918 );
+	public Vector2 subtitleMaxSize = new( 1250, 190 );
+	public Color subtitleBackgroundColor = new( 0, 0, 0, 0.9f );
 	public Vector2Int subtitleTextPadding = new( 12, 6 );
 
 	public SerializableDictionary<string, SettingsText> textSettingsDataDictionary = new();

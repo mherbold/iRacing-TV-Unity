@@ -40,9 +40,9 @@ public class OverlayRaceStatus : MonoBehaviour
 
 	public void SettingsUpdated()
 	{
-		transform.localPosition = new Vector2( Settings.overlay.raceStatusOverlayPosition.x, -Settings.overlay.raceStatusOverlayPosition.y );
+		transform.localPosition = new Vector2( Settings.overlay.raceStatusPosition.x, -Settings.overlay.raceStatusPosition.y );
 
-		enable.SetActive( Settings.overlay.raceStatusOverlayEnabled );
+		enable.SetActive( Settings.overlay.raceStatusEnabled );
 	}
 
 	public void LiveDataUpdated()
