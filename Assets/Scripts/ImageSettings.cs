@@ -3,13 +3,14 @@ using System;
 using System.IO;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ImageSettings : MonoBehaviour
 {
 	public string id;
 
 	[NonSerialized] public RectTransform rectTransform;
-	[NonSerialized] public SpriteRenderer spriteRenderer;
+	[NonSerialized] public Image image;
 
 	[NonSerialized] public SettingsImage settings;
 
@@ -21,7 +22,7 @@ public class ImageSettings : MonoBehaviour
 	public void Awake()
 	{
 		rectTransform = GetComponent<RectTransform>();
-		spriteRenderer = GetComponent<SpriteRenderer>();
+		image = GetComponent<Image>();
 	}
 
 	public void OnEnable()
@@ -48,19 +49,19 @@ public class ImageSettings : MonoBehaviour
 	{
 		size += settings.size;
 
-		spriteRenderer.size = new Vector2( size.x, -size.y );
+		rectTransform.sizeDelta = size;
 	}
 
 	public void SetTexture( Texture2D newTexture, bool forceUpate = false )
 	{
 		if ( newTexture == null )
 		{
-			if ( spriteRenderer.enabled || ( texture != null ) )
+			if ( image.enabled || ( texture != null ) )
 			{
 				texture = null;
 
-				spriteRenderer.enabled = false;
-				spriteRenderer.sprite = null;
+				image.enabled = false;
+				image.sprite = null;
 			}
 		}
 		else if ( ( texture != newTexture ) || forceUpate )
@@ -71,21 +72,21 @@ public class ImageSettings : MonoBehaviour
 
 				var sprite = Sprite.Create( texture, new Rect( 0.0f, 0.0f, texture.width, texture.height ), Vector2.zero, 1, 0, SpriteMeshType.FullRect, settings.border, false );
 
-				spriteRenderer.enabled = true;
-				spriteRenderer.sprite = sprite;
+				image.enabled = true;
+				image.sprite = sprite;
 
 				texture.wrapMode = TextureWrapMode.Clamp;
 				texture.filterMode = FilterMode.Trilinear;
 				texture.anisoLevel = 16;
 			}
 
-			spriteRenderer.color = settings.tintColor;
+			image.color = settings.tintColor;
 
 			if ( settings.size == Vector2.zero )
 			{
 				rectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
 
-				spriteRenderer.size = new Vector2( texture.width, -texture.height );
+				rectTransform.sizeDelta = new Vector2( texture.width, texture.height );
 			}
 			else
 			{
@@ -107,13 +108,13 @@ public class ImageSettings : MonoBehaviour
 
 					rectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z ) + offset;
 
-					spriteRenderer.size = new Vector2( width, -height );
+					rectTransform.sizeDelta = new Vector2( width, height );
 				}
 				else
 				{
 					rectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
 
-					spriteRenderer.size = new Vector2( settings.size.x, -settings.size.y );
+					rectTransform.sizeDelta = settings.size;
 				}
 			}
 		}
@@ -139,6 +140,10 @@ public class ImageSettings : MonoBehaviour
 
 			case SettingsImage.ImageType.Helmet:
 				newTexture = StreamingTextures.helmetStreamedTexture[ carIdx ].GetTexture();
+				break;
+
+			case SettingsImage.ImageType.Driver:
+				newTexture = StreamingTextures.driverStreamedTexture[ carIdx ].GetTexture();
 				break;
 		}
 

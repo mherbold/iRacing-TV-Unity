@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class OverlayLeaderboard : MonoBehaviour
 {
+	public IPC ipc;
+
 	public GameObject enable;
 	public GameObject leaderboardBackground;
 	public GameObject positionSplitter;
@@ -15,7 +17,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 	[NonSerialized] public GameObject[] places;
 
-	[NonSerialized] public OverlayPlace[] overlayPlaces;
+	[NonSerialized] public OverlayLeaderboardPlace[] overlayLeaderboardPlaces;
 
 	public void Awake()
 	{
@@ -26,7 +28,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 		places = new GameObject[ LiveDataLeaderboard.MaxNumPlaces ];
 
-		overlayPlaces = new OverlayPlace[ LiveDataLeaderboard.MaxNumPlaces ];
+		overlayLeaderboardPlaces = new OverlayLeaderboardPlace[ LiveDataLeaderboard.MaxNumPlaces ];
 
 		for ( var placeIndex = 0; placeIndex < places.Length; placeIndex++ )
 		{
@@ -36,9 +38,9 @@ public class OverlayLeaderboard : MonoBehaviour
 
 			places[ placeIndex ].SetActive( true );
 
-			overlayPlaces[ placeIndex ] = places[ placeIndex ].GetComponent<OverlayPlace>();
+			overlayLeaderboardPlaces[ placeIndex ] = places[ placeIndex ].GetComponent<OverlayLeaderboardPlace>();
 
-			overlayPlaces[ placeIndex ].carNumber_ImageSettings.carIdx = placeIndex;
+			overlayLeaderboardPlaces[ placeIndex ].carNumber_ImageSettings.carIdx = placeIndex;
 		}
 	}
 
@@ -47,17 +49,18 @@ public class OverlayLeaderboard : MonoBehaviour
 		SettingsUpdated();
 	}
 
+	public void Update()
+	{
+		enable.SetActive( Settings.overlay.leaderboardEnabled && LiveData.Instance.liveDataLeaderboard.show && ipc.isConnected && LiveData.Instance.isConnected );
+	}
+
 	public void SettingsUpdated()
 	{
 		transform.localPosition = new Vector2( Settings.overlay.leaderboardPosition.x, -Settings.overlay.leaderboardPosition.y );
-
-		enable.SetActive( Settings.overlay.leaderboardEnabled );
 	}
 
 	public void LiveDataUpdated()
 	{
-		enable.SetActive( Settings.overlay.leaderboardEnabled && LiveData.Instance.liveDataLeaderboard.show );
-
 		leaderboardBackground_ImageSettings.SetSize( LiveData.Instance.liveDataLeaderboard.backgroundSize );
 		positionSplitter_ImageSettings.SetPosition( LiveData.Instance.liveDataLeaderboard.splitterPosition );
 
@@ -65,9 +68,9 @@ public class OverlayLeaderboard : MonoBehaviour
 
 		for ( var placeIndex = 0; placeIndex < LiveDataLeaderboard.MaxNumPlaces; placeIndex++ )
 		{
-			var liveDataPlace = LiveData.Instance.liveDataLeaderboard.liveDataPlaces[ placeIndex ];
+			var liveDataPlace = LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ];
 
-			var overlayPlace = overlayPlaces[ placeIndex ];
+			var overlayPlace = overlayLeaderboardPlaces[ placeIndex ];
 
 			if ( !liveDataPlace.show )
 			{

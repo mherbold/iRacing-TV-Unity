@@ -1,5 +1,6 @@
 ﻿
 using System;
+
 using UnityEngine;
 
 [Serializable]
@@ -13,5 +14,5 @@ public class LiveDataLeaderboard
 	public Vector2 backgroundSize = Vector2.zero;
 	public Vector2 splitterPosition = Vector2.zero;
 
-	public LiveDataPlace[] liveDataPlaces = new LiveDataPlace[ MaxNumPlaces ];
+	public LiveDataLeaderboardPlace[] liveDataLeaderboardPlaces = new LiveDataLeaderboardPlace[ MaxNumPlaces ];
 }

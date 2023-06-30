@@ -28,6 +28,8 @@ public class SettingsOverlay
 	public Color subtitleBackgroundColor = new( 0, 0, 0, 0.9f );
 	public Vector2Int subtitleTextPadding = new( 12, 6 );
 
+	public bool introEnabled = true;
+
 	public SerializableDictionary<string, SettingsText> textSettingsDataDictionary = new();
 	public SerializableDictionary<string, SettingsImage> imageSettingsDataDictionary = new();
 

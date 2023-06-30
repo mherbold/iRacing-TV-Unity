@@ -13,7 +13,8 @@ public class SettingsImage
 		SeriesLogo,
 		CarNumber,
 		Car,
-		Helmet
+		Helmet,
+		Driver
 	}
 
 	public ImageType imageType = ImageType.None;

@@ -7,6 +7,8 @@ using TMPro;
 
 public class OverlayRaceStatus : MonoBehaviour
 {
+	public IPC ipc;
+
 	public GameObject enable;
 	public GameObject sessionName;
 	public GameObject lapsRemaining;
@@ -38,11 +40,14 @@ public class OverlayRaceStatus : MonoBehaviour
 		SettingsUpdated();
 	}
 
+	public void Update()
+	{
+		enable.SetActive( Settings.overlay.raceStatusEnabled && ipc.isConnected && LiveData.Instance.isConnected );
+	}
+
 	public void SettingsUpdated()
 	{
 		transform.localPosition = new Vector2( Settings.overlay.raceStatusPosition.x, -Settings.overlay.raceStatusPosition.y );
-
-		enable.SetActive( Settings.overlay.raceStatusEnabled );
 	}
 
 	public void LiveDataUpdated()

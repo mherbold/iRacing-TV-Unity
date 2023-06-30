@@ -7,6 +7,8 @@ using TMPro;
 
 public class OverlayVoiceOf : MonoBehaviour
 {
+	public IPC ipc;
+
 	public GameObject enable;
 	public GameObject animationRoot;
 	public GameObject voiceOf;
@@ -31,11 +33,14 @@ public class OverlayVoiceOf : MonoBehaviour
 		SettingsUpdated();
 	}
 
+	public void Update()
+	{
+		enable.SetActive( Settings.overlay.voiceOfEnabled && ipc.isConnected && LiveData.Instance.isConnected );
+	}
+
 	public void SettingsUpdated()
 	{
 		transform.localPosition = new Vector2( Settings.overlay.voiceOfPosition.x, -Settings.overlay.voiceOfPosition.y );
-
-		enable.SetActive( Settings.overlay.voiceOfEnabled );
 	}
 
 	public void LiveDataUpdated()

@@ -8,6 +8,8 @@ using TMPro;
 
 public class OverlaySubtitle : MonoBehaviour
 {
+	public IPC ipc;
+
 	public GameObject enable;
 	public GameObject maxSizeContainer;
 	public GameObject panel;
@@ -31,6 +33,11 @@ public class OverlaySubtitle : MonoBehaviour
 		SettingsUpdated();
 	}
 
+	public void Update()
+	{
+		enable.SetActive( Settings.overlay.subtitleEnabled && ipc.isConnected && LiveData.Instance.isConnected );
+	}
+
 	public void SettingsUpdated()
 	{
 		transform.localPosition = new Vector2( Settings.overlay.subtitlePosition.x, -Settings.overlay.subtitlePosition.y );
@@ -39,8 +46,6 @@ public class OverlaySubtitle : MonoBehaviour
 
 		panel_Image.color = Settings.overlay.subtitleBackgroundColor;
 		panel_VerticalLayoutGroup.padding = new RectOffset( Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.y, Settings.overlay.subtitleTextPadding.y );
-
-		enable.SetActive( Settings.overlay.subtitleEnabled );
 	}
 
 	public void LiveDataUpdated()

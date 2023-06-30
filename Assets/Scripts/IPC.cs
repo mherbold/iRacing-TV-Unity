@@ -1,5 +1,6 @@
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Threading;
@@ -18,33 +19,56 @@ public class IPC : MonoBehaviour
 	[NonSerialized] public long indexSettings = 0;
 	[NonSerialized] public long indexLiveData = 0;
 
+	[NonSerialized] public bool isConnected = false;
+	[NonSerialized] public long lastUpdateMilliseconds = 0;
+	[NonSerialized] public Stopwatch stopwatch;
+
 	[NonSerialized] public Task updateStreamingTexturesTask;
 
 	public void Awake()
 	{
 		memoryMappedFileSettings = MemoryMappedFile.CreateOrOpen( Program.IpcNameSettings, MAX_MEMORY_MAPPED_FILE_SIZE );
 		memoryMappedFileLiveData = MemoryMappedFile.CreateOrOpen( Program.IpcNameLiveData, MAX_MEMORY_MAPPED_FILE_SIZE );
+
+		stopwatch = new Stopwatch();
+
+		stopwatch.Start();
 	}
 
 	public void Update()
 	{
-		UpdateSettings();
-		UpdateLiveData();
+		var settingsUpdated = UpdateSettings();
+		var liveDataUpdated = UpdateLiveData();
+
+		if ( !settingsUpdated && !liveDataUpdated )
+		{
+			if ( ( stopwatch.ElapsedMilliseconds - lastUpdateMilliseconds > 1000 ) )
+			{
+				isConnected = false;
+			}
+		}
+		else
+		{
+			isConnected = true;
+			lastUpdateMilliseconds = stopwatch.ElapsedMilliseconds;
+		}
 	}
 
-	public void UpdateSettings()
+	public bool UpdateSettings()
 	{
 		var viewAccessor = memoryMappedFileSettings.CreateViewAccessor( 0, MAX_MEMORY_MAPPED_FILE_SIZE );
 
 		var index = viewAccessor.ReadInt64( 0 );
 
-		if ( index == this.indexSettings )
+		if ( index == indexSettings )
 		{
 			viewAccessor.Dispose();
+
+			return false;
 		}
 		else
 		{
-			this.indexSettings = index;
+			indexSettings = index;
 
 			if ( Mutex.TryOpenExisting( Program.MutexNameSettings, out var mutex ) )
 			{
@@ -82,22 +106,26 @@ public class IPC : MonoBehaviour
 			{
 				rootGameObject.BroadcastMessage( "SettingsUpdated", SendMessageOptions.DontRequireReceiver );
 			}
+
+			return true;
 		}
 	}
 
-	public void UpdateLiveData()
+	public bool UpdateLiveData()
 	{
 		var viewAccessor = memoryMappedFileLiveData.CreateViewAccessor( 0, MAX_MEMORY_MAPPED_FILE_SIZE );
 
 		var index = viewAccessor.ReadInt64( 0 );
 
-		if ( index == this.indexLiveData )
+		if ( index == indexLiveData )
 		{
 			viewAccessor.Dispose();
+
+			return false;
 		}
 		else
 		{
-			this.indexLiveData = index;
+			indexLiveData = index;
 
 			if ( Mutex.TryOpenExisting( Program.MutexNameLiveData, out var mutex ) )
 			{
@@ -139,6 +167,8 @@ public class IPC : MonoBehaviour
 			{
 				rootGameObject.BroadcastMessage( "LiveDataUpdated", SendMessageOptions.DontRequireReceiver );
 			}
+
+			return true;
 		}
 	}
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 using TMPro;
 
-public class OverlayPlace : MonoBehaviour
+public class OverlayLeaderboardPlace : MonoBehaviour
 {
 	public GameObject place;
 	public GameObject carNumber;
