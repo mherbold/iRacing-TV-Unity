@@ -22,8 +22,6 @@ public class OverlayLeaderboardPlace : MonoBehaviour
 	[NonSerialized] public ImageSettings carNumber_ImageSettings;
 	[NonSerialized] public TextSettings driverName_TextSettings;
 
-	[NonSerialized] public bool shouldBeVisible;
-
 	public void Awake()
 	{
 		place_Text = place.GetComponent<TextMeshProUGUI>();

@@ -70,41 +70,41 @@ public class OverlayLeaderboard : MonoBehaviour
 		{
 			var liveDataPlace = LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ];
 
-			var overlayPlace = overlayLeaderboardPlaces[ placeIndex ];
+			var overlayLeaderboardPlace = overlayLeaderboardPlaces[ placeIndex ];
 
 			if ( !liveDataPlace.show )
 			{
-				overlayPlace.gameObject.SetActive( false );
+				overlayLeaderboardPlace.gameObject.SetActive( false );
 			}
 			else
 			{
-				overlayPlace.gameObject.SetActive( true );
+				overlayLeaderboardPlace.gameObject.SetActive( true );
 			}
 
 			// update place position
 
-			overlayPlace.transform.localPosition = liveDataPlace.position;
+			overlayLeaderboardPlace.transform.localPosition = liveDataPlace.position;
 
 			// update place text
 
-			overlayPlace.place_Text.text = liveDataPlace.placeText;
+			overlayLeaderboardPlace.place_Text.text = liveDataPlace.placeText;
 
 			// driver name
 
-			overlayPlace.driverName_Text.text = liveDataPlace.driverNameText;
-			overlayPlace.driverName_Text.color = liveDataPlace.driverNameColor;
+			overlayLeaderboardPlace.driverName_Text.text = liveDataPlace.driverNameText;
+			overlayLeaderboardPlace.driverName_Text.color = liveDataPlace.driverNameColor;
 
 			// telemetry
 
-			overlayPlace.telemetry_Text.text = liveDataPlace.telemetryText;
-			overlayPlace.telemetry_Text.color = liveDataPlace.telemetryColor;
+			overlayLeaderboardPlace.telemetry_Text.text = liveDataPlace.telemetryText;
+			overlayLeaderboardPlace.telemetry_Text.color = liveDataPlace.telemetryColor;
 
 			// highlight
 
-			overlayPlace.highlight.SetActive( liveDataPlace.showHighlight );
-			overlayPlace.speed.SetActive( liveDataPlace.showHighlight );
+			overlayLeaderboardPlace.highlight.SetActive( liveDataPlace.showHighlight );
+			overlayLeaderboardPlace.speed.SetActive( liveDataPlace.showHighlight );
 
-			overlayPlace.speed_Text.text = liveDataPlace.speedText;
+			overlayLeaderboardPlace.speed_Text.text = liveDataPlace.speedText;
 		}
 
 		// splitter

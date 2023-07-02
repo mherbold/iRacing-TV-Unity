@@ -13,22 +13,25 @@ public class OverlayIntro : MonoBehaviour
 	public GameObject driversB;
 	public GameObject driverTemplate;
 
+	[NonSerialized] public RectTransform driversA_RectTransform;
+	[NonSerialized] public RectTransform driversB_RectTransform;
+
 	[NonSerialized] public GameObject[] drivers;
-
 	[NonSerialized] public OverlayIntroDriver[] overlayIntroDrivers;
-
 	[NonSerialized] public Animator[] animators;
 
+	[NonSerialized] public bool wasActive = true;
 	[NonSerialized] public bool wasShown = false;
 
 	public void Awake()
 	{
 		driverTemplate.SetActive( false );
 
+		driversA_RectTransform = driversA.GetComponent<RectTransform>();
+		driversB_RectTransform = driversB.GetComponent<RectTransform>();
+
 		drivers = new GameObject[ LiveDataLeaderboard.MaxNumPlaces ];
-
 		overlayIntroDrivers = new OverlayIntroDriver[ LiveDataLeaderboard.MaxNumPlaces ];
-
 		animators = new Animator[ LiveDataLeaderboard.MaxNumPlaces ];
 
 		for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumPlaces; driverIndex++ )
@@ -38,9 +41,7 @@ public class OverlayIntro : MonoBehaviour
 			var parent = ( ( driverIndex & 1 ) == 0 ) ? driversA : driversB;
 
 			drivers[ driverIndex ].transform.SetParent( parent.transform, false );
-
 			drivers[ driverIndex ].transform.SetAsFirstSibling();
-
 			drivers[ driverIndex ].SetActive( true );
 
 			overlayIntroDrivers[ driverIndex ] = drivers[ driverIndex ].GetComponent<OverlayIntroDriver>();
@@ -61,31 +62,51 @@ public class OverlayIntro : MonoBehaviour
 
 	public void SettingsUpdated()
 	{
+		driversA_RectTransform.localPosition = new Vector2( Settings.overlay.introLeftPosition.x, -Settings.overlay.introLeftPosition.y );
+		driversB_RectTransform.localPosition = new Vector2( Settings.overlay.introRightPosition.x, -Settings.overlay.introRightPosition.y );
+
+		driversA_RectTransform.localScale = new Vector3( Settings.overlay.introLeftScale, Settings.overlay.introLeftScale, 1 );
+		driversB_RectTransform.localScale = new Vector3( Settings.overlay.introRightScale, Settings.overlay.introRightScale, 1 );
 	}
 
 	public void LiveDataUpdated()
 	{
 		if ( !LiveData.Instance.liveDataIntro.show )
 		{
-			background.SetActive( false );
-			driversA.SetActive( false );
-			driversB.SetActive( false );
+			if ( wasActive )
+			{
+				wasActive = false;
 
-			wasShown = false;
+				background.SetActive( false );
+				driversA.SetActive( false );
+				driversB.SetActive( false );
+			}
+
+			if ( wasShown )
+			{
+				wasShown = false;
+			}
 		}
 		else
 		{
-			background.SetActive( true );
-			driversA.SetActive( true );
-			driversB.SetActive( true );
-
-			for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumPlaces; driverIndex++ )
+			if ( !wasActive )
 			{
-				var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ driverIndex ];
+				wasActive = true;
 
-				if ( !wasShown )
+				background.SetActive( true );
+				driversA.SetActive( true );
+				driversB.SetActive( true );
+			}
+
+			if ( !wasShown )
+			{
+				wasShown = true;
+
+				for ( var qualifyingPosition = 0; qualifyingPosition < LiveDataLeaderboard.MaxNumPlaces; qualifyingPosition++ )
 				{
-					var overlayIntroDriver = overlayIntroDrivers[ driverIndex ];
+					var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ qualifyingPosition ];
+
+					var overlayIntroDriver = overlayIntroDrivers[ qualifyingPosition ];
 
 					overlayIntroDriver.background_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
 					overlayIntroDriver.suit_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
@@ -97,22 +118,26 @@ public class OverlayIntro : MonoBehaviour
 					overlayIntroDriver.position_Text.text = liveDataIntroDriver.placeText;
 					overlayIntroDriver.driverName_Text.text = liveDataIntroDriver.driverNameText;
 					overlayIntroDriver.qualifyingTime_Text.text = liveDataIntroDriver.qualifyingTimeText;
-
-					animators[ driverIndex ].Play( "Idle" );
-				}
-
-				var row = (int) Math.Floor( driverIndex / 2.0 ) + 1;
-
-				if ( row == LiveData.Instance.liveDataIntro.currentRow )
-				{
-					if ( liveDataIntroDriver.show )
-					{
-						animators[ driverIndex ].SetBool( "Start", true );
-					}
 				}
 			}
 
-			wasShown = true;
+			for ( var qualifyingPosition = 0; qualifyingPosition < LiveDataLeaderboard.MaxNumPlaces; qualifyingPosition++ )
+			{
+				var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ qualifyingPosition ];
+
+				if ( liveDataIntroDriver.show )
+				{
+					drivers[ qualifyingPosition ].SetActive( true );
+
+					animators[ qualifyingPosition ].SetBool( "Start", true );
+					animators[ qualifyingPosition ].SetInteger( "Animation", Settings.overlay.introAnimationNumber );
+					animators[ qualifyingPosition ].SetFloat( "Speed", Settings.overlay.introAnimationSpeed );
+				}
+				else
+				{
+					drivers[ qualifyingPosition ].SetActive( false );
+				}
+			}
 		}
 	}
 }
