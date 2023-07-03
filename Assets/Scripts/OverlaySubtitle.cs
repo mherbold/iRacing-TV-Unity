@@ -40,7 +40,7 @@ public class OverlaySubtitle : MonoBehaviour
 
 	public void SettingsUpdated()
 	{
-		transform.localPosition = new Vector2( Settings.overlay.subtitlePosition.x, -Settings.overlay.subtitlePosition.y );
+		maxSizeContainer_RectTransform.transform.localPosition = new Vector2( Settings.overlay.subtitlePosition.x, -Settings.overlay.subtitlePosition.y );
 
 		maxSizeContainer_RectTransform.sizeDelta = Settings.overlay.subtitleMaxSize;
 
