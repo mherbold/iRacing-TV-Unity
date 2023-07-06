@@ -30,11 +30,11 @@ public class OverlayIntro : MonoBehaviour
 		driversA_RectTransform = driversA.GetComponent<RectTransform>();
 		driversB_RectTransform = driversB.GetComponent<RectTransform>();
 
-		drivers = new GameObject[ LiveDataLeaderboard.MaxNumPlaces ];
-		overlayIntroDrivers = new OverlayIntroDriver[ LiveDataLeaderboard.MaxNumPlaces ];
-		animators = new Animator[ LiveDataLeaderboard.MaxNumPlaces ];
+		drivers = new GameObject[ LiveDataLeaderboard.MaxNumSlots ];
+		overlayIntroDrivers = new OverlayIntroDriver[ LiveDataLeaderboard.MaxNumSlots ];
+		animators = new Animator[ LiveDataLeaderboard.MaxNumSlots ];
 
-		for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumPlaces; driverIndex++ )
+		for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumSlots; driverIndex++ )
 		{
 			drivers[ driverIndex ] = Instantiate( driverTemplate );
 
@@ -102,7 +102,7 @@ public class OverlayIntro : MonoBehaviour
 			{
 				wasShown = true;
 
-				for ( var qualifyingPosition = 0; qualifyingPosition < LiveDataLeaderboard.MaxNumPlaces; qualifyingPosition++ )
+				for ( var qualifyingPosition = 0; qualifyingPosition < LiveDataLeaderboard.MaxNumSlots; qualifyingPosition++ )
 				{
 					var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ qualifyingPosition ];
 
@@ -115,13 +115,13 @@ public class OverlayIntro : MonoBehaviour
 					overlayIntroDriver.statsBackground_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
 					overlayIntroDriver.carNumber_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
 
-					overlayIntroDriver.position_Text.text = liveDataIntroDriver.placeText;
+					overlayIntroDriver.position_Text.text = liveDataIntroDriver.positionText;
 					overlayIntroDriver.driverName_Text.text = liveDataIntroDriver.driverNameText;
 					overlayIntroDriver.qualifyingTime_Text.text = liveDataIntroDriver.qualifyingTimeText;
 				}
 			}
 
-			for ( var qualifyingPosition = 0; qualifyingPosition < LiveDataLeaderboard.MaxNumPlaces; qualifyingPosition++ )
+			for ( var qualifyingPosition = 0; qualifyingPosition < LiveDataLeaderboard.MaxNumSlots; qualifyingPosition++ )
 			{
 				var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ qualifyingPosition ];
 

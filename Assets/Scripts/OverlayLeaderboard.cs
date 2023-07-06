@@ -10,37 +10,37 @@ public class OverlayLeaderboard : MonoBehaviour
 	public GameObject enable;
 	public GameObject leaderboardBackground;
 	public GameObject positionSplitter;
-	public GameObject placeTemplate;
+	public GameObject slotTemplate;
 
 	[NonSerialized] public ImageSettings leaderboardBackground_ImageSettings;
 	[NonSerialized] public ImageSettings positionSplitter_ImageSettings;
 
-	[NonSerialized] public GameObject[] places;
+	[NonSerialized] public GameObject[] slots;
 
-	[NonSerialized] public OverlayLeaderboardPlace[] overlayLeaderboardPlaces;
+	[NonSerialized] public OverlayLeaderboardSlot[] overlayLeaderboardSlots;
 
 	public void Awake()
 	{
-		placeTemplate.SetActive( false );
+		slotTemplate.SetActive( false );
 
 		leaderboardBackground_ImageSettings = leaderboardBackground.GetComponent<ImageSettings>();
 		positionSplitter_ImageSettings = positionSplitter.GetComponent<ImageSettings>();
 
-		places = new GameObject[ LiveDataLeaderboard.MaxNumPlaces ];
+		slots = new GameObject[ LiveDataLeaderboard.MaxNumSlots ];
 
-		overlayLeaderboardPlaces = new OverlayLeaderboardPlace[ LiveDataLeaderboard.MaxNumPlaces ];
+		overlayLeaderboardSlots = new OverlayLeaderboardSlot[ LiveDataLeaderboard.MaxNumSlots ];
 
-		for ( var placeIndex = 0; placeIndex < places.Length; placeIndex++ )
+		for ( var slotIndex = 0; slotIndex < slots.Length; slotIndex++ )
 		{
-			places[ placeIndex ] = Instantiate( placeTemplate );
+			slots[ slotIndex ] = Instantiate( slotTemplate );
 
-			places[ placeIndex ].transform.SetParent( placeTemplate.transform.parent, false );
+			slots[ slotIndex ].transform.SetParent( slotTemplate.transform.parent, false );
 
-			places[ placeIndex ].SetActive( true );
+			slots[ slotIndex ].SetActive( true );
 
-			overlayLeaderboardPlaces[ placeIndex ] = places[ placeIndex ].GetComponent<OverlayLeaderboardPlace>();
+			overlayLeaderboardSlots[ slotIndex ] = slots[ slotIndex ].GetComponent<OverlayLeaderboardSlot>();
 
-			overlayLeaderboardPlaces[ placeIndex ].carNumber_ImageSettings.carIdx = placeIndex;
+			overlayLeaderboardSlots[ slotIndex ].carNumber_ImageSettings.carIdx = slotIndex;
 		}
 	}
 
@@ -66,45 +66,46 @@ public class OverlayLeaderboard : MonoBehaviour
 
 		// leaderboard
 
-		for ( var placeIndex = 0; placeIndex < LiveDataLeaderboard.MaxNumPlaces; placeIndex++ )
+		for ( var slotIndex = 0; slotIndex < LiveDataLeaderboard.MaxNumSlots; slotIndex++ )
 		{
-			var liveDataPlace = LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ];
+			var liveDataLeaderboardSlot = LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ];
 
-			var overlayLeaderboardPlace = overlayLeaderboardPlaces[ placeIndex ];
+			var overlayLeaderboardSlot = overlayLeaderboardSlots[ slotIndex ];
 
-			if ( !liveDataPlace.show )
+			if ( !liveDataLeaderboardSlot.show )
 			{
-				overlayLeaderboardPlace.gameObject.SetActive( false );
+				overlayLeaderboardSlot.gameObject.SetActive( false );
 			}
 			else
 			{
-				overlayLeaderboardPlace.gameObject.SetActive( true );
+				overlayLeaderboardSlot.gameObject.SetActive( true );
 			}
 
-			// update place position
+			// update slot offset
 
-			overlayLeaderboardPlace.transform.localPosition = liveDataPlace.position;
+			overlayLeaderboardSlot.transform.localPosition = liveDataLeaderboardSlot.offset;
 
-			// update place text
+			// update position text
 
-			overlayLeaderboardPlace.place_Text.text = liveDataPlace.placeText;
+			overlayLeaderboardSlot.position_Text.text = liveDataLeaderboardSlot.positionText;
+			overlayLeaderboardSlot.position_Text.color = liveDataLeaderboardSlot.positionColor;
 
 			// driver name
 
-			overlayLeaderboardPlace.driverName_Text.text = liveDataPlace.driverNameText;
-			overlayLeaderboardPlace.driverName_Text.color = liveDataPlace.driverNameColor;
+			overlayLeaderboardSlot.driverName_Text.text = liveDataLeaderboardSlot.driverNameText;
+			overlayLeaderboardSlot.driverName_Text.color = liveDataLeaderboardSlot.driverNameColor;
 
 			// telemetry
 
-			overlayLeaderboardPlace.telemetry_Text.text = liveDataPlace.telemetryText;
-			overlayLeaderboardPlace.telemetry_Text.color = liveDataPlace.telemetryColor;
+			overlayLeaderboardSlot.telemetry_Text.text = liveDataLeaderboardSlot.telemetryText;
+			overlayLeaderboardSlot.telemetry_Text.color = liveDataLeaderboardSlot.telemetryColor;
 
 			// highlight
 
-			overlayLeaderboardPlace.highlight.SetActive( liveDataPlace.showHighlight );
-			overlayLeaderboardPlace.speed.SetActive( liveDataPlace.showHighlight );
+			overlayLeaderboardSlot.highlight.SetActive( liveDataLeaderboardSlot.showHighlight );
+			overlayLeaderboardSlot.speed.SetActive( liveDataLeaderboardSlot.showHighlight );
 
-			overlayLeaderboardPlace.speed_Text.text = liveDataPlace.speedText;
+			overlayLeaderboardSlot.speed_Text.text = liveDataLeaderboardSlot.speedText;
 		}
 
 		// splitter

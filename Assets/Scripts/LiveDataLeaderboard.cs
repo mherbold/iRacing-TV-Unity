@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class LiveDataLeaderboard
 {
-	public const int MaxNumPlaces = 63;
+	public const int MaxNumSlots = 63;
 
 	public bool show = false;
 	public bool showSplitter = false;
@@ -14,5 +14,5 @@ public class LiveDataLeaderboard
 	public Vector2 backgroundSize = Vector2.zero;
 	public Vector2 splitterPosition = Vector2.zero;
 
-	public LiveDataLeaderboardPlace[] liveDataLeaderboardPlaces = new LiveDataLeaderboardPlace[ MaxNumPlaces ];
+	public LiveDataLeaderboardSlot[] liveDataLeaderboardSlots = new LiveDataLeaderboardSlot[ MaxNumSlots ];
 }

@@ -4,14 +4,15 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class LiveDataLeaderboardPlace
+public class LiveDataLeaderboardSlot
 {
 	public bool show = false;
 	public bool showHighlight = false;
 
-	public Vector2 position = Vector2.zero;
+	public Vector2 offset = Vector2.zero;
 
-	public string placeText = string.Empty;
+	public string positionText = string.Empty;
+	public Color positionColor = Color.white;
 
 	public string carNumberTextureUrl = string.Empty;
 	public string carTextureUrl = string.Empty;

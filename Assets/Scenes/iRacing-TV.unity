@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 81443886}
   - component: {fileID: 81443887}
   m_Layer: 5
-  m_Name: Place Template
+  m_Name: Slot Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373af77a4901d6a4c9879289362cc44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  place: {fileID: 211381921}
+  position: {fileID: 211381921}
   carNumber: {fileID: 719647710}
   driverName: {fileID: 481244665}
   telemetry: {fileID: 1652748980}
@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 211381923}
   - component: {fileID: 211381925}
   m_Layer: 5
-  m_Name: Place
+  m_Name: Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -885,7 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f375ea7c362954a4288e050640656072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Place
+  id: Position
 --- !u!1 &212027653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2907,7 +2907,7 @@ MonoBehaviour:
   enable: {fileID: 2064088913}
   leaderboardBackground: {fileID: 981032631}
   positionSplitter: {fileID: 1862849997}
-  placeTemplate: {fileID: 81443885}
+  slotTemplate: {fileID: 81443885}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

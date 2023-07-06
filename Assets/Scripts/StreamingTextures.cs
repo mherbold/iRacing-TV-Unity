@@ -7,10 +7,10 @@ public class StreamingTextures : MonoBehaviour
 {
 	public static StreamedTexture seriesLogoStreamedTexture;
 
-	public static StreamedTexture[] carNumberStreamedTexture = new StreamedTexture[ LiveDataLeaderboard.MaxNumPlaces ];
-	public static StreamedTexture[] carStreamedTexture = new StreamedTexture[ LiveDataLeaderboard.MaxNumPlaces ];
-	public static StreamedTexture[] helmetStreamedTexture = new StreamedTexture[ LiveDataLeaderboard.MaxNumPlaces ];
-	public static StreamedTexture[] driverStreamedTexture = new StreamedTexture[ LiveDataLeaderboard.MaxNumPlaces ];
+	public static StreamedTexture[] carNumberStreamedTexture = new StreamedTexture[ LiveDataLeaderboard.MaxNumSlots ];
+	public static StreamedTexture[] carStreamedTexture = new StreamedTexture[ LiveDataLeaderboard.MaxNumSlots ];
+	public static StreamedTexture[] helmetStreamedTexture = new StreamedTexture[ LiveDataLeaderboard.MaxNumSlots ];
+	public static StreamedTexture[] driverStreamedTexture = new StreamedTexture[ LiveDataLeaderboard.MaxNumSlots ];
 
 	public static bool requestsPending;
 
@@ -18,12 +18,12 @@ public class StreamingTextures : MonoBehaviour
 	{
 		seriesLogoStreamedTexture = new StreamedTexture();
 
-		for ( int placeIndex = 0; placeIndex < LiveDataLeaderboard.MaxNumPlaces; placeIndex++ )
+		for ( int slotIndex = 0; slotIndex < LiveDataLeaderboard.MaxNumSlots; slotIndex++ )
 		{
-			carNumberStreamedTexture[ placeIndex ] = new StreamedTexture();
-			carStreamedTexture[ placeIndex ] = new StreamedTexture();
-			helmetStreamedTexture[ placeIndex ] = new StreamedTexture();
-			driverStreamedTexture[ placeIndex ] = new StreamedTexture();
+			carNumberStreamedTexture[ slotIndex ] = new StreamedTexture();
+			carStreamedTexture[ slotIndex ] = new StreamedTexture();
+			helmetStreamedTexture[ slotIndex ] = new StreamedTexture();
+			driverStreamedTexture[ slotIndex ] = new StreamedTexture();
 		}
 
 		requestsPending = false;
@@ -42,12 +42,12 @@ public class StreamingTextures : MonoBehaviour
 			{
 				yield return seriesLogoStreamedTexture.Fetch();
 
-				for ( int placeIndex = 0; placeIndex < LiveDataLeaderboard.MaxNumPlaces; placeIndex++ )
+				for ( int slotIndex = 0; slotIndex < LiveDataLeaderboard.MaxNumSlots; slotIndex++ )
 				{
-					yield return carNumberStreamedTexture[ placeIndex ].Fetch();
-					yield return carStreamedTexture[ placeIndex ].Fetch();
-					yield return helmetStreamedTexture[ placeIndex ].Fetch();
-					yield return driverStreamedTexture[ placeIndex ].Fetch();
+					yield return carNumberStreamedTexture[ slotIndex ].Fetch();
+					yield return carStreamedTexture[ slotIndex ].Fetch();
+					yield return helmetStreamedTexture[ slotIndex ].Fetch();
+					yield return driverStreamedTexture[ slotIndex ].Fetch();
 				}
 			}
 
@@ -66,32 +66,32 @@ public class StreamingTextures : MonoBehaviour
 			requestsPending = true;
 		}
 
-		for ( var placeIndex = 0; placeIndex < LiveDataLeaderboard.MaxNumPlaces; placeIndex++ )
+		for ( var slotIndex = 0; slotIndex < LiveDataLeaderboard.MaxNumSlots; slotIndex++ )
 		{
-			if ( carNumberStreamedTexture[ placeIndex ].textureUrl != LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ].carNumberTextureUrl )
+			if ( carNumberStreamedTexture[ slotIndex ].textureUrl != LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ].carNumberTextureUrl )
 			{
-				carNumberStreamedTexture[ placeIndex ].ChangeTexture( LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ].carNumberTextureUrl );
+				carNumberStreamedTexture[ slotIndex ].ChangeTexture( LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ].carNumberTextureUrl );
 
 				requestsPending = true;
 			}
 
-			if ( carStreamedTexture[ placeIndex ].textureUrl != LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ].carTextureUrl )
+			if ( carStreamedTexture[ slotIndex ].textureUrl != LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ].carTextureUrl )
 			{
-				carStreamedTexture[ placeIndex ].ChangeTexture( LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ].carTextureUrl );
+				carStreamedTexture[ slotIndex ].ChangeTexture( LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ].carTextureUrl );
 
 				requestsPending = true;
 			}
 
-			if ( helmetStreamedTexture[ placeIndex ].textureUrl != LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ].helmetTextureUrl )
+			if ( helmetStreamedTexture[ slotIndex ].textureUrl != LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ].helmetTextureUrl )
 			{
-				helmetStreamedTexture[ placeIndex ].ChangeTexture( LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ].helmetTextureUrl );
+				helmetStreamedTexture[ slotIndex ].ChangeTexture( LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ].helmetTextureUrl );
 
 				requestsPending = true;
 			}
 
-			if ( driverStreamedTexture[ placeIndex ].textureUrl != LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ].driverTextureUrl )
+			if ( driverStreamedTexture[ slotIndex ].textureUrl != LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ].driverTextureUrl )
 			{
-				driverStreamedTexture[ placeIndex ].ChangeTexture( LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardPlaces[ placeIndex ].driverTextureUrl );
+				driverStreamedTexture[ slotIndex ].ChangeTexture( LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ].driverTextureUrl );
 
 				requestsPending = true;
 			}
