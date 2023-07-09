@@ -65,8 +65,8 @@ public class OverlayIntro : MonoBehaviour
 		driversA_RectTransform.localPosition = new Vector2( Settings.overlay.introLeftPosition.x, -Settings.overlay.introLeftPosition.y );
 		driversB_RectTransform.localPosition = new Vector2( Settings.overlay.introRightPosition.x, -Settings.overlay.introRightPosition.y );
 
-		driversA_RectTransform.localScale = new Vector3( Settings.overlay.introLeftScale, Settings.overlay.introLeftScale, 1 );
-		driversB_RectTransform.localScale = new Vector3( Settings.overlay.introRightScale, Settings.overlay.introRightScale, 1 );
+		driversA_RectTransform.localScale = new Vector3( Settings.overlay.introLeftScale, Settings.overlay.introLeftScale, Settings.overlay.introLeftScale );
+		driversB_RectTransform.localScale = new Vector3( Settings.overlay.introRightScale, Settings.overlay.introRightScale, Settings.overlay.introRightScale );
 	}
 
 	public void LiveDataUpdated()
@@ -78,13 +78,16 @@ public class OverlayIntro : MonoBehaviour
 				wasActive = false;
 
 				background.SetActive( false );
-				driversA.SetActive( false );
-				driversB.SetActive( false );
 			}
 
 			if ( wasShown )
 			{
 				wasShown = false;
+			}
+
+			for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumSlots; driverIndex++ )
+			{
+				drivers[ driverIndex ].SetActive( false );
 			}
 		}
 		else
@@ -94,19 +97,17 @@ public class OverlayIntro : MonoBehaviour
 				wasActive = true;
 
 				background.SetActive( true );
-				driversA.SetActive( true );
-				driversB.SetActive( true );
 			}
 
 			if ( !wasShown )
 			{
 				wasShown = true;
 
-				for ( var qualifyingPosition = 0; qualifyingPosition < LiveDataLeaderboard.MaxNumSlots; qualifyingPosition++ )
+				for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumSlots; driverIndex++ )
 				{
-					var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ qualifyingPosition ];
+					var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ driverIndex ];
 
-					var overlayIntroDriver = overlayIntroDrivers[ qualifyingPosition ];
+					var overlayIntroDriver = overlayIntroDrivers[ driverIndex ];
 
 					overlayIntroDriver.background_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
 					overlayIntroDriver.suit_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
@@ -121,21 +122,24 @@ public class OverlayIntro : MonoBehaviour
 				}
 			}
 
-			for ( var qualifyingPosition = 0; qualifyingPosition < LiveDataLeaderboard.MaxNumSlots; qualifyingPosition++ )
+			for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumSlots; driverIndex++ )
 			{
-				var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ qualifyingPosition ];
+				var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ driverIndex ];
 
 				if ( liveDataIntroDriver.show )
 				{
-					drivers[ qualifyingPosition ].SetActive( true );
+					drivers[ driverIndex ].SetActive( true );
 
-					animators[ qualifyingPosition ].SetBool( "Start", true );
-					animators[ qualifyingPosition ].SetInteger( "Animation", Settings.overlay.introAnimationNumber );
-					animators[ qualifyingPosition ].SetFloat( "Speed", Settings.overlay.introAnimationSpeed );
+					animators[ driverIndex ].SetBool( "Start", true );
+					animators[ driverIndex ].SetInteger( "InAnimation", ( ( driverIndex & 1 ) == 0 ) ? Settings.overlay.introLeftInAnimationNumber : Settings.overlay.introRightInAnimationNumber );
+					animators[ driverIndex ].SetInteger( "OutAnimation", ( ( driverIndex & 1 ) == 0 ) ? Settings.overlay.introLeftOutAnimationNumber : Settings.overlay.introRightOutAnimationNumber );
+					animators[ driverIndex ].SetFloat( "InTime", 1.0f / Settings.overlay.introInTime );
+					animators[ driverIndex ].SetFloat( "HoldTime", 1.0f / Settings.overlay.introHoldTime );
+					animators[ driverIndex ].SetFloat( "OutTime", 1.0f / Settings.overlay.introOutTime );
 				}
 				else
 				{
-					drivers[ qualifyingPosition ].SetActive( false );
+					drivers[ driverIndex ].SetActive( false );
 				}
 			}
 		}

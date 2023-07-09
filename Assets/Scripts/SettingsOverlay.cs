@@ -30,12 +30,17 @@ public class SettingsOverlay
 	public Vector2Int subtitleTextPadding = new( 12, 6 );
 
 	public bool introEnabled = true;
-	public int introAnimationNumber = 1;
-	public float introAnimationSpeed = 1;
 	public Vector2 introLeftPosition = new( 781, 517 );
 	public float introLeftScale = 1.7f;
 	public Vector2 introRightPosition = new( 1495, 517 );
 	public float introRightScale = 1.7f;
+	public int introLeftInAnimationNumber = 1;
+	public int introRightInAnimationNumber = 1;
+	public int introLeftOutAnimationNumber = 1;
+	public int introRightOutAnimationNumber = 1;
+	public float introInTime = 1;
+	public float introHoldTime = 1;
+	public float introOutTime = 1;
 
 	public SerializableDictionary<string, SettingsText> textSettingsDataDictionary = new();
 	public SerializableDictionary<string, SettingsImage> imageSettingsDataDictionary = new();

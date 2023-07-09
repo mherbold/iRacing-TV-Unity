@@ -51,7 +51,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 	public void Update()
 	{
-		enable.SetActive( Settings.overlay.leaderboardEnabled && LiveData.Instance.liveDataLeaderboard.show && ipc.isConnected && LiveData.Instance.isConnected );
+		enable.SetActive( Settings.overlay.leaderboardEnabled && LiveData.Instance.liveDataLeaderboard.show && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
 	}
 
 	public void SettingsUpdated()
