@@ -13,6 +13,7 @@ public class LiveData
 	public LiveDataVoiceOf liveDataVoiceOf = new();
 	public LiveDataSubtitle liveDataSubtitle = new();
 	public LiveDataIntro liveDataIntro = new();
+	public LiveDataStartLights liveDataStartLights = new();
 
 	public string seriesLogoTextureUrl = string.Empty;
 
@@ -33,6 +34,7 @@ public class LiveData
 		liveDataVoiceOf = liveData.liveDataVoiceOf;
 		liveDataSubtitle = liveData.liveDataSubtitle;
 		liveDataIntro = liveData.liveDataIntro;
+		liveDataStartLights = liveData.liveDataStartLights;
 
 		seriesLogoTextureUrl = liveData.seriesLogoTextureUrl;
 	}

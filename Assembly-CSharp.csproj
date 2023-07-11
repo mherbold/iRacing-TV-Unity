@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\SettingsImage.cs" />
     <Compile Include="Assets\Scripts\TextSettings.cs" />
     <Compile Include="Assets\Scripts\SettingsText.cs" />
+    <Compile Include="Assets\Scripts\LiveDataStartLights.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary.cs" />
     <Compile Include="Assets\Scripts\SettingsTranslation.cs" />
     <Compile Include="Assets\Scripts\LiveDataSubtitle.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\StreamedTexture.cs" />
     <Compile Include="Assets\Scripts\OverlayVoiceOf.cs" />
     <Compile Include="Assets\Scripts\OverlayCustom.cs" />
+    <Compile Include="Assets\Scripts\OverlayStartLights.cs" />
     <Compile Include="Assets\Scripts\LiveDataRaceStatus.cs" />
     <Compile Include="Assets\Scripts\LiveDataVoiceOf.cs" />
     <Compile Include="Assets\Scripts\OverlaySubtitle.cs" />

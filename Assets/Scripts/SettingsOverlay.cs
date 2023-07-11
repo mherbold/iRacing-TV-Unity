@@ -42,6 +42,9 @@ public class SettingsOverlay
 	public float introHoldTime = 1;
 	public float introOutTime = 1;
 
+	public bool startLightsEnabled = true;
+	public Vector2 startLightsPosition = new( 903, 130 );
+
 	public SerializableDictionary<string, SettingsText> textSettingsDataDictionary = new();
 	public SerializableDictionary<string, SettingsImage> imageSettingsDataDictionary = new();
 
