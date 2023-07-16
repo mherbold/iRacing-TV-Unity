@@ -27,6 +27,9 @@ public class OverlayRaceStatus : MonoBehaviour
 	[NonSerialized] public TextMeshProUGUI units_Text;
 	[NonSerialized] public TextMeshProUGUI currentLap_Text;
 
+	[NonSerialized] public long indexSettings;
+	[NonSerialized] public long indexLiveData;
+
 	public void Awake()
 	{
 		sessionName_Text = sessionName.GetComponent<TextMeshProUGUI>();
@@ -35,38 +38,37 @@ public class OverlayRaceStatus : MonoBehaviour
 		currentLap_Text = currentLap.GetComponent<TextMeshProUGUI>();
 	}
 
-	public void Start()
-	{
-		SettingsUpdated();
-	}
-
 	public void Update()
 	{
 		enable.SetActive( Settings.overlay.raceStatusEnabled && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
-	}
 
-	public void SettingsUpdated()
-	{
-		transform.localPosition = new Vector2( Settings.overlay.raceStatusPosition.x, -Settings.overlay.raceStatusPosition.y );
-	}
+		if ( indexSettings != IPC.indexSettings )
+		{
+			indexSettings = IPC.indexSettings;
 
-	public void LiveDataUpdated()
-	{
-		sessionName_Text.text = LiveData.Instance.liveDataRaceStatus.sessionNameText;
+			transform.localPosition = new Vector2( Settings.overlay.raceStatusPosition.x, -Settings.overlay.raceStatusPosition.y );
+		}
 
-		lapsRemaining_Text.text = LiveData.Instance.liveDataRaceStatus.lapsRemainingText;
+		if ( indexLiveData != IPC.indexLiveData )
+		{
+			indexLiveData = IPC.indexLiveData;
 
-		blackLight.SetActive( LiveData.Instance.liveDataRaceStatus.showBlackLight );
-		greenLight.SetActive( LiveData.Instance.liveDataRaceStatus.showGreenLight );
-		whiteLight.SetActive( LiveData.Instance.liveDataRaceStatus.showWhiteLight );
-		yellowLight.SetActive( LiveData.Instance.liveDataRaceStatus.showYellowLight );
+			sessionName_Text.text = LiveData.Instance.liveDataRaceStatus.sessionNameText;
 
-		units_Text.text = LiveData.Instance.liveDataRaceStatus.unitsText;
+			lapsRemaining_Text.text = LiveData.Instance.liveDataRaceStatus.lapsRemainingText;
 
-		currentLap_Text.text = LiveData.Instance.liveDataRaceStatus.currentLapText;
+			blackLight.SetActive( LiveData.Instance.liveDataRaceStatus.showBlackLight );
+			greenLight.SetActive( LiveData.Instance.liveDataRaceStatus.showGreenLight );
+			whiteLight.SetActive( LiveData.Instance.liveDataRaceStatus.showWhiteLight );
+			yellowLight.SetActive( LiveData.Instance.liveDataRaceStatus.showYellowLight );
 
-		greenFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showGreenFlag );
-		yellowFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showYellowFlag );
-		checkeredFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showCheckeredFlag );
+			units_Text.text = LiveData.Instance.liveDataRaceStatus.unitsText;
+
+			currentLap_Text.text = LiveData.Instance.liveDataRaceStatus.currentLapText;
+
+			greenFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showGreenFlag );
+			yellowFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showYellowFlag );
+			checkeredFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showCheckeredFlag );
+		}
 	}
 }

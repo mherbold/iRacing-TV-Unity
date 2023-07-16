@@ -20,6 +20,9 @@ public class OverlaySubtitle : MonoBehaviour
 	[NonSerialized] public VerticalLayoutGroup panel_VerticalLayoutGroup;
 	[NonSerialized] public TextMeshProUGUI text_Text;
 
+	[NonSerialized] public long indexSettings;
+	[NonSerialized] public long indexLiveData;
+
 	public void Awake()
 	{
 		maxSizeContainer_RectTransform = maxSizeContainer.GetComponent<RectTransform>();
@@ -28,37 +31,36 @@ public class OverlaySubtitle : MonoBehaviour
 		text_Text = text.GetComponent<TextMeshProUGUI>();
 	}
 
-	public void Start()
-	{
-		SettingsUpdated();
-	}
-
 	public void Update()
 	{
 		enable.SetActive( Settings.overlay.subtitleEnabled && ipc.isConnected && LiveData.Instance.isConnected );
-	}
 
-	public void SettingsUpdated()
-	{
-		maxSizeContainer_RectTransform.transform.localPosition = new Vector2( Settings.overlay.subtitlePosition.x, -Settings.overlay.subtitlePosition.y );
-
-		maxSizeContainer_RectTransform.sizeDelta = Settings.overlay.subtitleMaxSize;
-
-		panel_Image.color = Settings.overlay.subtitleBackgroundColor;
-		panel_VerticalLayoutGroup.padding = new RectOffset( Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.y, Settings.overlay.subtitleTextPadding.y );
-	}
-
-	public void LiveDataUpdated()
-	{
-		if ( LiveData.Instance.liveDataSubtitle.text == string.Empty )
+		if ( indexSettings != IPC.indexSettings )
 		{
-			panel.SetActive( false );
+			indexSettings = IPC.indexSettings;
+
+			maxSizeContainer_RectTransform.transform.localPosition = new Vector2( Settings.overlay.subtitlePosition.x, -Settings.overlay.subtitlePosition.y );
+
+			maxSizeContainer_RectTransform.sizeDelta = Settings.overlay.subtitleMaxSize;
+
+			panel_Image.color = Settings.overlay.subtitleBackgroundColor;
+			panel_VerticalLayoutGroup.padding = new RectOffset( Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.y, Settings.overlay.subtitleTextPadding.y );
 		}
-		else
-		{
-			panel.SetActive( true );
 
-			text_Text.text = LiveData.Instance.liveDataSubtitle.text;
+		if ( indexLiveData != IPC.indexLiveData )
+		{
+			indexLiveData = IPC.indexLiveData;
+
+			if ( LiveData.Instance.liveDataSubtitle.text == string.Empty )
+			{
+				panel.SetActive( false );
+			}
+			else
+			{
+				panel.SetActive( true );
+
+				text_Text.text = LiveData.Instance.liveDataSubtitle.text;
+			}
 		}
 	}
 }

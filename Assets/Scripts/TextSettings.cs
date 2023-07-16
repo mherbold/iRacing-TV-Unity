@@ -12,6 +12,7 @@ public class TextSettings : MonoBehaviour
 	[NonSerialized] public RectTransform rectTransform;
 	[NonSerialized] public TextMeshProUGUI text;
 
+	[NonSerialized] public long indexSettings;
 	[NonSerialized] public SettingsText settings;
 
 	public void Awake()
@@ -20,36 +21,36 @@ public class TextSettings : MonoBehaviour
 		text = GetComponent<TextMeshProUGUI>();
 	}
 
-	public void OnEnable()
+	public void Update()
 	{
-		SettingsUpdated();
-	}
-
-	public void SettingsUpdated()
-	{
-		if ( id == string.Empty )
+		if ( indexSettings != IPC.indexSettings )
 		{
-			enabled = false;
-		}
-		else
-		{
-			settings = Settings.overlay.GetTextSettingsData( id );
+			indexSettings = IPC.indexSettings;
 
-			if ( settings.fontIndex == SettingsText.FontIndex.None )
+			if ( id == string.Empty )
 			{
 				enabled = false;
 			}
 			else
 			{
-				enabled = true;
+				settings = Settings.overlay.GetTextSettingsData( id );
 
-				text.font = Fonts.GetFontAsset( settings.fontIndex );
-				text.fontSize = settings.fontSize;
-				text.color = settings.tintColor;
-				text.alignment = settings.alignment;
+				if ( settings.fontIndex == SettingsText.FontIndex.None )
+				{
+					enabled = false;
+				}
+				else
+				{
+					enabled = true;
 
-				rectTransform.localPosition = new Vector2( settings.position.x, -settings.position.y );
-				rectTransform.sizeDelta = settings.size;
+					text.font = Fonts.GetFontAsset( settings.fontIndex );
+					text.fontSize = settings.fontSize;
+					text.color = settings.tintColor;
+					text.alignment = settings.alignment;
+
+					rectTransform.localPosition = new Vector2( settings.position.x, -settings.position.y );
+					rectTransform.sizeDelta = settings.size;
+				}
 			}
 		}
 	}

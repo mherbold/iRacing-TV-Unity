@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TransparentWindow : MonoBehaviour
 {
+	[NonSerialized] public long indexSettings;
+
 	public void Awake()
 	{
 		QualitySettings.vSyncCount = 0;
@@ -26,13 +28,16 @@ public class TransparentWindow : MonoBehaviour
 		WinApi.SetWindowLong( hWnd, WinApi.GWL_STYLE, WinApi.WS_POPUP | WinApi.WS_VISIBLE );
 
 		WinApi.SetWindowLong( hWnd, WinApi.GWL_EXSTYLE, WinApi.WS_EX_LAYERED | WinApi.WS_EX_TRANSPARENT | WinApi.WS_EX_TOPMOST );
-
-		SettingsUpdated();
 	}
 
-	public void SettingsUpdated()
+	public void Update()
 	{
-		WinApi.SetWindowPos( hWnd, WinApi.HWND_TOPMOST, Settings.overlay.position.x, Settings.overlay.position.y, Settings.overlay.size.x, Settings.overlay.size.y, 0 );
+		if ( indexSettings != IPC.indexSettings )
+		{
+			indexSettings = IPC.indexSettings;
+
+			WinApi.SetWindowPos( hWnd, WinApi.HWND_TOPMOST, Settings.overlay.position.x, Settings.overlay.position.y, Settings.overlay.size.x, Settings.overlay.size.y, 0 );
+		}
 	}
 
 #endif

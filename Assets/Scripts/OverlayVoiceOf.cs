@@ -20,6 +20,9 @@ public class OverlayVoiceOf : MonoBehaviour
 	[NonSerialized] public TextMeshProUGUI driverName_Text;
 	[NonSerialized] public ImageSettings car_ImageSettings;
 
+	[NonSerialized] public long indexSettings;
+	[NonSerialized] public long indexLiveData;
+
 	public void Awake()
 	{
 		animationRoot_Animator = animationRoot.GetComponent<Animator>();
@@ -28,32 +31,31 @@ public class OverlayVoiceOf : MonoBehaviour
 		car_ImageSettings = car.GetComponent<ImageSettings>();
 	}
 
-	public void Start()
-	{
-		SettingsUpdated();
-	}
-
 	public void Update()
 	{
 		enable.SetActive( Settings.overlay.voiceOfEnabled && ipc.isConnected && LiveData.Instance.isConnected );
-	}
 
-	public void SettingsUpdated()
-	{
-		transform.localPosition = new Vector2( Settings.overlay.voiceOfPosition.x, -Settings.overlay.voiceOfPosition.y );
-	}
-
-	public void LiveDataUpdated()
-	{
-		animationRoot_Animator.SetBool( "Show", LiveData.Instance.liveDataVoiceOf.show );
-
-		voiceOf_Text.text = LiveData.Instance.liveDataVoiceOf.voiceOfText;
-
-		driverName_Text.text = LiveData.Instance.liveDataVoiceOf.driverNameText;
-
-		if ( LiveData.Instance.liveDataVoiceOf.carIdx != -1 )
+		if ( indexSettings != IPC.indexSettings )
 		{
-			car_ImageSettings.carIdx = LiveData.Instance.liveDataVoiceOf.carIdx;
+			indexSettings = IPC.indexSettings;
+
+			transform.localPosition = new Vector2( Settings.overlay.voiceOfPosition.x, -Settings.overlay.voiceOfPosition.y );
+		}
+
+		if ( indexLiveData != IPC.indexLiveData )
+		{
+			indexLiveData = IPC.indexLiveData;
+
+			animationRoot_Animator.SetBool( "Show", LiveData.Instance.liveDataVoiceOf.show );
+
+			voiceOf_Text.text = LiveData.Instance.liveDataVoiceOf.voiceOfText;
+
+			driverName_Text.text = LiveData.Instance.liveDataVoiceOf.driverNameText;
+
+			if ( LiveData.Instance.liveDataVoiceOf.carIdx != -1 )
+			{
+				car_ImageSettings.carIdx = LiveData.Instance.liveDataVoiceOf.carIdx;
+			}
 		}
 	}
 }

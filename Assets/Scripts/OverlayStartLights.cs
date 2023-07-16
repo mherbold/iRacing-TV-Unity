@@ -14,25 +14,27 @@ public class OverlayStartLights : MonoBehaviour
 	public GameObject setLights;
 	public GameObject goLights;
 
-	public void Start()
-	{
-		SettingsUpdated();
-	}
+	[NonSerialized] public long indexSettings;
+	[NonSerialized] public long indexLiveData;
 
 	public void Update()
 	{
 		enable.SetActive( Settings.overlay.startLightsEnabled && ipc.isConnected && LiveData.Instance.isConnected );
-	}
 
-	public void SettingsUpdated()
-	{
-		transform.localPosition = new Vector2( Settings.overlay.startLightsPosition.x, -Settings.overlay.startLightsPosition.y );
-	}
+		if ( indexSettings != IPC.indexSettings )
+		{
+			indexSettings = IPC.indexSettings;
 
-	public void LiveDataUpdated()
-	{
-		readyLights.SetActive( LiveData.Instance.liveDataStartLights.showReady );
-		setLights.SetActive( LiveData.Instance.liveDataStartLights.showSet );
-		goLights.SetActive( LiveData.Instance.liveDataStartLights.showGo );
+			transform.localPosition = new Vector2( Settings.overlay.startLightsPosition.x, -Settings.overlay.startLightsPosition.y );
+		}
+
+		if ( indexLiveData != IPC.indexLiveData )
+		{
+			indexLiveData = IPC.indexLiveData;
+
+			readyLights.SetActive( LiveData.Instance.liveDataStartLights.showReady );
+			setLights.SetActive( LiveData.Instance.liveDataStartLights.showSet );
+			goLights.SetActive( LiveData.Instance.liveDataStartLights.showGo );
+		}
 	}
 }

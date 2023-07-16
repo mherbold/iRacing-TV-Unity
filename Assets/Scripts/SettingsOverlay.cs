@@ -48,6 +48,9 @@ public class SettingsOverlay
 	public SerializableDictionary<string, SettingsText> textSettingsDataDictionary = new();
 	public SerializableDictionary<string, SettingsImage> imageSettingsDataDictionary = new();
 
+	[NonSerialized] public SettingsText emptySettingsText = new();
+	[NonSerialized] public SettingsImage emptySettingsImage = new();
+
 	public SettingsOverlay()
 	{
 		for ( var fontIndex = 0; fontIndex < MaxNumFonts; fontIndex++ )
@@ -60,7 +63,7 @@ public class SettingsOverlay
 	{
 		if ( !textSettingsDataDictionary.ContainsKey( id ) )
 		{
-			textSettingsDataDictionary[ id ] = new SettingsText();
+			return emptySettingsText;
 		}
 
 		return textSettingsDataDictionary[ id ];
@@ -70,7 +73,7 @@ public class SettingsOverlay
 	{
 		if ( !imageSettingsDataDictionary.ContainsKey( id ) )
 		{
-			imageSettingsDataDictionary[ id ] = new SettingsImage();
+			return emptySettingsImage;
 		}
 
 		return imageSettingsDataDictionary[ id ];

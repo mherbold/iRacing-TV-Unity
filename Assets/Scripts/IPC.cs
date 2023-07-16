@@ -16,8 +16,8 @@ public class IPC : MonoBehaviour
 	[NonSerialized] public MemoryMappedFile memoryMappedFileSettings;
 	[NonSerialized] public MemoryMappedFile memoryMappedFileLiveData;
 
-	[NonSerialized] public long indexSettings = 0;
-	[NonSerialized] public long indexLiveData = 0;
+	[NonSerialized] public static long indexSettings = 0;
+	[NonSerialized] public static long indexLiveData = 0;
 
 	[NonSerialized] public bool isConnected = false;
 	[NonSerialized] public long lastUpdateMilliseconds = 0;
@@ -68,8 +68,6 @@ public class IPC : MonoBehaviour
 		}
 		else
 		{
-			indexSettings = index;
-
 			if ( Mutex.TryOpenExisting( Program.MutexNameSettings, out var mutex ) )
 			{
 				mutex.WaitOne();
@@ -100,12 +98,7 @@ public class IPC : MonoBehaviour
 
 			Settings.overlay = (SettingsOverlay) xmlSerializer.Deserialize( memoryStream );
 
-			var rootGameObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
-
-			foreach ( var rootGameObject in rootGameObjects )
-			{
-				rootGameObject.BroadcastMessage( "SettingsUpdated", SendMessageOptions.DontRequireReceiver );
-			}
+			indexSettings = index;
 
 			return true;
 		}
@@ -125,8 +118,6 @@ public class IPC : MonoBehaviour
 		}
 		else
 		{
-			indexLiveData = index;
-
 			if ( Mutex.TryOpenExisting( Program.MutexNameLiveData, out var mutex ) )
 			{
 				mutex.WaitOne();
@@ -161,12 +152,7 @@ public class IPC : MonoBehaviour
 
 			StreamingTextures.CheckForUpdates();
 
-			var rootGameObjects = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
-
-			foreach ( var rootGameObject in rootGameObjects )
-			{
-				rootGameObject.BroadcastMessage( "LiveDataUpdated", SendMessageOptions.DontRequireReceiver );
-			}
+			indexLiveData = index;
 
 			return true;
 		}

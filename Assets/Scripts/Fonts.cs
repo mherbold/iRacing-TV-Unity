@@ -10,30 +10,32 @@ public class Fonts : MonoBehaviour
 	[NonSerialized] public static readonly string[] fontPaths = new string[ SettingsOverlay.MaxNumFonts ];
 	[NonSerialized] public static readonly TMP_FontAsset[] fontAssets = new TMP_FontAsset[ SettingsOverlay.MaxNumFonts ];
 
-	public void OnEnable()
-	{
-		SettingsUpdated();
-	}
+	[NonSerialized] public long indexSettings;
 
-	public void SettingsUpdated()
+	public void Update()
 	{
-		for ( var fontIndex = 0; fontIndex < SettingsOverlay.MaxNumFonts; fontIndex++ )
+		if ( indexSettings != IPC.indexSettings )
 		{
-			var fontPath = Settings.overlay.fontPaths[ fontIndex ];
+			indexSettings = IPC.indexSettings;
 
-			if ( fontPath != fontPaths[ fontIndex ] )
+			for ( var fontIndex = 0; fontIndex < SettingsOverlay.MaxNumFonts; fontIndex++ )
 			{
-				fontPaths[ fontIndex ] = fontPath;
+				var fontPath = Settings.overlay.fontPaths[ fontIndex ];
 
-				if ( fontPath != string.Empty )
+				if ( fontPath != fontPaths[ fontIndex ] )
 				{
-					var font = new Font( fontPath );
+					fontPaths[ fontIndex ] = fontPath;
 
-					fontAssets[ fontIndex ] = TMP_FontAsset.CreateFontAsset( font );
-				}
-				else
-				{
-					fontAssets[ fontIndex ] = null;
+					if ( fontPath != string.Empty )
+					{
+						var font = new Font( fontPath );
+
+						fontAssets[ fontIndex ] = TMP_FontAsset.CreateFontAsset( font );
+					}
+					else
+					{
+						fontAssets[ fontIndex ] = null;
+					}
 				}
 			}
 		}
