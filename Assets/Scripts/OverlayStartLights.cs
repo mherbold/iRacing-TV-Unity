@@ -19,7 +19,7 @@ public class OverlayStartLights : MonoBehaviour
 
 	public void Update()
 	{
-		enable.SetActive( Settings.overlay.startLightsEnabled && ipc.isConnected && LiveData.Instance.isConnected );
+		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.startLightsOn && ipc.isConnected && LiveData.Instance.isConnected );
 
 		if ( indexSettings != IPC.indexSettings )
 		{

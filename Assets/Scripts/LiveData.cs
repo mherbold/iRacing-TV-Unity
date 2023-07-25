@@ -8,6 +8,7 @@ public class LiveData
 
 	public bool isConnected = false;
 
+	public LiveDataControlPanel liveDataControlPanel = new();
 	public LiveDataRaceStatus liveDataRaceStatus = new();
 	public LiveDataLeaderboard liveDataLeaderboard = new();
 	public LiveDataVoiceOf liveDataVoiceOf = new();
@@ -29,6 +30,7 @@ public class LiveData
 
 	public void Update( LiveData liveData )
 	{
+		liveDataControlPanel = liveData.liveDataControlPanel;
 		liveDataRaceStatus = liveData.liveDataRaceStatus;
 		liveDataLeaderboard = liveData.liveDataLeaderboard;
 		liveDataVoiceOf = liveData.liveDataVoiceOf;

@@ -33,7 +33,7 @@ public class OverlayVoiceOf : MonoBehaviour
 
 	public void Update()
 	{
-		enable.SetActive( Settings.overlay.voiceOfEnabled && ipc.isConnected && LiveData.Instance.isConnected );
+		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.voiceOfOn && ipc.isConnected && LiveData.Instance.isConnected );
 
 		if ( indexSettings != IPC.indexSettings )
 		{

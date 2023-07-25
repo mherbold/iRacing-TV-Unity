@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\SettingsImage.cs" />
     <Compile Include="Assets\Scripts\TextSettings.cs" />
+    <Compile Include="Assets\Scripts\LiveDataControlPanel.cs" />
     <Compile Include="Assets\Scripts\SettingsText.cs" />
     <Compile Include="Assets\Scripts\Border.cs" />
     <Compile Include="Assets\Scripts\LiveDataStartLights.cs" />

@@ -40,7 +40,7 @@ public class OverlayRaceStatus : MonoBehaviour
 
 	public void Update()
 	{
-		enable.SetActive( Settings.overlay.raceStatusEnabled && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
+		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.raceStatusOn && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
 
 		if ( indexSettings != IPC.indexSettings )
 		{

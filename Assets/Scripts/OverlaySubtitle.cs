@@ -33,7 +33,7 @@ public class OverlaySubtitle : MonoBehaviour
 
 	public void Update()
 	{
-		enable.SetActive( Settings.overlay.subtitleEnabled && ipc.isConnected && LiveData.Instance.isConnected );
+		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.subtitlesOn && ipc.isConnected && LiveData.Instance.isConnected );
 
 		if ( indexSettings != IPC.indexSettings )
 		{

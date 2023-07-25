@@ -49,7 +49,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 	public void Update()
 	{
-		enable.SetActive( Settings.overlay.leaderboardEnabled && LiveData.Instance.liveDataLeaderboard.show && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
+		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.leaderboardOn && LiveData.Instance.liveDataLeaderboard.show && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
 
 		if ( indexSettings != IPC.indexSettings )
 		{

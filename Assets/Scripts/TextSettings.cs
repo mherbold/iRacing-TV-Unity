@@ -37,11 +37,11 @@ public class TextSettings : MonoBehaviour
 
 				if ( settings.fontIndex == SettingsText.FontIndex.None )
 				{
-					enabled = false;
+					text.enabled = false;
 				}
 				else
 				{
-					enabled = true;
+					text.enabled = true;
 
 					text.font = Fonts.GetFontAsset( settings.fontIndex );
 					text.fontSize = settings.fontSize;
