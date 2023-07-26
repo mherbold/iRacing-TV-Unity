@@ -27,10 +27,13 @@ public class ImageSettings : MonoBehaviour
 	[NonSerialized] public Image border_Image = null;
 	[NonSerialized] public RectTransform border_RectTransform = null;
 
+	[NonSerialized] public float currentFrame = 0;
+
 	public void Awake()
 	{
 		rectTransform = GetComponent<RectTransform>();
 		image = GetComponent<Image>();
+		image.material = Instantiate( image.material );
 	}
 
 	public void Update()
@@ -49,8 +52,8 @@ public class ImageSettings : MonoBehaviour
 			border_RectTransform = border.GetComponent<RectTransform>();
 		}
 
-        if ( indexSettings != IPC.indexSettings )
-        {
+		if ( indexSettings != IPC.indexSettings )
+		{
 			indexSettings = IPC.indexSettings;
 
 			if ( id == string.Empty )
@@ -101,7 +104,7 @@ public class ImageSettings : MonoBehaviour
 			}
 		}
 
-        if ( settings != null )
+		if ( settings != null )
 		{
 			if ( settings.imageType > SettingsImage.ImageType.ImageFile )
 			{
@@ -113,6 +116,30 @@ public class ImageSettings : MonoBehaviour
 				showBorderTimer = Math.Max( 0, showBorderTimer - Time.deltaTime );
 
 				border_Image.enabled = ( showBorderTimer > 0 );
+			}
+
+			if ( ( settings.frameCount > 1 ) && ( settings.frameSize.x > 0 ) && ( settings.frameSize.y > 0 ) && ( texture != null ) )
+			{
+				currentFrame += Time.deltaTime * settings.animationSpeed;
+
+				if ( currentFrame > settings.frameCount )
+				{
+					currentFrame %= settings.frameCount;
+				}
+
+				var framesPerRow = (float) Math.Floor( texture.width / settings.frameSize.x );
+				var framesPerColumn = (float) Math.Floor( texture.height / settings.frameSize.y );
+
+				var currentRow = (float) Math.Floor( currentFrame / framesPerRow );
+				var currentColumn = (float) Math.Floor( currentFrame - ( currentRow * framesPerRow ) );
+
+				currentRow = framesPerColumn - currentRow - 1;
+
+				var textureScale = new Vector2( settings.frameSize.x / texture.width, settings.frameSize.y / texture.height );
+				var textureOffset = new Vector2( currentColumn * settings.frameSize.x / texture.width, currentRow * settings.frameSize.y / texture.height );
+
+				image.material.SetTextureScale( "_MainTex", textureScale );
+				image.material.SetTextureOffset( "_MainTex", textureOffset );
 			}
 		}
 	}

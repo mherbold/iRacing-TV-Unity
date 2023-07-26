@@ -25,4 +25,7 @@ public class SettingsImage
 	public Vector2 size = Vector2.zero;
 	public Color tintColor = Color.white;
 	public Vector4 border = Vector4.zero;
+	public Vector2 frameSize = Vector2.zero;
+	public int frameCount = 1;
+	public float animationSpeed = 10;
 }

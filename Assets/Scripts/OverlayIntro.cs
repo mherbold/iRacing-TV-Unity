@@ -120,6 +120,9 @@ public class OverlayIntro : MonoBehaviour
 						overlayIntroDriver.position_Text.text = liveDataIntroDriver.positionText;
 						overlayIntroDriver.driverName_Text.text = liveDataIntroDriver.driverNameText;
 						overlayIntroDriver.qualifyingTime_Text.text = liveDataIntroDriver.qualifyingTimeText;
+
+						drivers[ driverIndex ].transform.localPosition = Vector3.zero;
+						drivers[ driverIndex ].transform.localRotation = Quaternion.identity;
 					}
 				}
 
@@ -141,6 +144,9 @@ public class OverlayIntro : MonoBehaviour
 					else
 					{
 						drivers[ driverIndex ].SetActive( false );
+
+						drivers[ driverIndex ].transform.localPosition = Vector3.zero;
+						drivers[ driverIndex ].transform.localRotation = Quaternion.identity;
 					}
 				}
 			}
