@@ -28,4 +28,5 @@ public class SettingsImage
 	public Vector2 frameSize = Vector2.zero;
 	public int frameCount = 1;
 	public float animationSpeed = 10;
+	public bool tilingEnabled = false;
 }

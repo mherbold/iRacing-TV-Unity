@@ -15,6 +15,7 @@ public class LiveData
 	public LiveDataSubtitle liveDataSubtitle = new();
 	public LiveDataIntro liveDataIntro = new();
 	public LiveDataStartLights liveDataStartLights = new();
+	public LiveDataTrackMap liveDataTrackMap = new();
 
 	public string seriesLogoTextureUrl = string.Empty;
 
@@ -37,6 +38,7 @@ public class LiveData
 		liveDataSubtitle = liveData.liveDataSubtitle;
 		liveDataIntro = liveData.liveDataIntro;
 		liveDataStartLights = liveData.liveDataStartLights;
+		liveDataTrackMap = liveData.liveDataTrackMap;
 
 		seriesLogoTextureUrl = liveData.seriesLogoTextureUrl;
 	}

@@ -20,6 +20,13 @@ public class SettingsOverlay
 	public bool leaderboardEnabled = true;
 	public Vector2 leaderboardPosition = new( 44, 244 );
 
+	public bool trackMapEnabled = true;
+	public Vector2 trackMapPosition = new( 0, 0 );
+	public Vector2 trackMapSize = new( 0, 0 );
+	public string trackMapTextureFilePath = string.Empty;
+	public float trackMapLineThickness = 0.03f;
+	public Color trackMapLineColor = Color.white;
+
 	public bool voiceOfEnabled = true;
 	public Vector2 voiceOfPosition = new( 1920, 41 );
 

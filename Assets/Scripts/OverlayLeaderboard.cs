@@ -43,7 +43,8 @@ public class OverlayLeaderboard : MonoBehaviour
 
 			overlayLeaderboardSlots[ slotIndex ] = slots[ slotIndex ].GetComponent<OverlayLeaderboardSlot>();
 
-			overlayLeaderboardSlots[ slotIndex ].carNumber_ImageSettings.carIdx = slotIndex;
+			overlayLeaderboardSlots[ slotIndex ].layer1_ImageSettings.carIdx = slotIndex;
+			overlayLeaderboardSlots[ slotIndex ].layer2_ImageSettings.carIdx = slotIndex;
 		}
 	}
 

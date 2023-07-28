@@ -33,6 +33,7 @@ public class ImageSettings : MonoBehaviour
 	{
 		rectTransform = GetComponent<RectTransform>();
 		image = GetComponent<Image>();
+
 		image.material = Instantiate( image.material );
 	}
 
@@ -161,6 +162,21 @@ public class ImageSettings : MonoBehaviour
 			size += settings.size;
 
 			rectTransform.sizeDelta = size;
+
+			if ( ( settings.tilingEnabled ) && ( texture != null ) )
+			{
+				var textureScale = new Vector2( size.x / texture.width, size.y / texture.height );
+
+				image.material.SetTextureScale( "_MainTex", textureScale );
+
+				image.mainTexture.wrapMode = TextureWrapMode.Repeat;
+			}
+			else
+			{
+				image.material.SetTextureScale( "_MainTex", Vector2.one );
+
+				image.mainTexture.wrapMode = TextureWrapMode.Clamp;
+			}
 		}
 	}
 
@@ -211,7 +227,7 @@ public class ImageSettings : MonoBehaviour
 			}
 			else
 			{
-				if ( settings.border == Vector4.zero )
+				if ( ( settings.border == Vector4.zero ) && !settings.tilingEnabled )
 				{
 					var widthRatio = settings.size.x / texture.width;
 					var heightRatio = settings.size.y / texture.height;
@@ -219,7 +235,7 @@ public class ImageSettings : MonoBehaviour
 					var width = texture.width * widthRatio;
 					var height = texture.height * widthRatio;
 
-					if ( height > settings.size.y )
+					if ( ( settings.size.x == 0 ) || ( height > settings.size.y ) )
 					{
 						width = texture.width * heightRatio;
 						height = texture.height * heightRatio;
