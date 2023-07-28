@@ -7,6 +7,7 @@ public class OverlayTrackMapCar : MonoBehaviour
 {
 	public GameObject layer1;
 	public GameObject layer2;
+	public GameObject highlight;
 
 	[NonSerialized] public ImageSettings layer1_ImageSettings;
 	[NonSerialized] public ImageSettings layer2_ImageSettings;

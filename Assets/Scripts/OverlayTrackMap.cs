@@ -10,6 +10,7 @@ public class OverlayTrackMap : MonoBehaviour
 
 	public GameObject enable;
 	public GameObject trackMap;
+	public GameObject startFinishLine;
 	public GameObject carTemplate;
 
 	[NonSerialized] public RectTransform rectTransform;
@@ -55,7 +56,7 @@ public class OverlayTrackMap : MonoBehaviour
 
 	public void Update()
 	{
-		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.trackMapOn && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
+		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.trackMapOn && LiveData.Instance.liveDataTrackMap.show && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
 
 		var forceUpdate = false;
 
@@ -132,21 +133,27 @@ public class OverlayTrackMap : MonoBehaviour
 		{
 			var liveDataTrackMapCar = LiveData.Instance.liveDataTrackMap.liveDataTrackMapCars[ carIndex ];
 
-			var overlayTrackMapCar = overlayTrackMapCars[ carIndex ];
-
-			if ( !liveDataTrackMapCar.show )
+			if ( liveDataTrackMapCar != null )
 			{
-				overlayTrackMapCar.gameObject.SetActive( false );
-			}
-			else
-			{
-				overlayTrackMapCar.gameObject.SetActive( true );
-			}
+				var overlayTrackMapCar = overlayTrackMapCars[ carIndex ];
 
-			// update slot offset
+				if ( !liveDataTrackMapCar.show )
+				{
+					overlayTrackMapCar.gameObject.SetActive( false );
+				}
+				else
+				{
+					overlayTrackMapCar.gameObject.SetActive( true );
+				}
 
-			overlayTrackMapCar.transform.localPosition = liveDataTrackMapCar.offset;
-			overlayTrackMapCar.transform.localScale = new Vector2( 1.0f / scale, 1.0f / scale );
+				overlayTrackMapCar.transform.localPosition = liveDataTrackMapCar.offset;
+				overlayTrackMapCar.transform.localScale = new Vector2( 1.0f / scale, 1.0f / scale );
+
+				overlayTrackMapCar.highlight.SetActive( liveDataTrackMapCar.showHighlight );
+			}
 		}
+
+		startFinishLine.transform.localPosition = LiveData.Instance.liveDataTrackMap.startFinishLine;
+		startFinishLine.transform.localScale = new Vector2( 1.0f / scale, 1.0f / scale );
 	}
 }

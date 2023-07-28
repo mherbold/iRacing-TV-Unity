@@ -145,13 +145,18 @@ public class ImageSettings : MonoBehaviour
 		}
 	}
 
-	public void SetPosition( Vector2 position )
+	public void SetPosition( Vector2 position, bool negateY = true )
 	{
 		if ( settings != null )
 		{
 			position += settings.position;
 
-			rectTransform.localPosition = new Vector3( position.x, -position.y, rectTransform.localPosition.z );
+			if ( negateY )
+			{
+				position.y = -position.y;
+			}
+
+			rectTransform.localPosition = new Vector3( position.x, position.y, rectTransform.localPosition.z );
 		}
 	}
 
