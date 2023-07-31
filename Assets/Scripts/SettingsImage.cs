@@ -29,4 +29,6 @@ public class SettingsImage
 	public int frameCount = 1;
 	public float animationSpeed = 10;
 	public bool tilingEnabled = false;
+	public bool useClassColors = false;
+	public float classColorStrength = 0.5f;
 }

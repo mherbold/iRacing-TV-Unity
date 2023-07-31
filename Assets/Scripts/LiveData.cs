@@ -4,13 +4,17 @@ using System;
 [Serializable]
 public class LiveData
 {
+	public const int MaxNumDrivers = 63;
+	public const int MaxNumClasses = 8;
+
 	public static LiveData Instance { get; private set; }
 
 	public bool isConnected = false;
 
 	public LiveDataControlPanel liveDataControlPanel = new();
+	public LiveDataDriver[] liveDataDrivers = new LiveDataDriver[ MaxNumDrivers ];
 	public LiveDataRaceStatus liveDataRaceStatus = new();
-	public LiveDataLeaderboard liveDataLeaderboard = new();
+	public LiveDataLeaderboard[] liveDataLeaderboard = null;
 	public LiveDataVoiceOf liveDataVoiceOf = new();
 	public LiveDataSubtitle liveDataSubtitle = new();
 	public LiveDataIntro liveDataIntro = new();
@@ -32,6 +36,7 @@ public class LiveData
 	public void Update( LiveData liveData )
 	{
 		liveDataControlPanel = liveData.liveDataControlPanel;
+		liveDataDrivers = liveData.liveDataDrivers;
 		liveDataRaceStatus = liveData.liveDataRaceStatus;
 		liveDataLeaderboard = liveData.liveDataLeaderboard;
 		liveDataVoiceOf = liveData.liveDataVoiceOf;

@@ -1,19 +1,31 @@
 
 using System;
 
+using TMPro;
 using UnityEngine;
 
 public class OverlayLeaderboard : MonoBehaviour
 {
 	public IPC ipc;
 
+	public int classIndex;
+
 	public GameObject enable;
 	public GameObject leaderboardBackground;
+	public GameObject layer1;
+	public GameObject layer2;
 	public GameObject positionSplitter;
+	public GameObject className;
+	public GameObject shortClassName;
 	public GameObject slotTemplate;
 
 	[NonSerialized] public ImageSettings leaderboardBackground_ImageSettings;
+	[NonSerialized] public ImageSettings layer1_ImageSettings;
+	[NonSerialized] public ImageSettings layer2_ImageSettings;
 	[NonSerialized] public ImageSettings positionSplitter_ImageSettings;
+
+	[NonSerialized] public TextMeshProUGUI className_Text;
+	[NonSerialized] public TextMeshProUGUI shortClassName_Text;
 
 	[NonSerialized] public GameObject[] slots;
 
@@ -27,11 +39,16 @@ public class OverlayLeaderboard : MonoBehaviour
 		slotTemplate.SetActive( false );
 
 		leaderboardBackground_ImageSettings = leaderboardBackground.GetComponent<ImageSettings>();
+		layer1_ImageSettings = layer1.GetComponent<ImageSettings>();
+		layer2_ImageSettings = layer2.GetComponent<ImageSettings>();
 		positionSplitter_ImageSettings = positionSplitter.GetComponent<ImageSettings>();
 
-		slots = new GameObject[ LiveDataLeaderboard.MaxNumSlots ];
+		className_Text = className.GetComponent<TextMeshProUGUI>();
+		shortClassName_Text = shortClassName.GetComponent<TextMeshProUGUI>();
 
-		overlayLeaderboardSlots = new OverlayLeaderboardSlot[ LiveDataLeaderboard.MaxNumSlots ];
+		slots = new GameObject[ LiveData.MaxNumDrivers ];
+
+		overlayLeaderboardSlots = new OverlayLeaderboardSlot[ LiveData.MaxNumDrivers ];
 
 		for ( var slotIndex = 0; slotIndex < slots.Length; slotIndex++ )
 		{
@@ -50,27 +67,41 @@ public class OverlayLeaderboard : MonoBehaviour
 
 	public void Update()
 	{
-		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.leaderboardOn && LiveData.Instance.liveDataLeaderboard.show && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
-
-		if ( indexSettings != IPC.indexSettings )
+		if ( ( LiveData.Instance.liveDataLeaderboard == null ) || ( classIndex >= LiveData.Instance.liveDataLeaderboard.Length ) )
 		{
-			indexSettings = IPC.indexSettings;
+			enable.SetActive( false );
 
-			transform.localPosition = new Vector2( Settings.overlay.leaderboardPosition.x, -Settings.overlay.leaderboardPosition.y );
+			return;
 		}
 
-		if ( indexLiveData != IPC.indexLiveData )
+		var liveDataLeaderboard = LiveData.Instance.liveDataLeaderboard[ classIndex ];
+
+		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.leaderboardOn && liveDataLeaderboard.show && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
+
+		if ( ( indexSettings != IPC.indexSettings ) || ( indexLiveData != IPC.indexLiveData ) )
 		{
+			indexSettings = IPC.indexSettings;
 			indexLiveData = IPC.indexLiveData;
 
-			leaderboardBackground_ImageSettings.SetSize( LiveData.Instance.liveDataLeaderboard.backgroundSize );
-			positionSplitter_ImageSettings.SetPosition( LiveData.Instance.liveDataLeaderboard.splitterPosition );
+			transform.localPosition = new Vector2( Settings.overlay.leaderboardPosition.x + liveDataLeaderboard.offset.x, -( Settings.overlay.leaderboardPosition.y + liveDataLeaderboard.offset.y ) );
+
+			leaderboardBackground_ImageSettings.SetSize( liveDataLeaderboard.backgroundSize );
+			leaderboardBackground_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
+
+			layer1_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
+			layer2_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
+
+			positionSplitter_ImageSettings.SetPosition( liveDataLeaderboard.splitterPosition );
+			positionSplitter_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
+
+			className_Text.text = liveDataLeaderboard.className;
+			shortClassName_Text.text = liveDataLeaderboard.classNameShort;
 
 			// leaderboard
 
-			for ( var slotIndex = 0; slotIndex < LiveDataLeaderboard.MaxNumSlots; slotIndex++ )
+			for ( var slotIndex = 0; slotIndex < LiveData.MaxNumDrivers; slotIndex++ )
 			{
-				var liveDataLeaderboardSlot = LiveData.Instance.liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ];
+				var liveDataLeaderboardSlot = liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ];
 
 				var overlayLeaderboardSlot = overlayLeaderboardSlots[ slotIndex ];
 
@@ -82,6 +113,12 @@ public class OverlayLeaderboard : MonoBehaviour
 				{
 					overlayLeaderboardSlot.gameObject.SetActive( true );
 				}
+
+				// class colors
+
+				overlayLeaderboardSlot.highlight_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
+				overlayLeaderboardSlot.layer1_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
+				overlayLeaderboardSlot.layer2_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 
 				// update slot offset
 
@@ -112,7 +149,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 			// splitter
 
-			positionSplitter.SetActive( LiveData.Instance.liveDataLeaderboard.showSplitter );
+			positionSplitter.SetActive( LiveData.Instance.liveDataLeaderboard[ classIndex ].showSplitter );
 		}
 	}
 }

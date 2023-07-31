@@ -33,11 +33,11 @@ public class OverlayIntro : MonoBehaviour
 		driversA_RectTransform = driversA.GetComponent<RectTransform>();
 		driversB_RectTransform = driversB.GetComponent<RectTransform>();
 
-		drivers = new GameObject[ LiveDataLeaderboard.MaxNumSlots ];
-		overlayIntroDrivers = new OverlayIntroDriver[ LiveDataLeaderboard.MaxNumSlots ];
-		animators = new Animator[ LiveDataLeaderboard.MaxNumSlots ];
+		drivers = new GameObject[ LiveData.MaxNumDrivers ];
+		overlayIntroDrivers = new OverlayIntroDriver[ LiveData.MaxNumDrivers ];
+		animators = new Animator[ LiveData.MaxNumDrivers ];
 
-		for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumSlots; driverIndex++ )
+		for ( var driverIndex = 0; driverIndex < LiveData.MaxNumDrivers; driverIndex++ )
 		{
 			drivers[ driverIndex ] = Instantiate( driverTemplate );
 
@@ -86,7 +86,7 @@ public class OverlayIntro : MonoBehaviour
 					wasShown = false;
 				}
 
-				for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumSlots; driverIndex++ )
+				for ( var driverIndex = 0; driverIndex < LiveData.MaxNumDrivers; driverIndex++ )
 				{
 					drivers[ driverIndex ].SetActive( false );
 				}
@@ -104,7 +104,7 @@ public class OverlayIntro : MonoBehaviour
 				{
 					wasShown = true;
 
-					for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumSlots; driverIndex++ )
+					for ( var driverIndex = 0; driverIndex < LiveData.MaxNumDrivers; driverIndex++ )
 					{
 						var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ driverIndex ];
 
@@ -126,7 +126,7 @@ public class OverlayIntro : MonoBehaviour
 					}
 				}
 
-				for ( var driverIndex = 0; driverIndex < LiveDataLeaderboard.MaxNumSlots; driverIndex++ )
+				for ( var driverIndex = 0; driverIndex < LiveData.MaxNumDrivers; driverIndex++ )
 				{
 					var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ driverIndex ];
 

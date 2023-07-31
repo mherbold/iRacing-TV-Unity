@@ -122,6 +122,9 @@ public class OverlayTrackMap : MonoBehaviour
 						newTexture = new Texture2D( 1, 1 );
 
 						newTexture.LoadImage( bytes );
+
+						newTexture.filterMode = FilterMode.Trilinear;
+						newTexture.anisoLevel = 16;
 					}
 				}
 

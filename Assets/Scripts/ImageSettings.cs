@@ -16,6 +16,7 @@ public class ImageSettings : MonoBehaviour
 	[NonSerialized] public SettingsImage settings;
 
 	[NonSerialized] public int carIdx = 0;
+	[NonSerialized] public Color classColor = Color.white;
 
 	[NonSerialized] public string imageFilePath;
 	[NonSerialized] public Texture2D texture;
@@ -142,6 +143,15 @@ public class ImageSettings : MonoBehaviour
 				image.material.SetTextureScale( "_MainTex", textureScale );
 				image.material.SetTextureOffset( "_MainTex", textureOffset );
 			}
+
+			if ( settings.useClassColors )
+			{
+				image.color = Color.Lerp( settings.tintColor, classColor, settings.classColorStrength );
+			}
+			else
+			{
+				image.color = settings.tintColor;
+			}
 		}
 	}
 
@@ -185,6 +195,11 @@ public class ImageSettings : MonoBehaviour
 		}
 	}
 
+	public void SetClassColor( Color classColor )
+	{
+		this.classColor = classColor;
+	}
+
 	public void SetTexture( Texture2D newTexture, bool forceUpate = false )
 	{
 		if ( newTexture == null )
@@ -219,8 +234,6 @@ public class ImageSettings : MonoBehaviour
 					showBorderTimer = 3.0f;
 				}
 			}
-
-			image.color = settings.tintColor;
 
 			if ( settings.size == Vector2.zero )
 			{
