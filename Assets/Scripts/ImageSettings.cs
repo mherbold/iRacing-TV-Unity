@@ -21,6 +21,7 @@ public class ImageSettings : MonoBehaviour
 	[NonSerialized] public string imageFilePath;
 	[NonSerialized] public Texture2D texture;
 
+	[NonSerialized] public Vector2 positionOffset = Vector2.zero;
 	[NonSerialized] public Vector2 previousSize = Vector2.zero;
 	[NonSerialized] public Vector2 previousPosition = Vector2.zero;
 	[NonSerialized] public float showBorderTimer = 0;
@@ -52,6 +53,7 @@ public class ImageSettings : MonoBehaviour
 
 			border_Image = border.GetComponent<Image>();
 			border_RectTransform = border.GetComponent<RectTransform>();
+			border_RectTransform.pivot = rectTransform.pivot;
 		}
 
 		if ( indexSettings != IPC.indexSettings )
@@ -102,6 +104,16 @@ public class ImageSettings : MonoBehaviour
 					imageFilePath = string.Empty;
 
 					SetStreamedTexture( true );
+				}
+
+				image.type = ( settings.border == Vector4.zero ) ? Image.Type.Simple : Image.Type.Sliced;
+
+				if ( ( previousSize != settings.size ) || ( previousPosition != settings.position ) )
+				{
+					previousSize = settings.size;
+					previousPosition = settings.position;
+
+					showBorderTimer = 3.0f;
 				}
 			}
 		}
@@ -155,16 +167,11 @@ public class ImageSettings : MonoBehaviour
 		}
 	}
 
-	public void SetPosition( Vector2 position, bool negateY = true )
+	public void SetPosition( Vector2 position )
 	{
 		if ( settings != null )
 		{
-			position += settings.position;
-
-			if ( negateY )
-			{
-				position.y = -position.y;
-			}
+			position += settings.position + positionOffset;
 
 			rectTransform.localPosition = new Vector3( position.x, position.y, rectTransform.localPosition.z );
 		}
@@ -226,14 +233,12 @@ public class ImageSettings : MonoBehaviour
 				texture.wrapMode = TextureWrapMode.Clamp;
 				texture.filterMode = FilterMode.Trilinear;
 				texture.anisoLevel = 16;
+
+				previousSize = settings.size;
+				previousPosition = settings.position;
 			}
-			else
-			{
-				if ( ( previousSize != settings.size ) || ( previousPosition != settings.position ) )
-				{
-					showBorderTimer = 3.0f;
-				}
-			}
+
+			positionOffset = Vector3.zero;
 
 			if ( settings.size == Vector2.zero )
 			{
@@ -259,9 +264,12 @@ public class ImageSettings : MonoBehaviour
 						height = texture.height * heightRatio;
 					}
 
-					var offset = new Vector3( ( settings.size.x - width ) / 2, ( settings.size.y - height ) / -2, 0 );
+					if ( ( rectTransform.pivot.x == 0 ) && ( rectTransform.pivot.y == 1 ) )
+					{
+						positionOffset = new Vector3( ( settings.size.x - width ) / 2, ( settings.size.y - height ) / -2, 0 );
+					}
 
-					rectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z ) + offset;
+					rectTransform.localPosition = new Vector3( settings.position.x + positionOffset.x, -settings.position.y + positionOffset.y, rectTransform.localPosition.z );
 					rectTransform.sizeDelta = new Vector2( width, height );
 				}
 				else
@@ -273,9 +281,6 @@ public class ImageSettings : MonoBehaviour
 				border_RectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
 				border_RectTransform.sizeDelta = settings.size;
 			}
-
-			previousSize = settings.size;
-			previousPosition = settings.position;
 		}
 	}
 

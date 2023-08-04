@@ -3,6 +3,7 @@ using System;
 using System.IO;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OverlayTrackMap : MonoBehaviour
 {
@@ -25,6 +26,14 @@ public class OverlayTrackMap : MonoBehaviour
 	[NonSerialized] public int trackID = 0;
 	[NonSerialized] public string textureFilePath = string.Empty;
 	[NonSerialized] public float scale = 1;
+
+	[NonSerialized] public Vector3 positionOffset = Vector3.zero;
+	[NonSerialized] public Vector2 previousSize = Vector2.zero;
+	[NonSerialized] public Vector2 previousPosition = Vector2.zero;
+	[NonSerialized] public float showBorderTimer = 0;
+	[NonSerialized] public GameObject border = null;
+	[NonSerialized] public Image border_Image = null;
+	[NonSerialized] public RectTransform border_RectTransform = null;
 
 	public void Awake()
 	{
@@ -58,6 +67,21 @@ public class OverlayTrackMap : MonoBehaviour
 	{
 		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.trackMapOn && LiveData.Instance.liveDataTrackMap.show && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
 
+		if ( border == null )
+		{
+			border = Instantiate( Border.border_GameObject );
+
+			border.name = $"{transform.name} {Border.border_GameObject.name}";
+
+			border.transform.SetParent( trackMap.transform.parent );
+
+			border.SetActive( true );
+
+			border_Image = border.GetComponent<Image>();
+			border_RectTransform = border.GetComponent<RectTransform>();
+			border_RectTransform.pivot = rectTransform.pivot;
+		}
+
 		var forceUpdate = false;
 
 		if ( trackID != LiveData.Instance.liveDataTrackMap.trackID )
@@ -75,7 +99,7 @@ public class OverlayTrackMap : MonoBehaviour
 		{
 			indexSettings = IPC.indexSettings;
 
-			transform.localPosition = new Vector2( Settings.overlay.trackMapPosition.x, -Settings.overlay.trackMapPosition.y );
+			rectTransform.localPosition = new Vector2( Settings.overlay.trackMapPosition.x, -Settings.overlay.trackMapPosition.y );
 
 			if ( ( LiveData.Instance.liveDataTrackMap.width > 0 ) && ( LiveData.Instance.liveDataTrackMap.height > 0 ) )
 			{
@@ -95,10 +119,13 @@ public class OverlayTrackMap : MonoBehaviour
 					scale = height;
 				}
 
-				var offset = new Vector3( ( Settings.overlay.trackMapSize.x - width ) / 2, ( Settings.overlay.trackMapSize.y - height ) / -2, 0 );
+				positionOffset = new Vector3( ( Settings.overlay.trackMapSize.x - width ) / 2, ( Settings.overlay.trackMapSize.y - height ) / -2, 0 );
 
-				rectTransform.localPosition = new Vector3( Settings.overlay.trackMapPosition.x, -Settings.overlay.trackMapPosition.y, rectTransform.localPosition.z ) + offset;
-				rectTransform.localScale = new Vector2( scale, scale );
+				trackMap.transform.localPosition = positionOffset;
+				trackMap.transform.localScale = new Vector2( scale, scale );
+
+				border_RectTransform.localPosition = Vector3.zero;
+				border_RectTransform.sizeDelta = Settings.overlay.trackMapSize;
 			}
 
 			lineRenderer.startWidth = Settings.overlay.trackMapLineThickness;
@@ -130,6 +157,14 @@ public class OverlayTrackMap : MonoBehaviour
 
 				lineRenderer.material.SetTexture( "_MainTex", newTexture );
 			}
+
+			if ( ( previousSize != Settings.overlay.trackMapSize ) || ( previousPosition != Settings.overlay.trackMapPosition ) )
+			{
+				previousSize = Settings.overlay.trackMapSize;
+				previousPosition = Settings.overlay.trackMapPosition;
+
+				showBorderTimer = 3.0f;
+			}
 		}
 
 		for ( var carIndex = 0; carIndex < LiveDataTrackMap.MaxNumCars; carIndex++ )
@@ -149,14 +184,19 @@ public class OverlayTrackMap : MonoBehaviour
 					overlayTrackMapCar.gameObject.SetActive( true );
 				}
 
-				overlayTrackMapCar.transform.localPosition = liveDataTrackMapCar.offset;
-				overlayTrackMapCar.transform.localScale = new Vector2( 1.0f / scale, 1.0f / scale );
+				overlayTrackMapCar.transform.localPosition = liveDataTrackMapCar.offset * scale + positionOffset;
 
 				overlayTrackMapCar.highlight.SetActive( liveDataTrackMapCar.showHighlight );
 			}
 		}
 
-		startFinishLine.transform.localPosition = LiveData.Instance.liveDataTrackMap.startFinishLine;
-		startFinishLine.transform.localScale = new Vector2( 1.0f / scale, 1.0f / scale );
+		startFinishLine.transform.localPosition = LiveData.Instance.liveDataTrackMap.startFinishLine * scale + positionOffset;
+
+		if ( showBorderTimer > 0 )
+		{
+			showBorderTimer = Math.Max( 0, showBorderTimer - Time.deltaTime );
+
+			border_Image.enabled = ( showBorderTimer > 0 );
+		}
 	}
 }

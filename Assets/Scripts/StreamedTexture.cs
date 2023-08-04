@@ -42,7 +42,7 @@ public class StreamedTexture
 
 				if ( unityWebRequest.result != UnityWebRequest.Result.Success )
 				{
-					Debug.Log( unityWebRequest.error );
+					Debug.Log( $"{textureUrl}: {unityWebRequest.error}" );
 				}
 				else
 				{

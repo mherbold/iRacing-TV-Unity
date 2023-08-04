@@ -1,11 +1,11 @@
-
+﻿
 using System;
 
 using UnityEngine;
 
 using TMPro;
 
-public class OverlayLeaderboard : MonoBehaviour
+public class OverlayRaceResults : MonoBehaviour
 {
 	public IPC ipc;
 
@@ -15,7 +15,6 @@ public class OverlayLeaderboard : MonoBehaviour
 	public GameObject background;
 	public GameObject layer1;
 	public GameObject layer2;
-	public GameObject positionSplitter;
 	public GameObject className;
 	public GameObject shortClassName;
 	public GameObject slotTemplate;
@@ -23,14 +22,13 @@ public class OverlayLeaderboard : MonoBehaviour
 	[NonSerialized] public ImageSettings background_ImageSettings;
 	[NonSerialized] public ImageSettings layer1_ImageSettings;
 	[NonSerialized] public ImageSettings layer2_ImageSettings;
-	[NonSerialized] public ImageSettings positionSplitter_ImageSettings;
 
 	[NonSerialized] public TextMeshProUGUI className_Text;
 	[NonSerialized] public TextMeshProUGUI shortClassName_Text;
 
 	[NonSerialized] public GameObject[] slots;
 
-	[NonSerialized] public OverlayLeaderboardSlot[] overlayLeaderboardSlots;
+	[NonSerialized] public OverlayRaceResultsSlot[] overlayRaceResultsSlots;
 
 	[NonSerialized] public long indexSettings;
 	[NonSerialized] public long indexLiveData;
@@ -39,17 +37,15 @@ public class OverlayLeaderboard : MonoBehaviour
 	{
 		slotTemplate.SetActive( false );
 
-		background_ImageSettings = background.GetComponent<ImageSettings>();
 		layer1_ImageSettings = layer1.GetComponent<ImageSettings>();
 		layer2_ImageSettings = layer2.GetComponent<ImageSettings>();
-		positionSplitter_ImageSettings = positionSplitter.GetComponent<ImageSettings>();
 
 		className_Text = className.GetComponent<TextMeshProUGUI>();
 		shortClassName_Text = shortClassName.GetComponent<TextMeshProUGUI>();
 
 		slots = new GameObject[ LiveData.MaxNumDrivers ];
 
-		overlayLeaderboardSlots = new OverlayLeaderboardSlot[ LiveData.MaxNumDrivers ];
+		overlayRaceResultsSlots = new OverlayRaceResultsSlot[ LiveData.MaxNumDrivers ];
 
 		for ( var slotIndex = 0; slotIndex < slots.Length; slotIndex++ )
 		{
@@ -59,10 +55,10 @@ public class OverlayLeaderboard : MonoBehaviour
 
 			slots[ slotIndex ].SetActive( true );
 
-			overlayLeaderboardSlots[ slotIndex ] = slots[ slotIndex ].GetComponent<OverlayLeaderboardSlot>();
+			overlayRaceResultsSlots[ slotIndex ] = slots[ slotIndex ].GetComponent<OverlayRaceResultsSlot>();
 
-			overlayLeaderboardSlots[ slotIndex ].layer1_ImageSettings.carIdx = slotIndex;
-			overlayLeaderboardSlots[ slotIndex ].layer2_ImageSettings.carIdx = slotIndex;
+			overlayRaceResultsSlots[ slotIndex ].layer1_ImageSettings.carIdx = slotIndex;
+			overlayRaceResultsSlots[ slotIndex ].layer2_ImageSettings.carIdx = slotIndex;
 		}
 	}
 
@@ -92,9 +88,6 @@ public class OverlayLeaderboard : MonoBehaviour
 			layer1_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 			layer2_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 
-			positionSplitter_ImageSettings.SetPosition( liveDataLeaderboard.splitterPosition );
-			positionSplitter_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
-
 			className_Text.text = liveDataLeaderboard.className;
 			shortClassName_Text.text = liveDataLeaderboard.classNameShort;
 
@@ -104,7 +97,7 @@ public class OverlayLeaderboard : MonoBehaviour
 			{
 				var liveDataLeaderboardSlot = liveDataLeaderboard.liveDataLeaderboardSlots[ slotIndex ];
 
-				var overlayLeaderboardSlot = overlayLeaderboardSlots[ slotIndex ];
+				var overlayLeaderboardSlot = overlayRaceResultsSlots[ slotIndex ];
 
 				if ( !liveDataLeaderboardSlot.show )
 				{
@@ -117,7 +110,6 @@ public class OverlayLeaderboard : MonoBehaviour
 
 				// class colors
 
-				overlayLeaderboardSlot.highlight_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 				overlayLeaderboardSlot.layer1_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 				overlayLeaderboardSlot.layer2_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 
@@ -139,18 +131,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 				overlayLeaderboardSlot.telemetry_Text.text = liveDataLeaderboardSlot.telemetryText;
 				overlayLeaderboardSlot.telemetry_Text.color = liveDataLeaderboardSlot.telemetryColor;
-
-				// highlight
-
-				overlayLeaderboardSlot.highlight.SetActive( liveDataLeaderboardSlot.showHighlight );
-				overlayLeaderboardSlot.speed.SetActive( liveDataLeaderboardSlot.showHighlight );
-
-				overlayLeaderboardSlot.speed_Text.text = liveDataLeaderboardSlot.speedText;
 			}
-
-			// splitter
-
-			positionSplitter.SetActive( LiveData.Instance.liveDataLeaderboard[ classIndex ].showSplitter );
 		}
 	}
 }
