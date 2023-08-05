@@ -28,8 +28,8 @@ public class OverlayTrackMap : MonoBehaviour
 	[NonSerialized] public float scale = 1;
 
 	[NonSerialized] public Vector3 positionOffset = Vector3.zero;
-	[NonSerialized] public Vector2 previousSize = Vector2.zero;
-	[NonSerialized] public Vector2 previousPosition = Vector2.zero;
+	[NonSerialized] public Vector2? previousSize = null;
+	[NonSerialized] public Vector2? previousPosition = null;
 	[NonSerialized] public float showBorderTimer = 0;
 	[NonSerialized] public GameObject border = null;
 	[NonSerialized] public Image border_Image = null;
@@ -158,7 +158,12 @@ public class OverlayTrackMap : MonoBehaviour
 				lineRenderer.material.SetTexture( "_MainTex", newTexture );
 			}
 
-			if ( ( previousSize != Settings.overlay.trackMapSize ) || ( previousPosition != Settings.overlay.trackMapPosition ) )
+			if ( ( previousSize == null ) || ( previousPosition == null ) )
+			{
+				previousSize = Settings.overlay.trackMapSize;
+				previousPosition = Settings.overlay.trackMapPosition;
+			}
+			else if ( ( previousSize != Settings.overlay.trackMapSize ) || ( previousPosition != Settings.overlay.trackMapPosition ) )
 			{
 				previousSize = Settings.overlay.trackMapSize;
 				previousPosition = Settings.overlay.trackMapPosition;

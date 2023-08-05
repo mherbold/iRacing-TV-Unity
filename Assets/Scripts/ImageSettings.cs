@@ -22,8 +22,9 @@ public class ImageSettings : MonoBehaviour
 	[NonSerialized] public Texture2D texture;
 
 	[NonSerialized] public Vector2 positionOffset = Vector2.zero;
-	[NonSerialized] public Vector2 previousSize = Vector2.zero;
-	[NonSerialized] public Vector2 previousPosition = Vector2.zero;
+	[NonSerialized] public Vector2? previousSize = null;
+	[NonSerialized] public Vector2? previousPosition = null;
+	[NonSerialized] public Vector4? previousBorder = null;
 	[NonSerialized] public float showBorderTimer = 0;
 	[NonSerialized] public GameObject border = null;
 	[NonSerialized] public Image border_Image = null;
@@ -108,7 +109,12 @@ public class ImageSettings : MonoBehaviour
 
 				image.type = ( settings.border == Vector4.zero ) ? Image.Type.Simple : Image.Type.Sliced;
 
-				if ( ( previousSize != settings.size ) || ( previousPosition != settings.position ) )
+				if ( ( previousSize == null ) || ( previousPosition == null ) )
+				{
+					previousSize = settings.size;
+					previousPosition = settings.position;
+				}
+				else if ( ( previousSize != settings.size ) || ( previousPosition != settings.position ) )
 				{
 					previousSize = settings.size;
 					previousPosition = settings.position;
@@ -221,9 +227,10 @@ public class ImageSettings : MonoBehaviour
 		}
 		else if ( ( texture != newTexture ) || forceUpate )
 		{
-			if ( texture != newTexture )
+			if ( ( texture != newTexture ) || ( previousBorder == null ) || ( previousBorder != settings.border ) )
 			{
 				texture = newTexture;
+				previousBorder = settings.border;
 
 				var sprite = Sprite.Create( texture, new Rect( 0.0f, 0.0f, texture.width, texture.height ), Vector2.zero, 1, 0, SpriteMeshType.FullRect, settings.border, false );
 
@@ -233,9 +240,6 @@ public class ImageSettings : MonoBehaviour
 				texture.wrapMode = TextureWrapMode.Clamp;
 				texture.filterMode = FilterMode.Trilinear;
 				texture.anisoLevel = 16;
-
-				previousSize = settings.size;
-				previousPosition = settings.position;
 			}
 
 			positionOffset = Vector3.zero;
