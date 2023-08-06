@@ -116,7 +116,7 @@ public class OverlayTrackMap : MonoBehaviour
 					width = LiveData.Instance.liveDataTrackMap.width * heightRatio;
 					height = LiveData.Instance.liveDataTrackMap.height * heightRatio;
 
-					scale = height;
+					scale = width;
 				}
 
 				positionOffset = new Vector3( ( Settings.overlay.trackMapSize.x - width ) / 2, ( Settings.overlay.trackMapSize.y - height ) / -2, 0 );

@@ -87,9 +87,11 @@ public class ImageSettings : MonoBehaviour
 
 						if ( settings.filePath != string.Empty )
 						{
-							if ( File.Exists( settings.filePath ) )
+							var fullFilePath = Program.GetFullPath( imageFilePath );
+
+							if ( File.Exists( fullFilePath ) )
 							{
-								var bytes = File.ReadAllBytes( settings.filePath );
+								var bytes = File.ReadAllBytes( fullFilePath );
 
 								newTexture = new Texture2D( 1, 1 );
 
@@ -246,8 +248,11 @@ public class ImageSettings : MonoBehaviour
 
 			if ( settings.size == Vector2.zero )
 			{
+				var sourceWidth = ( settings.frameCount > 1 ) ? settings.frameSize.x : texture.width;
+				var sourceHeight = ( settings.frameCount > 1 ) ? settings.frameSize.y : texture.height;
+
 				rectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
-				rectTransform.sizeDelta = new Vector2( texture.width, texture.height );
+				rectTransform.sizeDelta = new Vector2( sourceWidth, sourceHeight );
 
 				border_RectTransform.localPosition = rectTransform.localPosition;
 				border_RectTransform.sizeDelta = rectTransform.sizeDelta;
@@ -256,16 +261,19 @@ public class ImageSettings : MonoBehaviour
 			{
 				if ( ( settings.border == Vector4.zero ) && !settings.tilingEnabled )
 				{
-					var widthRatio = settings.size.x / texture.width;
-					var heightRatio = settings.size.y / texture.height;
+					var sourceWidth = ( settings.frameCount > 1 ) ? settings.frameSize.x : texture.width;
+					var sourceHeight = ( settings.frameCount > 1 ) ? settings.frameSize.y : texture.height;
 
-					var width = texture.width * widthRatio;
-					var height = texture.height * widthRatio;
+					var widthRatio = settings.size.x / sourceWidth;
+					var heightRatio = settings.size.y / sourceHeight;
+
+					var width = sourceWidth * widthRatio;
+					var height = sourceHeight * widthRatio;
 
 					if ( ( settings.size.x == 0 ) || ( height > settings.size.y ) )
 					{
-						width = texture.width * heightRatio;
-						height = texture.height * heightRatio;
+						width = sourceWidth * heightRatio;
+						height = sourceHeight * heightRatio;
 					}
 
 					if ( ( rectTransform.pivot.x == 0 ) && ( rectTransform.pivot.y == 1 ) )
