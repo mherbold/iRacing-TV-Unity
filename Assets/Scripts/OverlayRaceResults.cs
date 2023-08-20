@@ -64,14 +64,14 @@ public class OverlayRaceResults : MonoBehaviour
 
 	public void Update()
 	{
-		if ( ( LiveData.Instance.liveDataLeaderboard == null ) || ( classIndex >= LiveData.Instance.liveDataLeaderboard.Length ) )
+		if ( ( LiveData.Instance.liveDataLeaderboards == null ) || ( classIndex >= LiveData.Instance.liveDataLeaderboards.Length ) )
 		{
 			enable.SetActive( false );
 
 			return;
 		}
 
-		var liveDataLeaderboard = LiveData.Instance.liveDataLeaderboard[ classIndex ];
+		var liveDataLeaderboard = LiveData.Instance.liveDataLeaderboards[ classIndex ];
 
 		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.leaderboardOn && liveDataLeaderboard.show && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
 

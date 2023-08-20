@@ -103,23 +103,24 @@ public class OverlayTrackMap : MonoBehaviour
 
 			if ( ( LiveData.Instance.liveDataTrackMap.width > 0 ) && ( LiveData.Instance.liveDataTrackMap.height > 0 ) )
 			{
-				var widthRatio = Settings.overlay.trackMapSize.x / LiveData.Instance.liveDataTrackMap.width;
-				var heightRatio = Settings.overlay.trackMapSize.y / LiveData.Instance.liveDataTrackMap.height;
+				var liveDataTrackMapWidthHeightRatio = LiveData.Instance.liveDataTrackMap.height / LiveData.Instance.liveDataTrackMap.width;
 
-				var width = LiveData.Instance.liveDataTrackMap.width * widthRatio;
-				var height = LiveData.Instance.liveDataTrackMap.height * widthRatio;
-
-				scale = width;
-
-				if ( ( Settings.overlay.trackMapSize.x == 0 ) || ( height > Settings.overlay.trackMapSize.y ) )
+				if ( Settings.overlay.trackMapSize.x * liveDataTrackMapWidthHeightRatio <= Settings.overlay.trackMapSize.y )
 				{
-					width = LiveData.Instance.liveDataTrackMap.width * heightRatio;
-					height = LiveData.Instance.liveDataTrackMap.height * heightRatio;
-
-					scale = width;
+					scale = Settings.overlay.trackMapSize.x;
+				}
+				else
+				{
+					scale = Settings.overlay.trackMapSize.y / liveDataTrackMapWidthHeightRatio;
 				}
 
-				positionOffset = new Vector3( ( Settings.overlay.trackMapSize.x - width ) / 2, ( Settings.overlay.trackMapSize.y - height ) / -2, 0 );
+				var width = scale;
+				var height = scale * liveDataTrackMapWidthHeightRatio;
+
+				var offsetX = ( Settings.overlay.trackMapSize.x - width ) / 2;
+				var offsetY = ( Settings.overlay.trackMapSize.y - height ) / -2;
+
+				positionOffset = new Vector3( offsetX, offsetY, 0 );
 
 				trackMap.transform.localPosition = positionOffset;
 				trackMap.transform.localScale = new Vector2( scale, scale );

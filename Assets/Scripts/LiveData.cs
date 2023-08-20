@@ -14,7 +14,7 @@ public class LiveData
 	public LiveDataControlPanel liveDataControlPanel = new();
 	public LiveDataDriver[] liveDataDrivers = new LiveDataDriver[ MaxNumDrivers ];
 	public LiveDataRaceStatus liveDataRaceStatus = new();
-	public LiveDataLeaderboard[] liveDataLeaderboard = null;
+	public LiveDataLeaderboard[] liveDataLeaderboards = null;
 	public LiveDataVoiceOf liveDataVoiceOf = new();
 	public LiveDataSubtitle liveDataSubtitle = new();
 	public LiveDataIntro liveDataIntro = new();
@@ -38,7 +38,7 @@ public class LiveData
 		liveDataControlPanel = liveData.liveDataControlPanel;
 		liveDataDrivers = liveData.liveDataDrivers;
 		liveDataRaceStatus = liveData.liveDataRaceStatus;
-		liveDataLeaderboard = liveData.liveDataLeaderboard;
+		liveDataLeaderboards = liveData.liveDataLeaderboards;
 		liveDataVoiceOf = liveData.liveDataVoiceOf;
 		liveDataSubtitle = liveData.liveDataSubtitle;
 		liveDataIntro = liveData.liveDataIntro;

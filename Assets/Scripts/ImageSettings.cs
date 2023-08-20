@@ -264,21 +264,28 @@ public class ImageSettings : MonoBehaviour
 					var sourceWidth = ( settings.frameCount > 1 ) ? settings.frameSize.x : texture.width;
 					var sourceHeight = ( settings.frameCount > 1 ) ? settings.frameSize.y : texture.height;
 
-					var widthRatio = settings.size.x / sourceWidth;
-					var heightRatio = settings.size.y / sourceHeight;
+					var widthHeightRatio = sourceHeight / sourceWidth;
 
-					var width = sourceWidth * widthRatio;
-					var height = sourceHeight * widthRatio;
+					float scale;
 
-					if ( ( settings.size.x == 0 ) || ( height > settings.size.y ) )
+					if ( settings.size.x * widthHeightRatio <= settings.size.y )
 					{
-						width = sourceWidth * heightRatio;
-						height = sourceHeight * heightRatio;
+						scale = settings.size.x;
 					}
+					else
+					{
+						scale = settings.size.y / widthHeightRatio;
+					}
+
+					var width = scale;
+					var height = scale * widthHeightRatio;
 
 					if ( ( rectTransform.pivot.x == 0 ) && ( rectTransform.pivot.y == 1 ) )
 					{
-						positionOffset = new Vector3( ( settings.size.x - width ) / 2, ( settings.size.y - height ) / -2, 0 );
+						var offsetX = ( settings.size.x - width ) / 2;
+						var offsetY = ( settings.size.y - height ) / -2;
+
+						positionOffset = new Vector3( offsetX, offsetY, 0 );
 					}
 
 					rectTransform.localPosition = new Vector3( settings.position.x + positionOffset.x, -settings.position.y + positionOffset.y, rectTransform.localPosition.z );
