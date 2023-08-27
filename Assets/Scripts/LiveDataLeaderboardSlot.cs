@@ -8,6 +8,7 @@ public class LiveDataLeaderboardSlot
 {
 	public bool show = false;
 	public bool showHighlight = false;
+	public bool showPreferredCar = false;
 
 	public Vector2 offset = Vector2.zero;
 

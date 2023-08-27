@@ -61,8 +61,11 @@ public class OverlayLeaderboard : MonoBehaviour
 
 			overlayLeaderboardSlots[ slotIndex ] = slots[ slotIndex ].GetComponent<OverlayLeaderboardSlot>();
 
+			overlayLeaderboardSlots[ slotIndex ].preferredCar_ImageSettings.carIdx = slotIndex;
 			overlayLeaderboardSlots[ slotIndex ].layer1_ImageSettings.carIdx = slotIndex;
 			overlayLeaderboardSlots[ slotIndex ].layer2_ImageSettings.carIdx = slotIndex;
+			overlayLeaderboardSlots[ slotIndex ].layer3_ImageSettings.carIdx = slotIndex;
+			overlayLeaderboardSlots[ slotIndex ].highlight_ImageSettings.carIdx = slotIndex;
 		}
 	}
 
@@ -146,6 +149,10 @@ public class OverlayLeaderboard : MonoBehaviour
 				overlayLeaderboardSlot.speed.SetActive( liveDataLeaderboardSlot.showHighlight );
 
 				overlayLeaderboardSlot.speed_Text.text = liveDataLeaderboardSlot.speedText;
+
+				// preferred car
+
+				overlayLeaderboardSlot.preferredCar.SetActive( liveDataLeaderboardSlot.showPreferredCar );
 			}
 
 			// splitter
