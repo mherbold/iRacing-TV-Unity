@@ -95,7 +95,7 @@ public class OverlayLeaderboard : MonoBehaviour
 			layer1_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 			layer2_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 
-			positionSplitter_ImageSettings.SetPosition( liveDataLeaderboard.splitterPosition );
+			positionSplitter_ImageSettings.SetPosition( new Vector2( liveDataLeaderboard.splitterPosition.x, -liveDataLeaderboard.splitterPosition.y ) );
 			positionSplitter_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 
 			className_Text.text = liveDataLeaderboard.className;
