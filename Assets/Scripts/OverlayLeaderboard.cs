@@ -133,6 +133,11 @@ public class OverlayLeaderboard : MonoBehaviour
 				overlayLeaderboardSlot.position_Text.text = liveDataLeaderboardSlot.positionText;
 				overlayLeaderboardSlot.position_Text.color = liveDataLeaderboardSlot.positionColor;
 
+				// car number
+
+				overlayLeaderboardSlot.carNumber_Text.text = liveDataLeaderboardSlot.carNumberText;
+				overlayLeaderboardSlot.carNumber_Text.color = liveDataLeaderboardSlot.carNumberColor;
+
 				// driver name
 
 				overlayLeaderboardSlot.driverName_Text.text = liveDataLeaderboardSlot.driverNameText;

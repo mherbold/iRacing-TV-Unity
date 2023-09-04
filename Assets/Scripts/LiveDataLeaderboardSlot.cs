@@ -20,6 +20,9 @@ public class LiveDataLeaderboardSlot
 	public string helmetTextureUrl = string.Empty;
 	public string driverTextureUrl = string.Empty;
 
+	public string carNumberText = string.Empty;
+	public Color carNumberColor = Color.white;
+
 	public string driverNameText = string.Empty;
 	public Color driverNameColor = Color.white;
 

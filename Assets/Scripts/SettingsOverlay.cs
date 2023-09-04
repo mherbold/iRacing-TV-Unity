@@ -14,33 +14,35 @@ public class SettingsOverlay
 
 	public string[] fontPaths = new string[ MaxNumFonts ];
 
+	public bool startLightsEnabled = true;
+	public Vector2 startLightsPosition = Vector2.zero;
+
 	public bool raceStatusEnabled = true;
-	public Vector2 raceStatusPosition = new( 44, 9 );
+	public Vector2 raceStatusPosition = Vector2.zero;
 
 	public bool leaderboardEnabled = true;
-	public Vector2 leaderboardPosition = new( 44, 244 );
+	public Vector2 leaderboardPosition = Vector2.zero;
 
 	public bool trackMapEnabled = true;
-	public Vector2 trackMapPosition = new( 0, 0 );
-	public Vector2 trackMapSize = new( 0, 0 );
+	public Vector2 trackMapPosition = Vector2.zero;
+	public Vector2 trackMapSize = Vector2.zero;
 	public string trackMapTextureFilePath = string.Empty;
-	public float trackMapLineThickness = 0.03f;
+	public float trackMapLineThickness = 0;
 	public Color trackMapLineColor = Color.white;
 
 	public bool voiceOfEnabled = true;
-	public Vector2 voiceOfPosition = new( 1920, 41 );
+	public Vector2 voiceOfPosition = Vector2.zero;
 
 	public bool subtitleEnabled = true;
-	public Vector2 subtitlePosition = new( 1089, 918 );
-	public Vector2 subtitleMaxSize = new( 1250, 190 );
-	public Color subtitleBackgroundColor = new( 0, 0, 0, 0.9f );
-	public Vector2Int subtitleTextPadding = new( 12, 6 );
+	public Vector2 subtitlePosition = Vector2.zero;
+	public Vector2 subtitleMaxSize = Vector2.zero;
+	public Vector2Int subtitleTextPadding = Vector2Int.zero;
 
 	public bool introEnabled = true;
-	public Vector2 introLeftPosition = new( 781, 517 );
-	public float introLeftScale = 1.7f;
-	public Vector2 introRightPosition = new( 1495, 517 );
-	public float introRightScale = 1.7f;
+	public Vector2 introLeftPosition = Vector2.zero;
+	public float introLeftScale = 1;
+	public Vector2 introRightPosition = Vector2.zero;
+	public float introRightScale = 1;
 	public int introLeftInAnimationNumber = 1;
 	public int introRightInAnimationNumber = 1;
 	public int introLeftOutAnimationNumber = 1;
@@ -49,8 +51,11 @@ public class SettingsOverlay
 	public float introHoldTime = 1;
 	public float introOutTime = 1;
 
-	public bool startLightsEnabled = true;
-	public Vector2 startLightsPosition = new( 903, 130 );
+	public bool hudEnabled = true;
+	public Vector2 hudPosition = Vector2.zero;
+	public Vector2 hudSpeechToTextPosition = Vector2.zero;
+	public Vector2 hudSpeechToTextMaxSize = Vector2.zero;
+	public Vector2Int hudSpeechToTextTextPadding = Vector2Int.zero;
 
 	public SerializableDictionary<string, SettingsText> textSettingsDataDictionary = new();
 	public SerializableDictionary<string, SettingsImage> imageSettingsDataDictionary = new();

@@ -58,20 +58,23 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\SteamVROverlay.cs" />
     <Compile Include="Assets\Scripts\SettingsImage.cs" />
     <Compile Include="Assets\Scripts\OverlayTrackMap.cs" />
     <Compile Include="Assets\Scripts\TextSettings.cs" />
     <Compile Include="Assets\Scripts\OverlayTrackMapCar.cs" />
+    <Compile Include="Assets\Scripts\LiveDataSteamVr.cs" />
     <Compile Include="Assets\Scripts\LiveDataControlPanel.cs" />
     <Compile Include="Assets\Scripts\SettingsText.cs" />
     <Compile Include="Assets\Scripts\Border.cs" />
     <Compile Include="Assets\Scripts\LiveDataStartLights.cs" />
     <Compile Include="Assets\Scripts\SerializableDictionary.cs" />
+    <Compile Include="Assets\OpenVR\openvr_api.cs" />
     <Compile Include="Assets\Scripts\SettingsTranslation.cs" />
     <Compile Include="Assets\Scripts\LiveDataSubtitle.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
     <Compile Include="Assets\Scripts\Fonts.cs" />
-    <Compile Include="Assets\Scripts\OverlayNotConnected.cs" />
+    <Compile Include="Assets\Scripts\OverlayHud.cs" />
     <Compile Include="Assets\Scripts\LiveDataTrackMap.cs" />
     <Compile Include="Assets\Scripts\IPC.cs" />
     <Compile Include="Assets\Scripts\WinApi.cs" />
@@ -87,6 +90,7 @@
     <Compile Include="Assets\Scripts\OverlaySubtitle.cs" />
     <Compile Include="Assets\Scripts\LiveDataLeaderboardSlot.cs" />
     <Compile Include="Assets\Scripts\OverlayLeaderboard.cs" />
+    <Compile Include="Assets\Scripts\OverlaySystemMessage.cs" />
     <Compile Include="Assets\Scripts\TransparentWindow.cs" />
     <Compile Include="Assets\Scripts\OverlayRaceResultsArray.cs" />
     <Compile Include="Assets\Scripts\OverlayLeaderboardArray.cs" />
@@ -101,6 +105,7 @@
     <Compile Include="Assets\Scripts\OverlayIntroDriver.cs" />
     <Compile Include="Assets\Scripts\OverlayRaceStatus.cs" />
     <Compile Include="Assets\Scripts\SettingsOverlay.cs" />
+    <Compile Include="Assets\Scripts\LiveDataHud.cs" />
     <Compile Include="Assets\Scripts\OverlayIntro.cs" />
     <Compile Include="Assets\Scripts\Program.cs" />
   </ItemGroup>
@@ -120,6 +125,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\OpenVR\openvr_api.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />

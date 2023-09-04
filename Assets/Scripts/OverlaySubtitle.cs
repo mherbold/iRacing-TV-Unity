@@ -16,7 +16,6 @@ public class OverlaySubtitle : MonoBehaviour
 	public GameObject text;
 
 	[NonSerialized] public RectTransform maxSizeContainer_RectTransform;
-	[NonSerialized] public Image panel_Image;
 	[NonSerialized] public VerticalLayoutGroup panel_VerticalLayoutGroup;
 	[NonSerialized] public TextMeshProUGUI text_Text;
 
@@ -26,7 +25,6 @@ public class OverlaySubtitle : MonoBehaviour
 	public void Awake()
 	{
 		maxSizeContainer_RectTransform = maxSizeContainer.GetComponent<RectTransform>();
-		panel_Image = panel.GetComponent<Image>();
 		panel_VerticalLayoutGroup = panel.GetComponent<VerticalLayoutGroup>();
 		text_Text = text.GetComponent<TextMeshProUGUI>();
 	}
@@ -43,7 +41,6 @@ public class OverlaySubtitle : MonoBehaviour
 
 			maxSizeContainer_RectTransform.sizeDelta = Settings.overlay.subtitleMaxSize;
 
-			panel_Image.color = Settings.overlay.subtitleBackgroundColor;
 			panel_VerticalLayoutGroup.padding = new RectOffset( Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.x, Settings.overlay.subtitleTextPadding.y, Settings.overlay.subtitleTextPadding.y );
 		}
 

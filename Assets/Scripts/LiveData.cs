@@ -1,6 +1,8 @@
 ﻿
 using System;
 
+using UnityEngine;
+
 [Serializable]
 public class LiveData
 {
@@ -10,7 +12,9 @@ public class LiveData
 	public static LiveData Instance { get; private set; }
 
 	public bool isConnected = false;
+	public string systemMessage = string.Empty;
 
+	public LiveDataSteamVr liveDataSteamVr = new();
 	public LiveDataControlPanel liveDataControlPanel = new();
 	public LiveDataDriver[] liveDataDrivers = new LiveDataDriver[ MaxNumDrivers ];
 	public LiveDataRaceStatus liveDataRaceStatus = new();
@@ -20,6 +24,7 @@ public class LiveData
 	public LiveDataIntro liveDataIntro = new();
 	public LiveDataStartLights liveDataStartLights = new();
 	public LiveDataTrackMap liveDataTrackMap = new();
+	public LiveDataHud liveDataHud = new();
 
 	public string seriesLogoTextureUrl = string.Empty;
 
@@ -35,6 +40,7 @@ public class LiveData
 
 	public void Update( LiveData liveData )
 	{
+		liveDataSteamVr = liveData.liveDataSteamVr;
 		liveDataControlPanel = liveData.liveDataControlPanel;
 		liveDataDrivers = liveData.liveDataDrivers;
 		liveDataRaceStatus = liveData.liveDataRaceStatus;
@@ -44,6 +50,7 @@ public class LiveData
 		liveDataIntro = liveData.liveDataIntro;
 		liveDataStartLights = liveData.liveDataStartLights;
 		liveDataTrackMap = liveData.liveDataTrackMap;
+		liveDataHud = liveData.liveDataHud;
 
 		seriesLogoTextureUrl = liveData.seriesLogoTextureUrl;
 	}

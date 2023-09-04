@@ -143,9 +143,11 @@ public class OverlayTrackMap : MonoBehaviour
 
 				if ( Settings.overlay.trackMapTextureFilePath != string.Empty )
 				{
-					if ( File.Exists( Settings.overlay.trackMapTextureFilePath ) )
+					var fullFilePath = Program.GetFullPath( Settings.overlay.trackMapTextureFilePath );
+
+					if ( File.Exists( fullFilePath ) )
 					{
-						var bytes = File.ReadAllBytes( Settings.overlay.trackMapTextureFilePath );
+						var bytes = File.ReadAllBytes( fullFilePath );
 
 						newTexture = new Texture2D( 1, 1 );
 
@@ -193,6 +195,8 @@ public class OverlayTrackMap : MonoBehaviour
 				overlayTrackMapCar.transform.localPosition = liveDataTrackMapCar.offset * scale + positionOffset;
 
 				overlayTrackMapCar.highlight.SetActive( liveDataTrackMapCar.showHighlight );
+
+				overlayTrackMapCar.carNumber_Text.text = liveDataTrackMapCar.carNumber;
 			}
 		}
 

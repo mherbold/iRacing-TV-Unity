@@ -13,11 +13,13 @@ public class OverlayLeaderboardSlot : MonoBehaviour
 	public GameObject layer3;
 	public GameObject highlight;
 	public GameObject position;
+	public GameObject carNumber;
 	public GameObject driverName;
 	public GameObject telemetry;
 	public GameObject speed;
 
 	[NonSerialized] public TextMeshProUGUI position_Text;
+	[NonSerialized] public TextMeshProUGUI carNumber_Text;
 	[NonSerialized] public TextMeshProUGUI driverName_Text;
 	[NonSerialized] public TextMeshProUGUI telemetry_Text;
 	[NonSerialized] public TextMeshProUGUI speed_Text;
@@ -27,11 +29,11 @@ public class OverlayLeaderboardSlot : MonoBehaviour
 	[NonSerialized] public ImageSettings layer2_ImageSettings;
 	[NonSerialized] public ImageSettings layer3_ImageSettings;
 	[NonSerialized] public ImageSettings highlight_ImageSettings;
-	[NonSerialized] public TextSettings driverName_TextSettings;
 
 	public void Awake()
 	{
 		position_Text = position.GetComponent<TextMeshProUGUI>();
+		carNumber_Text = carNumber.GetComponent<TextMeshProUGUI>();
 		driverName_Text = driverName.GetComponent<TextMeshProUGUI>();
 		telemetry_Text = telemetry.GetComponent<TextMeshProUGUI>();
 		speed_Text = speed.GetComponent<TextMeshProUGUI>();
@@ -41,6 +43,5 @@ public class OverlayLeaderboardSlot : MonoBehaviour
 		layer2_ImageSettings = layer2.GetComponent<ImageSettings>();
 		layer3_ImageSettings = layer3.GetComponent<ImageSettings>();
 		highlight_ImageSettings = highlight.GetComponent<ImageSettings>();
-		driverName_TextSettings = driverName.GetComponent<TextSettings>();
 	}
 }

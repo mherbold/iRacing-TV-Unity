@@ -8,7 +8,8 @@ using TMPro;
 
 public class TextSettings : MonoBehaviour
 {
-	public string id;
+	public string id = string.Empty;
+	public bool enableBorder = true;
 
 	[NonSerialized] public RectTransform rectTransform;
 	[NonSerialized] public TextMeshProUGUI text;
@@ -31,19 +32,22 @@ public class TextSettings : MonoBehaviour
 
 	public void Update()
 	{
-		if ( border == null )
+		if ( enableBorder )
 		{
-			border = Instantiate( Border.border_GameObject );
+			if ( border == null )
+			{
+				border = Instantiate( Border.border_GameObject );
 
-			border.name = $"{transform.name} {Border.border_GameObject.name}";
+				border.name = $"{transform.name} {Border.border_GameObject.name}";
 
-			border.transform.SetParent( transform.parent );
+				border.transform.SetParent( transform.parent );
 
-			border.SetActive( true );
+				border.SetActive( true );
 
-			border_Image = border.GetComponent<Image>();
-			border_RectTransform = border.GetComponent<RectTransform>();
-			border_RectTransform.pivot = rectTransform.pivot;
+				border_Image = border.GetComponent<Image>();
+				border_RectTransform = border.GetComponent<RectTransform>();
+				border_RectTransform.pivot = rectTransform.pivot;
+			}
 		}
 
 		if ( indexSettings != IPC.indexSettings )
@@ -74,12 +78,15 @@ public class TextSettings : MonoBehaviour
 					rectTransform.localPosition = new Vector2( settings.position.x, -settings.position.y );
 					rectTransform.sizeDelta = settings.size;
 
-					border_RectTransform.localPosition = rectTransform.localPosition;
-					border_RectTransform.sizeDelta = rectTransform.sizeDelta;
-
-					if ( border_RectTransform.sizeDelta == Vector2.zero )
+					if ( enableBorder )
 					{
-						border_RectTransform.sizeDelta = new Vector2( 2, 2 );
+						border_RectTransform.localPosition = rectTransform.localPosition;
+						border_RectTransform.sizeDelta = rectTransform.sizeDelta;
+
+						if ( border_RectTransform.sizeDelta == Vector2.zero )
+						{
+							border_RectTransform.sizeDelta = new Vector2( 2, 2 );
+						}
 					}
 				}
 
@@ -100,7 +107,7 @@ public class TextSettings : MonoBehaviour
 
 		if ( settings != null )
 		{
-			if ( showBorderTimer > 0 )
+			if ( enableBorder && ( showBorderTimer > 0 ) )
 			{
 				showBorderTimer = Math.Max( 0, showBorderTimer - Time.deltaTime );
 

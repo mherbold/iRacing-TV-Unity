@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class ImageSettings : MonoBehaviour
 {
-	public string id;
+	public string id = string.Empty;
+	public bool enableBorder = true;
 
 	[NonSerialized] public RectTransform rectTransform;
 	[NonSerialized] public Image image;
@@ -42,19 +43,22 @@ public class ImageSettings : MonoBehaviour
 
 	public void Update()
 	{
-		if ( border == null )
+		if ( enableBorder )
 		{
-			border = Instantiate( Border.border_GameObject );
+			if ( border == null )
+			{
+				border = Instantiate( Border.border_GameObject );
 
-			border.name = $"{transform.name} {Border.border_GameObject.name}";
+				border.name = $"{transform.name} {Border.border_GameObject.name}";
 
-			border.transform.SetParent( transform.parent );
+				border.transform.SetParent( transform.parent );
 
-			border.SetActive( true );
+				border.SetActive( true );
 
-			border_Image = border.GetComponent<Image>();
-			border_RectTransform = border.GetComponent<RectTransform>();
-			border_RectTransform.pivot = rectTransform.pivot;
+				border_Image = border.GetComponent<Image>();
+				border_RectTransform = border.GetComponent<RectTransform>();
+				border_RectTransform.pivot = rectTransform.pivot;
+			}
 		}
 
 		if ( indexSettings != IPC.indexSettings )
@@ -109,7 +113,16 @@ public class ImageSettings : MonoBehaviour
 					SetStreamedTexture( true );
 				}
 
-				image.type = ( settings.border == Vector4.zero ) ? Image.Type.Simple : Image.Type.Sliced;
+				if ( settings.border == Vector4.zero )
+				{
+					image.type = Image.Type.Simple;
+					image.pixelsPerUnitMultiplier = 1;
+				}
+				else
+				{
+					image.type = Image.Type.Sliced;
+					image.pixelsPerUnitMultiplier = 1;
+				}
 
 				if ( ( previousSize == null ) || ( previousPosition == null ) )
 				{
@@ -133,7 +146,7 @@ public class ImageSettings : MonoBehaviour
 				SetStreamedTexture();
 			}
 
-			if ( showBorderTimer > 0 )
+			if ( enableBorder && ( showBorderTimer > 0 ) )
 			{
 				showBorderTimer = Math.Max( 0, showBorderTimer - Time.deltaTime );
 
@@ -166,6 +179,8 @@ public class ImageSettings : MonoBehaviour
 
 			if ( settings.useClassColors )
 			{
+				classColor.a = settings.tintColor.a;
+
 				image.color = Color.Lerp( settings.tintColor, classColor, settings.classColorStrength );
 			}
 			else
@@ -234,7 +249,7 @@ public class ImageSettings : MonoBehaviour
 				texture = newTexture;
 				previousBorder = settings.border;
 
-				var sprite = Sprite.Create( texture, new Rect( 0.0f, 0.0f, texture.width, texture.height ), Vector2.zero, 1, 0, SpriteMeshType.FullRect, settings.border, false );
+				var sprite = Sprite.Create( texture, new Rect( 0.0f, 0.0f, texture.width, texture.height ), Vector2.zero, 100, 0, SpriteMeshType.FullRect, settings.border, false );
 
 				image.enabled = true;
 				image.sprite = sprite;
@@ -254,8 +269,11 @@ public class ImageSettings : MonoBehaviour
 				rectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
 				rectTransform.sizeDelta = new Vector2( sourceWidth, sourceHeight );
 
-				border_RectTransform.localPosition = rectTransform.localPosition;
-				border_RectTransform.sizeDelta = rectTransform.sizeDelta;
+				if ( enableBorder )
+				{
+					border_RectTransform.localPosition = rectTransform.localPosition;
+					border_RectTransform.sizeDelta = rectTransform.sizeDelta;
+				}
 			}
 			else
 			{
@@ -297,8 +315,11 @@ public class ImageSettings : MonoBehaviour
 					rectTransform.sizeDelta = settings.size;
 				}
 
-				border_RectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
-				border_RectTransform.sizeDelta = settings.size;
+				if ( enableBorder )
+				{
+					border_RectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
+					border_RectTransform.sizeDelta = settings.size;
+				}
 			}
 		}
 	}

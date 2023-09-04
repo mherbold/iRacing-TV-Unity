@@ -1,10 +1,11 @@
 
 using System;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
 
-public class OverlayNotConnected : MonoBehaviour
+using UnityEngine;
+
+using TMPro;
+
+public class OverlaySystemMessage : MonoBehaviour
 {
 	public IPC ipc;
 
@@ -24,18 +25,27 @@ public class OverlayNotConnected : MonoBehaviour
 		{
 			if ( LiveData.Instance.isConnected )
 			{
-				enable.SetActive( false );
+				if ( LiveData.Instance.systemMessage == string.Empty )
+				{
+					enable.SetActive( false );
+				}
+				else
+				{
+					message_Text.text = LiveData.Instance.systemMessage;
+
+					enable.SetActive( true );
+				}
 			}
 			else
 			{
-				message_Text.text = "iRacing not running.";
+				message_Text.text = "iRacing not running";
 
 				enable.SetActive( true );
 			}
 		}
 		else
 		{
-			message_Text.text = "iRacing TV Controller is not running.";
+			message_Text.text = "iRacing-TV Controller is not running";
 
 			enable.SetActive( true );
 		}

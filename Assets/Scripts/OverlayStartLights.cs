@@ -3,8 +3,6 @@ using System;
 
 using UnityEngine;
 
-using TMPro;
-
 public class OverlayStartLights : MonoBehaviour
 {
 	public IPC ipc;

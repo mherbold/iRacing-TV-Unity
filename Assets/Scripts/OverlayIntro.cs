@@ -110,16 +110,17 @@ public class OverlayIntro : MonoBehaviour
 
 						var overlayIntroDriver = overlayIntroDrivers[ driverIndex ];
 
-						overlayIntroDriver.background_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-						overlayIntroDriver.suit_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-						overlayIntroDriver.car_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-						overlayIntroDriver.helmet_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-						overlayIntroDriver.statsBackground_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-						overlayIntroDriver.carNumber_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+						overlayIntroDriver.layer1_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+						overlayIntroDriver.layer2_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+						overlayIntroDriver.layer3_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+						overlayIntroDriver.layer4_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+						overlayIntroDriver.layer5_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+						overlayIntroDriver.layer6_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
 
 						overlayIntroDriver.position_Text.text = liveDataIntroDriver.positionText;
 						overlayIntroDriver.driverName_Text.text = liveDataIntroDriver.driverNameText;
 						overlayIntroDriver.qualifyingTime_Text.text = liveDataIntroDriver.qualifyingTimeText;
+						overlayIntroDriver.carNumber_Text.text = liveDataIntroDriver.carNumberText;
 
 						drivers[ driverIndex ].transform.localPosition = Vector3.zero;
 						drivers[ driverIndex ].transform.localRotation = Quaternion.identity;
