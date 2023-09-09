@@ -19,10 +19,10 @@ public class LiveDataHud
 	public string gear = string.Empty;
 
 	public string gapTimeFront = string.Empty;
-	public Color gapTimeInFrontColor = Color.white;
+	public Color gapTimeFrontColor = Color.white;
 
 	public string gapTimeBack = string.Empty;
-	public Color gapTimeInBackColor = Color.white;
+	public Color gapTimeBackColor = Color.white;
 
 	public string speechToText = string.Empty;
 

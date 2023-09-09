@@ -93,10 +93,10 @@ public class OverlayHud : MonoBehaviour
 			gear_Text.text = LiveData.Instance.liveDataHud.gear;
 
 			gapTimeFront_Text.text = LiveData.Instance.liveDataHud.gapTimeFront;
-			gapTimeFront_Text.color = LiveData.Instance.liveDataHud.gapTimeInFrontColor;
+			gapTimeFront_Text.color = LiveData.Instance.liveDataHud.gapTimeFrontColor;
 
 			gapTimeBack_Text.text = LiveData.Instance.liveDataHud.gapTimeBack;
-			gapTimeBack_Text.color = LiveData.Instance.liveDataHud.gapTimeInBackColor;
+			gapTimeBack_Text.color = LiveData.Instance.liveDataHud.gapTimeBackColor;
 
 			if ( LiveData.Instance.liveDataHud.speechToText == string.Empty )
 			{

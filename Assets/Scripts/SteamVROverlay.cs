@@ -15,10 +15,11 @@ public class SteamVROverlay : MonoBehaviour
 	public Texture_t texture;
 
 	public bool activated = false;
+	public bool restartRequired = false;
 
 	public void Activate( bool activate )
 	{
-		if ( activated == activate )
+		if ( restartRequired || ( activated == activate ) )
 		{
 			return;
 		}
@@ -33,7 +34,10 @@ public class SteamVROverlay : MonoBehaviour
 
 			if ( evrInitError != EVRInitError.None )
 			{
+				restartRequired = true;
+
 				Debug.Log( $"OpenVR.Init failed with error: {evrInitError}" );
+
 				return;
 			}
 
@@ -47,13 +51,19 @@ public class SteamVROverlay : MonoBehaviour
 
 					if ( evrOverlayError != EVROverlayError.None )
 					{
+						restartRequired = true;
+
 						Debug.Log( $"OpenVR.Overlay.CreateOverlay failed with error: {evrOverlayError}" );
+
 						return;
 					}
 				}
 				else
 				{
+					restartRequired = true;
+
 					Debug.Log( $"OpenVR.Overlay.FindOverlay failed with error: {evrOverlayError}" );
+
 					return;
 				}
 			}
@@ -62,7 +72,10 @@ public class SteamVROverlay : MonoBehaviour
 
 			if ( evrOverlayError != EVROverlayError.None )
 			{
+				restartRequired = true;
+
 				Debug.Log( $"OpenVR.Overlay.ShowOverlay failed with error: {evrOverlayError}" );
+
 				return;
 			}
 
@@ -85,12 +98,14 @@ public class SteamVROverlay : MonoBehaviour
 	{
 		Activate( LiveData.Instance.liveDataSteamVr.enabled );
 
-		if ( activated )
+		if ( activated && !restartRequired )
 		{
 			var evrOverlayError = OpenVR.Overlay.SetOverlayWidthInMeters( overlayHandle, LiveData.Instance.liveDataSteamVr.width );
 
 			if ( evrOverlayError != EVROverlayError.None )
 			{
+				restartRequired = true;
+
 				Debug.Log( $"OpenVR.Overlay.SetOverlayWidthInMeters failed with error: {evrOverlayError}" );
 			}
 			else
@@ -99,6 +114,8 @@ public class SteamVROverlay : MonoBehaviour
 
 				if ( evrOverlayError != EVROverlayError.None )
 				{
+					restartRequired = true;
+
 					Debug.Log( $"OpenVR.Overlay.SetOverlayTexture failed with error: {evrOverlayError}" );
 				}
 				else
@@ -116,6 +133,8 @@ public class SteamVROverlay : MonoBehaviour
 
 					if ( evrOverlayError != EVROverlayError.None )
 					{
+						restartRequired = true;
+
 						Debug.Log( $"OpenVR.Overlay.SetOverlayTextureBounds failed with error: {evrOverlayError}" );
 					}
 					else
@@ -142,10 +161,21 @@ public class SteamVROverlay : MonoBehaviour
 
 						if ( evrOverlayError != EVROverlayError.None )
 						{
+							restartRequired = true;
+
 							Debug.Log( $"OpenVR.Overlay.SetOverlayTransformAbsolute failed with error: {evrOverlayError}" );
 						}
+						else
+						{
+							evrOverlayError = OpenVR.Overlay.SetOverlayCurvature( overlayHandle, LiveData.Instance.liveDataSteamVr.curvature );
 
-						OpenVR.Overlay.SetOverlayCurvature( overlayHandle, LiveData.Instance.liveDataSteamVr.curvature );
+							if ( evrOverlayError != EVROverlayError.None )
+							{
+								restartRequired = true;
+
+								Debug.Log( $"OpenVR.Overlay.SetOverlayCurvature failed with error: {evrOverlayError}" );
+							}
+						}
 					}
 				}
 			}
