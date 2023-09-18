@@ -7,7 +7,6 @@ using UnityEngine;
 public class SettingsOverlay
 {
 	[NonSerialized] public const int MaxNumFonts = 4;
-	[NonSerialized] public const int MaxNumAnimations = 2;
 
 	public Vector2Int position = new( 0, 0 );
 	public Vector2Int size = new( 1920, 1080 );
@@ -56,6 +55,11 @@ public class SettingsOverlay
 	public Vector2 hudSpeechToTextPosition = Vector2.zero;
 	public Vector2 hudSpeechToTextMaxSize = Vector2.zero;
 	public Vector2Int hudSpeechToTextTextPadding = Vector2Int.zero;
+
+	public bool trainerEnabled = false;
+	public Vector2 trainerPosition = Vector2.zero;
+	public Vector2 trainerSize = Vector2.zero;
+	public float trainerSpeedScale = 10;
 
 	public SerializableDictionary<string, SettingsText> textSettingsDataDictionary = new();
 	public SerializableDictionary<string, SettingsImage> imageSettingsDataDictionary = new();

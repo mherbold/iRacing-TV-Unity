@@ -1,8 +1,6 @@
 ﻿
 using System;
 
-using UnityEngine;
-
 [Serializable]
 public class LiveData
 {
@@ -25,6 +23,7 @@ public class LiveData
 	public LiveDataStartLights liveDataStartLights = new();
 	public LiveDataTrackMap liveDataTrackMap = new();
 	public LiveDataHud liveDataHud = new();
+	public LiveDataTrainer liveDataTrainer = new();
 
 	public string seriesLogoTextureUrl = string.Empty;
 
@@ -51,6 +50,7 @@ public class LiveData
 		liveDataStartLights = liveData.liveDataStartLights;
 		liveDataTrackMap = liveData.liveDataTrackMap;
 		liveDataHud = liveData.liveDataHud;
+		liveDataTrainer = liveData.liveDataTrainer;
 
 		seriesLogoTextureUrl = liveData.seriesLogoTextureUrl;
 	}

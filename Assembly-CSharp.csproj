@@ -79,6 +79,7 @@
     <Compile Include="Assets\Scripts\IPC.cs" />
     <Compile Include="Assets\Scripts\WinApi.cs" />
     <Compile Include="Assets\Scripts\StreamedTexture.cs" />
+    <Compile Include="Assets\Scripts\OverlayTrainer.cs" />
     <Compile Include="Assets\Scripts\OverlayVoiceOf.cs" />
     <Compile Include="Assets\Scripts\OverlayCustom.cs" />
     <Compile Include="Assets\Scripts\LiveDataDriver.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Assets\Scripts\OverlayLeaderboardSlot.cs" />
     <Compile Include="Assets\Scripts\LiveDataLeaderboard.cs" />
     <Compile Include="Assets\Scripts\LiveDataIntro.cs" />
+    <Compile Include="Assets\Scripts\LiveDataTrainer.cs" />
     <Compile Include="Assets\Scripts\LiveData.cs" />
     <Compile Include="Assets\Scripts\OverlayIntroDriver.cs" />
     <Compile Include="Assets\Scripts\OverlayRaceStatus.cs" />
