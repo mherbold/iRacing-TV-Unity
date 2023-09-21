@@ -32,6 +32,8 @@ public class ImageSettings : MonoBehaviour
 	[NonSerialized] public RectTransform border_RectTransform = null;
 
 	[NonSerialized] public float currentFrame = 0;
+	[NonSerialized] public bool setSizeCalled = false;
+	[NonSerialized] public Vector2 setSize = Vector2.zero;
 
 	public void Awake()
 	{
@@ -200,17 +202,20 @@ public class ImageSettings : MonoBehaviour
 		}
 	}
 
-	public void SetSize( Vector2 size )
+	public void SetSize( Vector2 newSetSize )
 	{
+		setSizeCalled = true;
+		setSize = newSetSize;
+
 		if ( settings != null )
 		{
-			size += settings.size;
+			var finalSize = setSize + settings.size;
 
-			rectTransform.sizeDelta = size;
+			rectTransform.sizeDelta = finalSize;
 
 			if ( ( settings.tilingEnabled ) && ( texture != null ) )
 			{
-				var textureScale = new Vector2( size.x / texture.width, size.y / texture.height );
+				var textureScale = new Vector2( finalSize.x / texture.width, finalSize.y / texture.height );
 
 				image.material.SetTextureScale( "_MainTex", textureScale );
 
@@ -266,8 +271,15 @@ public class ImageSettings : MonoBehaviour
 				var sourceWidth = ( settings.frameCount > 1 ) ? settings.frameSize.x : texture.width;
 				var sourceHeight = ( settings.frameCount > 1 ) ? settings.frameSize.y : texture.height;
 
+				var finalSize = new Vector2( sourceWidth, sourceHeight );
+
+				if ( setSizeCalled )
+				{
+					finalSize = setSize;
+				}
+
 				rectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
-				rectTransform.sizeDelta = new Vector2( sourceWidth, sourceHeight );
+				rectTransform.sizeDelta = finalSize;
 
 				if ( enableBorder )
 				{
@@ -307,18 +319,18 @@ public class ImageSettings : MonoBehaviour
 					}
 
 					rectTransform.localPosition = new Vector3( settings.position.x + positionOffset.x, -settings.position.y + positionOffset.y, rectTransform.localPosition.z );
-					rectTransform.sizeDelta = new Vector2( width, height );
+					rectTransform.sizeDelta = new Vector2( width, height ) + setSize;
 				}
 				else
 				{
 					rectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
-					rectTransform.sizeDelta = settings.size;
+					rectTransform.sizeDelta = settings.size + setSize;
 				}
 
 				if ( enableBorder )
 				{
 					border_RectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
-					border_RectTransform.sizeDelta = settings.size;
+					border_RectTransform.sizeDelta = settings.size + setSize;
 				}
 			}
 		}
@@ -348,6 +360,10 @@ public class ImageSettings : MonoBehaviour
 
 			case SettingsImage.ImageType.Driver:
 				newTexture = StreamingTextures.driverStreamedTexture[ carIdx ].GetTexture();
+				break;
+
+			case SettingsImage.ImageType.MemberImage:
+				newTexture = StreamingTextures.memberImageStreamedTexture[ carIdx ].GetTexture();
 				break;
 		}
 

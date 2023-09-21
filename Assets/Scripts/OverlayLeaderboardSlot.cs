@@ -12,10 +12,10 @@ public class OverlayLeaderboardSlot : MonoBehaviour
 	public GameObject layer2;
 	public GameObject layer3;
 	public GameObject highlight;
-	public GameObject position;
-	public GameObject carNumber;
-	public GameObject driverName;
-	public GameObject telemetry;
+	public TextSettings position;
+	public TextSettings carNumber;
+	public TextSettings driverName;
+	public TextSettings telemetry;
 	public GameObject speed;
 
 	[NonSerialized] public TextMeshProUGUI position_Text;

@@ -24,6 +24,8 @@ public class TextSettings : MonoBehaviour
 	[NonSerialized] public Image border_Image = null;
 	[NonSerialized] public RectTransform border_RectTransform = null;
 
+	[NonSerialized] public bool colorOverridden = false;
+
 	public void Awake()
 	{
 		rectTransform = GetComponent<RectTransform>();
@@ -72,8 +74,14 @@ public class TextSettings : MonoBehaviour
 
 					text.font = Fonts.GetFontAsset( settings.fontIndex );
 					text.fontSize = settings.fontSize;
-					text.color = settings.tintColor;
 					text.alignment = settings.alignment;
+
+					if ( !colorOverridden )
+					{
+						text.color = settings.tintColor;
+					}
+
+					text.overflowMode = ( settings.allowOverflow ) ? TextOverflowModes.Overflow : TextOverflowModes.Ellipsis;
 
 					rectTransform.localPosition = new Vector2( settings.position.x, -settings.position.y );
 					rectTransform.sizeDelta = settings.size;
@@ -114,5 +122,12 @@ public class TextSettings : MonoBehaviour
 				border_Image.enabled = ( showBorderTimer > 0 );
 			}
 		}
+	}
+
+	public void SetColor( Color color )
+	{
+		colorOverridden = true;
+
+		text.color = color;
 	}
 }

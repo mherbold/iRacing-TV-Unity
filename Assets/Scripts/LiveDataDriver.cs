@@ -8,4 +8,6 @@ public class LiveDataDriver
 	public string carTextureUrl = string.Empty;
 	public string helmetTextureUrl = string.Empty;
 	public string driverTextureUrl = string.Empty;
+	public string memberImageUrl = string.Empty;
+	public string memberClubRegionUrl = string.Empty;
 }

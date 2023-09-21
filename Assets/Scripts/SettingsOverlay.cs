@@ -32,6 +32,9 @@ public class SettingsOverlay
 	public bool voiceOfEnabled = true;
 	public Vector2 voiceOfPosition = Vector2.zero;
 
+	public bool chyronEnabled = true;
+	public Vector2 chyronPosition = new( 0, 0 );
+
 	public bool subtitleEnabled = true;
 	public Vector2 subtitlePosition = Vector2.zero;
 	public Vector2 subtitleMaxSize = Vector2.zero;

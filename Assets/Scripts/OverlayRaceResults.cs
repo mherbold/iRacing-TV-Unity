@@ -120,17 +120,17 @@ public class OverlayRaceResults : MonoBehaviour
 				// update position text
 
 				overlayLeaderboardSlot.position_Text.text = liveDataLeaderboardSlot.positionText;
-				overlayLeaderboardSlot.position_Text.color = liveDataLeaderboardSlot.positionColor;
+				overlayLeaderboardSlot.position.SetColor( liveDataLeaderboardSlot.positionColor );
 
 				// driver name
 
 				overlayLeaderboardSlot.driverName_Text.text = liveDataLeaderboardSlot.driverNameText;
-				overlayLeaderboardSlot.driverName_Text.color = liveDataLeaderboardSlot.driverNameColor;
+				overlayLeaderboardSlot.driverName.SetColor( liveDataLeaderboardSlot.driverNameColor );
 
 				// telemetry
 
 				overlayLeaderboardSlot.telemetry_Text.text = liveDataLeaderboardSlot.telemetryText;
-				overlayLeaderboardSlot.telemetry_Text.color = liveDataLeaderboardSlot.telemetryColor;
+				overlayLeaderboardSlot.telemetry.SetColor( liveDataLeaderboardSlot.telemetryColor );
 			}
 		}
 	}

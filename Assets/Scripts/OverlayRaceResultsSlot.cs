@@ -9,9 +9,9 @@ public class OverlayRaceResultsSlot : MonoBehaviour
 {
 	public GameObject layer1;
 	public GameObject layer2;
-	public GameObject position;
-	public GameObject driverName;
-	public GameObject telemetry;
+	public TextSettings position;
+	public TextSettings driverName;
+	public TextSettings telemetry;
 
 	[NonSerialized] public TextMeshProUGUI position_Text;
 	[NonSerialized] public TextMeshProUGUI driverName_Text;

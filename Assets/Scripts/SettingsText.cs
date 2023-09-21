@@ -26,4 +26,5 @@ public class SettingsText
 	public Vector2 position = Vector2.zero;
 	public Vector2 size = Vector2.zero;
 	public Color tintColor = Color.white;
+	public bool allowOverflow = true;
 }

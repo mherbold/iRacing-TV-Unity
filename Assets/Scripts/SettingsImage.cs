@@ -14,7 +14,9 @@ public class SettingsImage
 		CarNumber,
 		Car,
 		Helmet,
-		Driver
+		Driver,
+		MemberImage,
+		MemberClubRegion
 	}
 
 	public ImageType imageType = ImageType.None;

@@ -18,6 +18,7 @@ public class LiveData
 	public LiveDataRaceStatus liveDataRaceStatus = new();
 	public LiveDataLeaderboard[] liveDataLeaderboards = null;
 	public LiveDataVoiceOf liveDataVoiceOf = new();
+	public LiveDataChyron liveDataChyron = new();
 	public LiveDataSubtitle liveDataSubtitle = new();
 	public LiveDataIntro liveDataIntro = new();
 	public LiveDataStartLights liveDataStartLights = new();
@@ -45,6 +46,7 @@ public class LiveData
 		liveDataRaceStatus = liveData.liveDataRaceStatus;
 		liveDataLeaderboards = liveData.liveDataLeaderboards;
 		liveDataVoiceOf = liveData.liveDataVoiceOf;
+		liveDataChyron = liveData.liveDataChyron;
 		liveDataSubtitle = liveData.liveDataSubtitle;
 		liveDataIntro = liveData.liveDataIntro;
 		liveDataStartLights = liveData.liveDataStartLights;

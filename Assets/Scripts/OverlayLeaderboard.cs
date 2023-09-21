@@ -131,22 +131,22 @@ public class OverlayLeaderboard : MonoBehaviour
 				// update position text
 
 				overlayLeaderboardSlot.position_Text.text = liveDataLeaderboardSlot.positionText;
-				overlayLeaderboardSlot.position_Text.color = liveDataLeaderboardSlot.positionColor;
+				overlayLeaderboardSlot.position.SetColor( liveDataLeaderboardSlot.positionColor );
 
 				// car number
 
 				overlayLeaderboardSlot.carNumber_Text.text = liveDataLeaderboardSlot.carNumberText;
-				overlayLeaderboardSlot.carNumber_Text.color = liveDataLeaderboardSlot.carNumberColor;
+				overlayLeaderboardSlot.carNumber.SetColor( liveDataLeaderboardSlot.carNumberColor );
 
 				// driver name
 
 				overlayLeaderboardSlot.driverName_Text.text = liveDataLeaderboardSlot.driverNameText;
-				overlayLeaderboardSlot.driverName_Text.color = liveDataLeaderboardSlot.driverNameColor;
+				overlayLeaderboardSlot.driverName.SetColor( liveDataLeaderboardSlot.driverNameColor );
 
 				// telemetry
 
 				overlayLeaderboardSlot.telemetry_Text.text = liveDataLeaderboardSlot.telemetryText;
-				overlayLeaderboardSlot.telemetry_Text.color = liveDataLeaderboardSlot.telemetryColor;
+				overlayLeaderboardSlot.telemetry.SetColor( liveDataLeaderboardSlot.telemetryColor );
 
 				// highlight
 

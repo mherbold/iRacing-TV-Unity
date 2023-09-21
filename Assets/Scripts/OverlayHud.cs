@@ -14,13 +14,13 @@ public class OverlayHud : MonoBehaviour
 	public GameObject background;
 	public GameObject leftSpotterIndicator;
 	public GameObject rightSpotterIndicator;
-	public GameObject fuel;
+	public TextSettings fuel;
 	public GameObject lapsToLeader;
-	public GameObject rpm;
+	public TextSettings rpm;
 	public GameObject speed;
 	public GameObject gear;
-	public GameObject gapTimeFront;
-	public GameObject gapTimeBack;
+	public TextSettings gapTimeFront;
+	public TextSettings gapTimeBack;
 	public GameObject speechToTextEnable;
 	public GameObject speechToTextMaxSizeContainer;
 	public GameObject speechToTextPanel;
@@ -81,22 +81,22 @@ public class OverlayHud : MonoBehaviour
 			indexLiveData = IPC.indexLiveData;
 
 			fuel_Text.text = LiveData.Instance.liveDataHud.fuel;
-			fuel_Text.color = LiveData.Instance.liveDataHud.fuelColor;
+			fuel.SetColor( LiveData.Instance.liveDataHud.fuelColor );
 
 			lapsToLeader_Text.text = LiveData.Instance.liveDataHud.lapsToLeader;
 
 			rpm_Text.text = LiveData.Instance.liveDataHud.rpm;
-			rpm_Text.color = LiveData.Instance.liveDataHud.rpmColor;
+			rpm.SetColor( LiveData.Instance.liveDataHud.rpmColor );
 
 			speed_Text.text = LiveData.Instance.liveDataHud.speed;
 
 			gear_Text.text = LiveData.Instance.liveDataHud.gear;
 
 			gapTimeFront_Text.text = LiveData.Instance.liveDataHud.gapTimeFront;
-			gapTimeFront_Text.color = LiveData.Instance.liveDataHud.gapTimeFrontColor;
+			gapTimeFront.SetColor( LiveData.Instance.liveDataHud.gapTimeFrontColor );
 
 			gapTimeBack_Text.text = LiveData.Instance.liveDataHud.gapTimeBack;
-			gapTimeBack_Text.color = LiveData.Instance.liveDataHud.gapTimeBackColor;
+			gapTimeBack.SetColor( LiveData.Instance.liveDataHud.gapTimeBackColor );
 
 			if ( LiveData.Instance.liveDataHud.speechToText == string.Empty )
 			{

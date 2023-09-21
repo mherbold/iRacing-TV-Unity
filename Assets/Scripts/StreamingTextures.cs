@@ -11,6 +11,8 @@ public class StreamingTextures : MonoBehaviour
 	public static StreamedTexture[] carStreamedTexture = new StreamedTexture[ LiveData.MaxNumDrivers ];
 	public static StreamedTexture[] helmetStreamedTexture = new StreamedTexture[ LiveData.MaxNumDrivers ];
 	public static StreamedTexture[] driverStreamedTexture = new StreamedTexture[ LiveData.MaxNumDrivers ];
+	public static StreamedTexture[] memberImageStreamedTexture = new StreamedTexture[ LiveData.MaxNumDrivers ];
+	public static StreamedTexture[] memberClubRegionStreamedTexture = new StreamedTexture[ LiveData.MaxNumDrivers ];
 
 	public static bool requestsPending;
 
@@ -24,6 +26,8 @@ public class StreamingTextures : MonoBehaviour
 			carStreamedTexture[ driverIndex ] = new StreamedTexture();
 			helmetStreamedTexture[ driverIndex ] = new StreamedTexture();
 			driverStreamedTexture[ driverIndex ] = new StreamedTexture();
+			memberImageStreamedTexture[ driverIndex ] = new StreamedTexture();
+			memberClubRegionStreamedTexture[ driverIndex ] = new StreamedTexture();
 		}
 
 		requestsPending = false;
@@ -48,6 +52,8 @@ public class StreamingTextures : MonoBehaviour
 					yield return carStreamedTexture[ driverIndex ].Fetch();
 					yield return helmetStreamedTexture[ driverIndex ].Fetch();
 					yield return driverStreamedTexture[ driverIndex ].Fetch();
+					yield return memberImageStreamedTexture[ driverIndex ].Fetch();
+					yield return memberClubRegionStreamedTexture[ driverIndex ].Fetch();
 				}
 			}
 
@@ -92,6 +98,20 @@ public class StreamingTextures : MonoBehaviour
 			if ( driverStreamedTexture[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].driverTextureUrl )
 			{
 				driverStreamedTexture[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].driverTextureUrl );
+
+				requestsPending = true;
+			}
+
+			if ( memberImageStreamedTexture[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].memberImageUrl )
+			{
+				memberImageStreamedTexture[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].memberImageUrl );
+
+				requestsPending = true;
+			}
+
+			if ( memberClubRegionStreamedTexture[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].memberClubRegionUrl )
+			{
+				memberClubRegionStreamedTexture[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].memberClubRegionUrl );
 
 				requestsPending = true;
 			}

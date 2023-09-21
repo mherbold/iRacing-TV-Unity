@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\OverlayVoiceOf.cs" />
     <Compile Include="Assets\Scripts\OverlayCustom.cs" />
     <Compile Include="Assets\Scripts\LiveDataDriver.cs" />
+    <Compile Include="Assets\Scripts\OverlayChyron.cs" />
     <Compile Include="Assets\Scripts\OverlayStartLights.cs" />
     <Compile Include="Assets\Scripts\LiveDataRaceStatus.cs" />
     <Compile Include="Assets\Scripts\OverlayRaceResultsSlot.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\OverlayRaceResultsArray.cs" />
     <Compile Include="Assets\Scripts\OverlayLeaderboardArray.cs" />
     <Compile Include="Assets\Scripts\ImageSettings.cs" />
+    <Compile Include="Assets\Scripts\LiveDataChyron.cs" />
     <Compile Include="Assets\Scripts\LiveDataIntroDriver.cs" />
     <Compile Include="Assets\Scripts\OverlayRaceResults.cs" />
     <Compile Include="Assets\Scripts\StreamingTextures.cs" />
