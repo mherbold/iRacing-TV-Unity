@@ -7,8 +7,6 @@ using UnityEngine;
 [Serializable]
 public class LiveDataTrackMap
 {
-	public const int MaxNumCars = 63;
-
 	public bool show;
 
 	public int trackID;
@@ -20,5 +18,5 @@ public class LiveDataTrackMap
 
 	public List<Vector3> drawVectorList;
 
-	public LiveDataTrackMapCar[] liveDataTrackMapCars = new LiveDataTrackMapCar[ MaxNumCars ];
+	public LiveDataTrackMapCar[] liveDataTrackMapCars = new LiveDataTrackMapCar[ LiveData.MaxNumDrivers ];
 }

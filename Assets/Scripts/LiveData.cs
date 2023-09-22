@@ -4,7 +4,7 @@ using System;
 [Serializable]
 public class LiveData
 {
-	public const int MaxNumDrivers = 63;
+	public const int MaxNumDrivers = 64;
 	public const int MaxNumClasses = 8;
 
 	public static LiveData Instance { get; private set; }
@@ -23,6 +23,7 @@ public class LiveData
 	public LiveDataIntro liveDataIntro = new();
 	public LiveDataStartLights liveDataStartLights = new();
 	public LiveDataTrackMap liveDataTrackMap = new();
+	public LiveDataPitLane liveDataPitLane = new();
 	public LiveDataHud liveDataHud = new();
 	public LiveDataTrainer liveDataTrainer = new();
 
@@ -51,6 +52,7 @@ public class LiveData
 		liveDataIntro = liveData.liveDataIntro;
 		liveDataStartLights = liveData.liveDataStartLights;
 		liveDataTrackMap = liveData.liveDataTrackMap;
+		liveDataPitLane = liveData.liveDataPitLane;
 		liveDataHud = liveData.liveDataHud;
 		liveDataTrainer = liveData.liveDataTrainer;
 

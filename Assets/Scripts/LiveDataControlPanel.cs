@@ -8,6 +8,7 @@ public class LiveDataControlPanel
 	public bool raceStatusOn;
 	public bool leaderboardOn;
 	public bool trackMapOn;
+	public bool pitLaneOn;
 	public bool startLightsOn;
 	public bool voiceOfOn;
 	public bool chyronOn;

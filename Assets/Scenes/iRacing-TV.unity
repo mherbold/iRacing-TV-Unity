@@ -175,7 +175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: CustomLayer3
-  enableBorder: 1
 --- !u!222 &19003385
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -266,7 +265,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudGapTimeBack
-  enableBorder: 1
 --- !u!114 &40919617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +502,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardPositionLayer2
-  enableBorder: 1
 --- !u!114 &64502687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,7 +592,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudGapTimeFront
-  enableBorder: 1
 --- !u!114 &65284396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -745,7 +741,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronGearLabel
-  enableBorder: 1
 --- !u!114 &71226512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,7 +890,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: TrackMapCarLayer2
-  enableBorder: 1
 --- !u!114 &81167930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,7 +1049,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroBackground
-  enableBorder: 1
 --- !u!222 &82884361
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1249,7 +1242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: StartLightsGo
-  enableBorder: 1
 --- !u!114 &96026650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,7 +1332,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusGreenFlagLayer1
-  enableBorder: 1
 --- !u!222 &113214712
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1431,7 +1422,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronLayer3
-  enableBorder: 1
 --- !u!114 &130814065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1470,6 +1460,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130814062}
   m_CullTransparentMesh: 1
+--- !u!1 &132193235
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 132193236}
+  - component: {fileID: 132193237}
+  m_Layer: 5
+  m_Name: Pit Lane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &132193236
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132193235}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1596905103}
+  m_Father: {fileID: 555473212}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &132193237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132193235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e204cc49b208824bae693896b8f37e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ipc: {fileID: 1197244529}
+  enable: {fileID: 1596905102}
+  carTemplate: {fileID: 480653389}
 --- !u!1 &164707917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,7 +1565,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardCurrentTarget
-  enableBorder: 1
 --- !u!222 &164707921
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1613,7 +1655,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceResultsPositionLayer2
-  enableBorder: 1
 --- !u!114 &184593475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1704,7 +1745,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: CustomLayer2
-  enableBorder: 1
 --- !u!222 &185627242
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2033,7 +2073,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardPosition
-  enableBorder: 1
 --- !u!1 &212027653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,7 +2125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusCurrentLap
-  enableBorder: 1
 --- !u!114 &212027656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2236,7 +2274,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroCarNumber
-  enableBorder: 1
 --- !u!114 &212358136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2386,7 +2423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: CustomLayer5
-  enableBorder: 1
 --- !u!114 &223974229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2477,7 +2513,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusYellowLight
-  enableBorder: 1
 --- !u!222 &254414365
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2568,7 +2603,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronDriverName
-  enableBorder: 1
 --- !u!114 &269469859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2762,7 +2796,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronRPMLabel
-  enableBorder: 1
 --- !u!114 &282790467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3084,7 +3117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronSpeedLabel
-  enableBorder: 1
 --- !u!114 &372252310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3234,7 +3266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: VoiceOfLayer2
-  enableBorder: 1
 --- !u!114 &388276442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3361,7 +3392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardPositionLayer3
-  enableBorder: 1
 --- !u!114 &410889244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3549,7 +3579,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: Subtitles
-  enableBorder: 0
 --- !u!1 &435096635
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,7 +3631,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronRating
-  enableBorder: 1
 --- !u!114 &435096638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3752,7 +3780,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudSpeed
-  enableBorder: 1
 --- !u!114 &471385368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3850,6 +3877,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471385365}
   m_CullTransparentMesh: 1
+--- !u!1 &480653389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 480653390}
+  - component: {fileID: 480653391}
+  m_Layer: 5
+  m_Name: Pit Lane Car Template
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &480653390
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480653389}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 945555834}
+  - {fileID: 556311623}
+  - {fileID: 2116762961}
+  - {fileID: 1084004448}
+  m_Father: {fileID: 1596905103}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &480653391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480653389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4814777c6948c11459dc533cd459a352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer1: {fileID: 945555833}
+  layer2: {fileID: 556311622}
+  highlight: {fileID: 2116762960}
+  carNumber: {fileID: 1084004447}
 --- !u!1 &481244665
 GameObject:
   m_ObjectHideFlags: 0
@@ -3902,7 +3986,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardPositionDriverName
-  enableBorder: 1
 --- !u!114 &481244668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4115,7 +4198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardPositionCarNumber
-  enableBorder: 1
 --- !u!114 &539446647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4246,6 +4328,7 @@ RectTransform:
   - {fileID: 504394163}
   - {fileID: 2140832870}
   - {fileID: 939110760}
+  - {fileID: 132193236}
   - {fileID: 1643094353}
   - {fileID: 730103406}
   - {fileID: 292791053}
@@ -4263,6 +4346,96 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0, y: 1}
+--- !u!1 &556311622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 556311623}
+  - component: {fileID: 556311626}
+  - component: {fileID: 556311625}
+  - component: {fileID: 556311624}
+  m_Layer: 5
+  m_Name: Layer 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &556311623
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556311622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 480653390}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &556311624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556311622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c71f8e530df3f4ca4b58e60d58a52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: PitLaneCarLayer2
+--- !u!114 &556311625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556311622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 3fc9050ec03b49944b6a97cce923b22d, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 100
+--- !u!222 &556311626
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556311622}
+  m_CullTransparentMesh: 1
 --- !u!1 &563100874
 GameObject:
   m_ObjectHideFlags: 0
@@ -4315,7 +4488,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: StartLightsReady
-  enableBorder: 1
 --- !u!114 &563100877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4443,7 +4615,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronLayer7
-  enableBorder: 1
 --- !u!114 &584069924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4534,7 +4705,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: VoiceOf
-  enableBorder: 1
 --- !u!114 &588213073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4723,7 +4893,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: VoiceOfLayer1
-  enableBorder: 1
 --- !u!222 &665492612
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4843,8 +5012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75c71f8e530df3f4ca4b58e60d58a52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: TrackMapCurrentTarget
-  enableBorder: 1
+  id: TrackMapCarCurrentTarget
 --- !u!222 &672746149
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4905,7 +5073,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: CustomLayer4
-  enableBorder: 1
 --- !u!222 &678407548
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4996,7 +5163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: TrackMapStartFinishLine
-  enableBorder: 1
 --- !u!114 &698327804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5087,7 +5253,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroLayer3
-  enableBorder: 1
 --- !u!222 &703434622
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5178,7 +5343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusCheckeredFlagLayer2
-  enableBorder: 1
 --- !u!114 &705105644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5269,7 +5433,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardPositionLayer1
-  enableBorder: 1
 --- !u!222 &719647714
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5319,6 +5482,7 @@ GameObject:
   - component: {fileID: 720613337}
   - component: {fileID: 720613339}
   - component: {fileID: 720613338}
+  - component: {fileID: 720613340}
   m_Layer: 5
   m_Name: Border
   m_TagString: Untagged
@@ -5384,6 +5548,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 720613336}
   m_CullTransparentMesh: 1
+--- !u!114 &720613340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720613336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dda2b3b776b3fb4886331cd683b864b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ipc: {fileID: 1197244529}
 --- !u!1 &722082854
 GameObject:
   m_ObjectHideFlags: 0
@@ -5395,7 +5572,7 @@ GameObject:
   - component: {fileID: 722082855}
   - component: {fileID: 722082856}
   m_Layer: 5
-  m_Name: Car Template
+  m_Name: Track Map Car Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5586,7 +5763,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: CustomLayer6
-  enableBorder: 1
 --- !u!114 &782628378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5677,7 +5853,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroDriverName
-  enableBorder: 1
 --- !u!114 &798690248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6068,7 +6243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronRandomLabel
-  enableBorder: 1
 --- !u!114 &855090363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6218,7 +6392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronGear
-  enableBorder: 1
 --- !u!114 &857019766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6368,7 +6541,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusSeriesLogo
-  enableBorder: 1
 --- !u!222 &867943711
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6500,7 +6672,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroLayer6
-  enableBorder: 1
 --- !u!222 &890291762
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6591,7 +6762,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusGreenFlagLayer2
-  enableBorder: 1
 --- !u!114 &893775442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6682,7 +6852,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusYellowFlagLayer1
-  enableBorder: 1
 --- !u!222 &931599529
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6828,7 +6997,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroLayer2
-  enableBorder: 1
 --- !u!222 &942690944
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6867,6 +7035,96 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 100
+--- !u!1 &945555833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 945555834}
+  - component: {fileID: 945555837}
+  - component: {fileID: 945555836}
+  - component: {fileID: 945555835}
+  m_Layer: 5
+  m_Name: Layer 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &945555834
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945555833}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 480653390}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &945555835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945555833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c71f8e530df3f4ca4b58e60d58a52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: PitLaneCarLayer1
+--- !u!114 &945555836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945555833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 6d0b4d4c9f8b75e4ab52e6938c51a420, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 100
+--- !u!222 &945555837
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945555833}
+  m_CullTransparentMesh: 1
 --- !u!1 &947482031
 GameObject:
   m_ObjectHideFlags: 0
@@ -6919,7 +7177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceResultsClassName
-  enableBorder: 1
 --- !u!114 &947482034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7069,7 +7326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardClassNameShort
-  enableBorder: 1
 --- !u!114 &960074376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7485,7 +7741,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardBackground
-  enableBorder: 1
 --- !u!114 &981032635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7614,7 +7869,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusUnits
-  enableBorder: 1
 --- !u!114 &985877066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7764,7 +8018,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardCurrentTargetSpeed
-  enableBorder: 1
 --- !u!114 &991068807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7862,6 +8115,96 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 991068804}
   m_CullTransparentMesh: 1
+--- !u!1 &994074420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 994074421}
+  - component: {fileID: 994074424}
+  - component: {fileID: 994074423}
+  - component: {fileID: 994074422}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &994074421
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994074420}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1596905103}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &994074422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994074420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c71f8e530df3f4ca4b58e60d58a52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: PitLaneBackground
+--- !u!114 &994074423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994074420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 6112e9e6d9eeb624caf5e67a7345d10f, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 100
+--- !u!222 &994074424
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994074420}
+  m_CullTransparentMesh: 1
 --- !u!1 &999897168
 GameObject:
   m_ObjectHideFlags: 0
@@ -7914,7 +8257,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: VoiceOfDriverName
-  enableBorder: 1
 --- !u!114 &999897171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8123,7 +8465,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: TrackMapCarLayer1
-  enableBorder: 1
 --- !u!114 &1010225106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8214,7 +8555,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronRPM
-  enableBorder: 1
 --- !u!114 &1019782201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8364,7 +8704,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: TrainerBackground
-  enableBorder: 1
 --- !u!114 &1023264348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8455,7 +8794,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudSpotterIndicatorLeft
-  enableBorder: 1
 --- !u!114 &1054058495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8541,6 +8879,155 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!1 &1084004447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1084004448}
+  - component: {fileID: 1084004451}
+  - component: {fileID: 1084004450}
+  - component: {fileID: 1084004449}
+  m_Layer: 5
+  m_Name: Car Number
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1084004448
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084004447}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 480653390}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &1084004449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084004447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f375ea7c362954a4288e050640656072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: PitLaneCarNumber
+--- !u!114 &1084004450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084004447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 21
+  m_fontSizeBase: 21
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 0
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1084004451
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084004447}
+  m_CullTransparentMesh: 1
 --- !u!1 &1100564152
 GameObject:
   m_ObjectHideFlags: 0
@@ -8593,7 +9080,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardClassName
-  enableBorder: 1
 --- !u!114 &1100564155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8743,7 +9229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroQualifyingTime
-  enableBorder: 1
 --- !u!114 &1112818400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8932,7 +9417,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronHometown
-  enableBorder: 1
 --- !u!114 &1176632095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9148,7 +9632,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: SubtitlesBackground
-  enableBorder: 0
 --- !u!1 &1197244527
 GameObject:
   m_ObjectHideFlags: 0
@@ -9163,7 +9646,6 @@ GameObject:
   - component: {fileID: 1197244531}
   - component: {fileID: 1197244529}
   - component: {fileID: 1197244534}
-  - component: {fileID: 1197244535}
   - component: {fileID: 1197244536}
   m_Layer: 0
   m_Name: Scripts
@@ -9247,19 +9729,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1c46670bb4fb74fb04e9fb386a59b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1197244535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197244527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dda2b3b776b3fb4886331cd683b864b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  border: {fileID: 720613336}
 --- !u!114 &1197244536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9329,7 +9798,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronLicenseLabel
-  enableBorder: 1
 --- !u!114 &1198178018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9479,7 +9947,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudRPM
-  enableBorder: 1
 --- !u!114 &1198742655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9629,7 +10096,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: VoiceOfBackground
-  enableBorder: 1
 --- !u!222 &1198905537
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9823,7 +10289,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusBackground
-  enableBorder: 1
 --- !u!114 &1302355152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9906,7 +10371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardLayer1
-  enableBorder: 1
 --- !u!114 &1305145252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9997,7 +10461,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusBlackLight
-  enableBorder: 1
 --- !u!222 &1309143484
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10088,7 +10551,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroLayer5
-  enableBorder: 1
 --- !u!222 &1325579646
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10179,7 +10641,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudLapsToLeader
-  enableBorder: 1
 --- !u!114 &1328037400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10329,7 +10790,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceResultsLayer1
-  enableBorder: 1
 --- !u!114 &1360305566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10623,7 +11083,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudSpeechToText
-  enableBorder: 0
 --- !u!114 &1431306313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10773,7 +11232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronRandom
-  enableBorder: 1
 --- !u!114 &1443783068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10923,7 +11381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroLayer4
-  enableBorder: 1
 --- !u!222 &1477618961
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11014,7 +11471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceResultsPosition
-  enableBorder: 1
 --- !u!114 &1488358040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11164,7 +11620,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudSpotterIndicatorRight
-  enableBorder: 1
 --- !u!114 &1515457419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11255,7 +11710,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudBackground
-  enableBorder: 1
 --- !u!114 &1525826256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11468,7 +11922,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusLapsRemaining
-  enableBorder: 1
 --- !u!114 &1533772429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11618,7 +12071,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronBackground
-  enableBorder: 1
 --- !u!114 &1535710581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11823,7 +12275,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusYellowFlagLayer2
-  enableBorder: 1
 --- !u!114 &1566746930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12002,6 +12453,44 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
+--- !u!1 &1596905102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1596905103}
+  m_Layer: 5
+  m_Name: Enable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1596905103
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596905102}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 994074421}
+  - {fileID: 480653390}
+  m_Father: {fileID: 132193236}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
 --- !u!1 &1601722520
 GameObject:
   m_ObjectHideFlags: 0
@@ -12054,7 +12543,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceResultsLayer2
-  enableBorder: 1
 --- !u!114 &1601722523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12182,7 +12670,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardPositionTelemetry
-  enableBorder: 1
 --- !u!114 &1652748983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12373,7 +12860,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: StartLightsSet
-  enableBorder: 1
 --- !u!114 &1677100413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12464,7 +12950,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceResultsPositionTelemetry
-  enableBorder: 1
 --- !u!114 &1677808364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12614,7 +13099,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceResultsPositionDriverName
-  enableBorder: 1
 --- !u!114 &1678134233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12764,7 +13248,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: TrainerMessage
-  enableBorder: 1
 --- !u!114 &1700684188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12914,7 +13397,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceResultsPositionLayer1
-  enableBorder: 1
 --- !u!114 &1702371798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13005,7 +13487,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardPositionPreferredCar
-  enableBorder: 1
 --- !u!114 &1703442787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13135,7 +13616,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusWhiteLight
-  enableBorder: 1
 --- !u!222 &1713344520
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13226,7 +13706,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardLayer2
-  enableBorder: 1
 --- !u!114 &1723120977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13412,7 +13891,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronLayer5
-  enableBorder: 1
 --- !u!114 &1772042118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13571,7 +14049,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronLayer2
-  enableBorder: 1
 --- !u!114 &1776845570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13662,7 +14139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronLayer6
-  enableBorder: 1
 --- !u!114 &1779545140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13884,7 +14360,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronHometownLabel
-  enableBorder: 1
 --- !u!114 &1832746229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14034,7 +14509,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronLicense
-  enableBorder: 1
 --- !u!114 &1844832349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14184,7 +14658,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: LeaderboardPositionSplitter
-  enableBorder: 1
 --- !u!222 &1862850001
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14275,7 +14748,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: CustomLayer1
-  enableBorder: 1
 --- !u!222 &1868803206
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14403,7 +14875,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: VoiceOfLayer3
-  enableBorder: 1
 --- !u!114 &1891150189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14494,7 +14965,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronRatingLabel
-  enableBorder: 1
 --- !u!114 &1892189074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14644,7 +15114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronSpeed
-  enableBorder: 1
 --- !u!114 &1910545526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14794,7 +15263,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudGear
-  enableBorder: 1
 --- !u!114 &1917515120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14982,7 +15450,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronLayer4
-  enableBorder: 1
 --- !u!114 &1924794705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15073,7 +15540,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusGreenLight
-  enableBorder: 1
 --- !u!222 &1924943233
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15244,7 +15710,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroLayer1
-  enableBorder: 1
 --- !u!222 &1935547988
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15335,7 +15800,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: IntroStartingGridPosition
-  enableBorder: 1
 --- !u!114 &1957734341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15524,7 +15988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceResultsBackground
-  enableBorder: 1
 --- !u!114 &1967544534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15617,7 +16080,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudSpeechToTextBackground
-  enableBorder: 0
 --- !u!114 &1968816417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16003,7 +16465,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusSessionName
-  enableBorder: 1
 --- !u!1 &2001668393
 GameObject:
   m_ObjectHideFlags: 0
@@ -16056,7 +16517,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: TrackMapCarNumber
-  enableBorder: 1
 --- !u!114 &2001668396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16206,7 +16666,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: ChyronLayer1
-  enableBorder: 1
 --- !u!114 &2036044657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16353,7 +16812,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceStatusCheckeredFlagLayer1
-  enableBorder: 1
 --- !u!222 &2054180784
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16487,7 +16945,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: HudFuel
-  enableBorder: 1
 --- !u!114 &2070771616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16637,7 +17094,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: RaceResultsClassNameShort
-  enableBorder: 1
 --- !u!114 &2076548734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16734,6 +17190,96 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076548731}
+  m_CullTransparentMesh: 1
+--- !u!1 &2116762960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2116762961}
+  - component: {fileID: 2116762964}
+  - component: {fileID: 2116762963}
+  - component: {fileID: 2116762962}
+  m_Layer: 5
+  m_Name: Current Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2116762961
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116762960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 480653390}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2116762962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116762960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 2100000, guid: 036a142d5230b1248b4d448662740dde, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 100
+--- !u!114 &2116762963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116762960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c71f8e530df3f4ca4b58e60d58a52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: PitLaneCarCurrentTarget
+--- !u!222 &2116762964
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116762960}
   m_CullTransparentMesh: 1
 --- !u!1 &2140832869
 GameObject:

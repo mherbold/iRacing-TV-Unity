@@ -91,11 +91,15 @@
     <Compile Include="Assets\Scripts\LiveDataVoiceOf.cs" />
     <Compile Include="Assets\Scripts\OverlaySubtitle.cs" />
     <Compile Include="Assets\Scripts\LiveDataLeaderboardSlot.cs" />
+    <Compile Include="Assets\Scripts\OverlayPitLaneCar.cs" />
+    <Compile Include="Assets\Scripts\LiveDataPitLane.cs" />
     <Compile Include="Assets\Scripts\OverlayLeaderboard.cs" />
     <Compile Include="Assets\Scripts\OverlaySystemMessage.cs" />
     <Compile Include="Assets\Scripts\TransparentWindow.cs" />
     <Compile Include="Assets\Scripts\OverlayRaceResultsArray.cs" />
+    <Compile Include="Assets\Scripts\OverlayPitLane.cs" />
     <Compile Include="Assets\Scripts\OverlayLeaderboardArray.cs" />
+    <Compile Include="Assets\Scripts\LiveDataPitLaneCar.cs" />
     <Compile Include="Assets\Scripts\ImageSettings.cs" />
     <Compile Include="Assets\Scripts\LiveDataChyron.cs" />
     <Compile Include="Assets\Scripts\LiveDataIntroDriver.cs" />

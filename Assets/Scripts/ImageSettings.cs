@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class ImageSettings : MonoBehaviour
 {
 	public string id = string.Empty;
-	public bool enableBorder = true;
 
 	[NonSerialized] public RectTransform rectTransform;
 	[NonSerialized] public Image image;
@@ -23,12 +22,9 @@ public class ImageSettings : MonoBehaviour
 	[NonSerialized] public Texture2D texture;
 
 	[NonSerialized] public Vector2 positionOffset = Vector2.zero;
-	[NonSerialized] public Vector2? previousSize = null;
-	[NonSerialized] public Vector2? previousPosition = null;
 	[NonSerialized] public Vector4? previousBorder = null;
-	[NonSerialized] public float showBorderTimer = 0;
+
 	[NonSerialized] public GameObject border = null;
-	[NonSerialized] public Image border_Image = null;
 	[NonSerialized] public RectTransform border_RectTransform = null;
 
 	[NonSerialized] public float currentFrame = 0;
@@ -45,22 +41,18 @@ public class ImageSettings : MonoBehaviour
 
 	public void Update()
 	{
-		if ( enableBorder )
+		if ( border == null )
 		{
-			if ( border == null )
-			{
-				border = Instantiate( Border.border_GameObject );
+			border = Instantiate( Border.border_GameObject );
 
-				border.name = $"{transform.name} {Border.border_GameObject.name}";
+			border.name = $"{transform.name} {Border.border_GameObject.name}";
 
-				border.transform.SetParent( transform.parent );
+			border.transform.SetParent( transform.parent );
 
-				border.SetActive( true );
+			border.SetActive( true );
 
-				border_Image = border.GetComponent<Image>();
-				border_RectTransform = border.GetComponent<RectTransform>();
-				border_RectTransform.pivot = rectTransform.pivot;
-			}
+			border_RectTransform = border.GetComponent<RectTransform>();
+			border_RectTransform.pivot = rectTransform.pivot;
 		}
 
 		if ( indexSettings != IPC.indexSettings )
@@ -125,19 +117,6 @@ public class ImageSettings : MonoBehaviour
 					image.type = Image.Type.Sliced;
 					image.pixelsPerUnitMultiplier = 1;
 				}
-
-				if ( ( previousSize == null ) || ( previousPosition == null ) )
-				{
-					previousSize = settings.size;
-					previousPosition = settings.position;
-				}
-				else if ( ( previousSize != settings.size ) || ( previousPosition != settings.position ) )
-				{
-					previousSize = settings.size;
-					previousPosition = settings.position;
-
-					showBorderTimer = 3.0f;
-				}
 			}
 		}
 
@@ -146,13 +125,6 @@ public class ImageSettings : MonoBehaviour
 			if ( settings.imageType > SettingsImage.ImageType.ImageFile )
 			{
 				SetStreamedTexture();
-			}
-
-			if ( enableBorder && ( showBorderTimer > 0 ) )
-			{
-				showBorderTimer = Math.Max( 0, showBorderTimer - Time.deltaTime );
-
-				border_Image.enabled = ( showBorderTimer > 0 );
 			}
 
 			if ( ( settings.frameCount > 1 ) && ( settings.frameSize.x > 0 ) && ( settings.frameSize.y > 0 ) && ( texture != null ) )
@@ -281,11 +253,8 @@ public class ImageSettings : MonoBehaviour
 				rectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
 				rectTransform.sizeDelta = finalSize;
 
-				if ( enableBorder )
-				{
-					border_RectTransform.localPosition = rectTransform.localPosition;
-					border_RectTransform.sizeDelta = rectTransform.sizeDelta;
-				}
+				border_RectTransform.localPosition = rectTransform.localPosition;
+				border_RectTransform.sizeDelta = rectTransform.sizeDelta;
 			}
 			else
 			{
@@ -327,11 +296,8 @@ public class ImageSettings : MonoBehaviour
 					rectTransform.sizeDelta = settings.size + setSize;
 				}
 
-				if ( enableBorder )
-				{
-					border_RectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
-					border_RectTransform.sizeDelta = settings.size + setSize;
-				}
+				border_RectTransform.localPosition = new Vector3( settings.position.x, -settings.position.y, rectTransform.localPosition.z );
+				border_RectTransform.sizeDelta = settings.size + setSize;
 			}
 		}
 	}

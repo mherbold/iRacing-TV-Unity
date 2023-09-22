@@ -8,6 +8,8 @@ public class SettingsOverlay
 {
 	[NonSerialized] public const int MaxNumFonts = 4;
 
+	public bool showBorders = false;
+
 	public Vector2Int position = new( 0, 0 );
 	public Vector2Int size = new( 1920, 1080 );
 
@@ -28,6 +30,10 @@ public class SettingsOverlay
 	public string trackMapTextureFilePath = string.Empty;
 	public float trackMapLineThickness = 0;
 	public Color trackMapLineColor = Color.white;
+
+	public bool pitLaneEnabled = true;
+	public Vector2 pitLanePosition = Vector2.zero;
+	public int pitLaneLength = 0;
 
 	public bool voiceOfEnabled = true;
 	public Vector2 voiceOfPosition = Vector2.zero;

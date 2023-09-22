@@ -28,11 +28,8 @@ public class OverlayTrackMap : MonoBehaviour
 	[NonSerialized] public float scale = 1;
 
 	[NonSerialized] public Vector3 positionOffset = Vector3.zero;
-	[NonSerialized] public Vector2? previousSize = null;
-	[NonSerialized] public Vector2? previousPosition = null;
-	[NonSerialized] public float showBorderTimer = 0;
+
 	[NonSerialized] public GameObject border = null;
-	[NonSerialized] public Image border_Image = null;
 	[NonSerialized] public RectTransform border_RectTransform = null;
 
 	public void Awake()
@@ -44,9 +41,9 @@ public class OverlayTrackMap : MonoBehaviour
 
 		lineRenderer.material = Instantiate( lineRenderer.material );
 
-		cars = new GameObject[ LiveDataTrackMap.MaxNumCars ];
+		cars = new GameObject[ LiveData.MaxNumDrivers ];
 
-		overlayTrackMapCars = new OverlayTrackMapCar[ LiveDataTrackMap.MaxNumCars ];
+		overlayTrackMapCars = new OverlayTrackMapCar[ LiveData.MaxNumDrivers ];
 
 		for ( var carIndex = 0; carIndex < cars.Length; carIndex++ )
 		{
@@ -77,7 +74,6 @@ public class OverlayTrackMap : MonoBehaviour
 
 			border.SetActive( true );
 
-			border_Image = border.GetComponent<Image>();
 			border_RectTransform = border.GetComponent<RectTransform>();
 			border_RectTransform.pivot = rectTransform.pivot;
 		}
@@ -160,22 +156,9 @@ public class OverlayTrackMap : MonoBehaviour
 
 				lineRenderer.material.SetTexture( "_MainTex", newTexture );
 			}
-
-			if ( ( previousSize == null ) || ( previousPosition == null ) )
-			{
-				previousSize = Settings.overlay.trackMapSize;
-				previousPosition = Settings.overlay.trackMapPosition;
-			}
-			else if ( ( previousSize != Settings.overlay.trackMapSize ) || ( previousPosition != Settings.overlay.trackMapPosition ) )
-			{
-				previousSize = Settings.overlay.trackMapSize;
-				previousPosition = Settings.overlay.trackMapPosition;
-
-				showBorderTimer = 3.0f;
-			}
 		}
 
-		for ( var carIndex = 0; carIndex < LiveDataTrackMap.MaxNumCars; carIndex++ )
+		for ( var carIndex = 0; carIndex < LiveData.MaxNumDrivers; carIndex++ )
 		{
 			var liveDataTrackMapCar = LiveData.Instance.liveDataTrackMap.liveDataTrackMapCars[ carIndex ];
 
@@ -201,12 +184,5 @@ public class OverlayTrackMap : MonoBehaviour
 		}
 
 		startFinishLine.transform.localPosition = LiveData.Instance.liveDataTrackMap.startFinishLine * scale + positionOffset;
-
-		if ( showBorderTimer > 0 )
-		{
-			showBorderTimer = Math.Max( 0, showBorderTimer - Time.deltaTime );
-
-			border_Image.enabled = ( showBorderTimer > 0 );
-		}
 	}
 }
