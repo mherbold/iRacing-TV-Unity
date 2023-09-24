@@ -3,7 +3,6 @@ using System;
 using System.IO;
 
 using UnityEngine;
-using UnityEngine.UI;
 
 public class OverlayTrackMap : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class OverlayTrackMap : MonoBehaviour
 	public GameObject enable;
 	public GameObject trackMap;
 	public GameObject startFinishLine;
+	public GameObject paceCar;
 	public GameObject carTemplate;
 
 	[NonSerialized] public RectTransform rectTransform;
@@ -184,5 +184,16 @@ public class OverlayTrackMap : MonoBehaviour
 		}
 
 		startFinishLine.transform.localPosition = LiveData.Instance.liveDataTrackMap.startFinishLine * scale + positionOffset;
+
+		if ( LiveData.Instance.liveDataTrackMap.showPaceCar )
+		{
+			paceCar.gameObject.SetActive( true );
+
+			paceCar.transform.localPosition = LiveData.Instance.liveDataTrackMap.paceCarOffset * scale + positionOffset;
+		}
+		else
+		{
+			paceCar.gameObject.SetActive( false );
+		}
 	}
 }

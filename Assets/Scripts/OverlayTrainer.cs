@@ -10,13 +10,11 @@ public class OverlayTrainer : MonoBehaviour
 	public IPC ipc;
 
 	public GameObject enable;
-	public GameObject graphA;
-	public GameObject graphB;
+	public GameObject[] graph;
 	public GameObject mask;
 	public GameObject message;
 
-	[NonSerialized] public LineRenderer graphA_lineRenderer;
-	[NonSerialized] public LineRenderer graphB_lineRenderer;
+	[NonSerialized] public LineRenderer[] graph_lineRenderer;
 	[NonSerialized] public RectTransform mask_RectTransform;
 	[NonSerialized] public TextMeshProUGUI message_Text;
 
@@ -25,8 +23,13 @@ public class OverlayTrainer : MonoBehaviour
 
 	public void Awake()
 	{
-		graphA_lineRenderer = graphA.GetComponent<LineRenderer>();
-		graphB_lineRenderer = graphB.GetComponent<LineRenderer>();
+		graph_lineRenderer = new LineRenderer[ graph.Length ];
+
+		for ( var i = 0; i < graph.Length; i++ )
+		{
+			graph_lineRenderer[ i ] = graph[ i ].GetComponent<LineRenderer>();
+		}
+
 		mask_RectTransform = mask.GetComponent<RectTransform>();
 		message_Text = message.GetComponent<TextMeshProUGUI>();
 	}
@@ -49,18 +52,16 @@ public class OverlayTrainer : MonoBehaviour
 		{
 			indexLiveData = IPC.indexLiveData;
 
-			if ( LiveData.Instance.liveDataTrainer.drawVectorListA != null )
+			if ( LiveData.Instance.liveDataTrainer.drawVectorList != null )
 			{
-				graphA_lineRenderer.positionCount = LiveData.Instance.liveDataTrainer.drawVectorListA.Length;
+				var numLists = LiveData.Instance.liveDataTrainer.drawVectorList.Length;
 
-				graphA_lineRenderer.SetPositions( LiveData.Instance.liveDataTrainer.drawVectorListA );
-			}
+				for ( var i = 0; i < numLists; i++ )
+				{
+					graph_lineRenderer[ i ].positionCount = LiveData.Instance.liveDataTrainer.drawVectorList[ i ].Length;
 
-			if ( LiveData.Instance.liveDataTrainer.drawVectorListB != null )
-			{
-				graphB_lineRenderer.positionCount = LiveData.Instance.liveDataTrainer.drawVectorListB.Length;
-
-				graphB_lineRenderer.SetPositions( LiveData.Instance.liveDataTrainer.drawVectorListB );
+					graph_lineRenderer[ i ].SetPositions( LiveData.Instance.liveDataTrainer.drawVectorList[ i ] );
+				}
 			}
 
 			message_Text.text = LiveData.Instance.liveDataTrainer.message;

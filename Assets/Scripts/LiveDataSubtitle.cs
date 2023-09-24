@@ -4,5 +4,5 @@ using System;
 [Serializable]
 public class LiveDataSubtitle
 {
-	public string text;
+	public string text = string.Empty;
 }

@@ -7,14 +7,17 @@ using UnityEngine;
 [Serializable]
 public class LiveDataTrackMap
 {
-	public bool show;
+	public bool show = false;
 
-	public int trackID;
+	public bool showPaceCar = false;
+	public Vector3 paceCarOffset = Vector3.zero;
 
-	public float width;
-	public float height;
+	public int trackID = 0;
 
-	public Vector3 startFinishLine;
+	public float width = 0;
+	public float height = 0;
+
+	public Vector3 startFinishLine = Vector3.zero;
 
 	public List<Vector3> drawVectorList;
 
