@@ -121,6 +121,8 @@ public class OverlayIntro : MonoBehaviour
 						overlayIntroDriver.driverName_Text.text = liveDataIntroDriver.driverNameText;
 						overlayIntroDriver.qualifyingTime_Text.text = liveDataIntroDriver.qualifyingTimeText;
 						overlayIntroDriver.carNumber_Text.text = liveDataIntroDriver.carNumberText;
+						overlayIntroDriver.license_Text.text = liveDataIntroDriver.licenseText;
+						overlayIntroDriver.rating_Text.text = liveDataIntroDriver.ratingText;
 
 						drivers[ driverIndex ].transform.localPosition = Vector3.zero;
 						drivers[ driverIndex ].transform.localRotation = Quaternion.identity;

@@ -17,11 +17,15 @@ public class OverlayIntroDriver : MonoBehaviour
 	public GameObject qualifyingTime;
 	public GameObject driverName;
 	public GameObject carNumber;
+	public GameObject license;
+	public GameObject rating;
 
 	[NonSerialized] public TextMeshProUGUI position_Text;
 	[NonSerialized] public TextMeshProUGUI qualifyingTime_Text;
 	[NonSerialized] public TextMeshProUGUI driverName_Text;
 	[NonSerialized] public TextMeshProUGUI carNumber_Text;
+	[NonSerialized] public TextMeshProUGUI license_Text;
+	[NonSerialized] public TextMeshProUGUI rating_Text;
 
 	[NonSerialized] public ImageSettings layer1_ImageSettings;
 	[NonSerialized] public ImageSettings layer2_ImageSettings;
@@ -38,6 +42,8 @@ public class OverlayIntroDriver : MonoBehaviour
 		qualifyingTime_Text = qualifyingTime.GetComponent<TextMeshProUGUI>();
 		driverName_Text = driverName.GetComponent<TextMeshProUGUI>();
 		carNumber_Text = carNumber.GetComponent<TextMeshProUGUI>();
+		license_Text = license.GetComponent<TextMeshProUGUI>();
+		rating_Text = rating.GetComponent<TextMeshProUGUI>();
 
 		layer1_ImageSettings = layer1.GetComponent<ImageSettings>();
 		layer2_ImageSettings = layer2.GetComponent<ImageSettings>();

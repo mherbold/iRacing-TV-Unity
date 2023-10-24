@@ -331,6 +331,10 @@ public class ImageSettings : MonoBehaviour
 			case SettingsImage.ImageType.MemberImage:
 				newTexture = StreamingTextures.memberImageStreamedTexture[ carIdx ].GetTexture();
 				break;
+
+			case SettingsImage.ImageType.MemberClubRegion:
+				newTexture = StreamingTextures.memberClubRegionStreamedTexture[ carIdx ].GetTexture();
+				break;
 		}
 
 		SetTexture( newTexture, forceUpdate );
