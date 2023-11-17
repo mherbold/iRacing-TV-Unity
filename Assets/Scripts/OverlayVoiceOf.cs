@@ -10,30 +10,33 @@ public class OverlayVoiceOf : MonoBehaviour
 	public IPC ipc;
 
 	public GameObject enable;
-	public GameObject animationRoot;
 	public GameObject voiceOf;
 	public GameObject driverName;
-	public GameObject car;
+	public GameObject layer1;
+	public GameObject layer2;
+	public GameObject layer3;
 
-	[NonSerialized] public Animator animationRoot_Animator;
 	[NonSerialized] public TextMeshProUGUI voiceOf_Text;
 	[NonSerialized] public TextMeshProUGUI driverName_Text;
-	[NonSerialized] public ImageSettings car_ImageSettings;
+	[NonSerialized] public ImageSettings layer1_ImageSettings;
+	[NonSerialized] public ImageSettings layer2_ImageSettings;
+	[NonSerialized] public ImageSettings layer3_ImageSettings;
 
 	[NonSerialized] public long indexSettings;
 	[NonSerialized] public long indexLiveData;
 
 	public void Awake()
 	{
-		animationRoot_Animator = animationRoot.GetComponent<Animator>();
 		voiceOf_Text = voiceOf.GetComponent<TextMeshProUGUI>();
 		driverName_Text = driverName.GetComponent<TextMeshProUGUI>();
-		car_ImageSettings = car.GetComponent<ImageSettings>();
+		layer1_ImageSettings = layer1.GetComponent<ImageSettings>();
+		layer2_ImageSettings = layer2.GetComponent<ImageSettings>();
+		layer3_ImageSettings = layer3.GetComponent<ImageSettings>();
 	}
 
 	public void Update()
 	{
-		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.voiceOfOn && ipc.isConnected && LiveData.Instance.isConnected );
+		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.voiceOfOn && ipc.isConnected && LiveData.Instance.isConnected && LiveData.Instance.liveDataVoiceOf.show );
 
 		if ( indexSettings != IPC.indexSettings )
 		{
@@ -46,15 +49,15 @@ public class OverlayVoiceOf : MonoBehaviour
 		{
 			indexLiveData = IPC.indexLiveData;
 
-			animationRoot_Animator.SetBool( "Show", LiveData.Instance.liveDataVoiceOf.show );
-
 			voiceOf_Text.text = LiveData.Instance.liveDataVoiceOf.voiceOfText;
 
 			driverName_Text.text = LiveData.Instance.liveDataVoiceOf.driverNameText;
 
 			if ( LiveData.Instance.liveDataVoiceOf.carIdx != -1 )
 			{
-				car_ImageSettings.carIdx = LiveData.Instance.liveDataVoiceOf.carIdx;
+				layer1_ImageSettings.carIdx = LiveData.Instance.liveDataVoiceOf.carIdx;
+				layer2_ImageSettings.carIdx = LiveData.Instance.liveDataVoiceOf.carIdx;
+				layer3_ImageSettings.carIdx = LiveData.Instance.liveDataVoiceOf.carIdx;
 			}
 		}
 	}
