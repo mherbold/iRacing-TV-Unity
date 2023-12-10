@@ -8,4 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/iRacing-TV.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 489f870e4c361234db4e0bd8d1d86193, type: 2}
+    com.unity.renderstreaming.settings: {fileID: 11400000, guid: 4f7cae4440bfd8d44900384742899e6c, type: 2}

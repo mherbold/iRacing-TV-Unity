@@ -21,6 +21,7 @@ public class OverlayHud : MonoBehaviour
 	public GameObject gear;
 	public TextSettings gapTimeFront;
 	public TextSettings gapTimeBack;
+	public TextSettings lapDelta;
 	public GameObject speechToTextEnable;
 	public GameObject speechToTextMaxSizeContainer;
 	public GameObject speechToTextPanel;
@@ -35,6 +36,7 @@ public class OverlayHud : MonoBehaviour
 	[NonSerialized] public TextMeshProUGUI gear_Text;
 	[NonSerialized] public TextMeshProUGUI gapTimeFront_Text;
 	[NonSerialized] public TextMeshProUGUI gapTimeBack_Text;
+	[NonSerialized] public TextMeshProUGUI lapDelta_Text;
 	[NonSerialized] public RectTransform speechToTextMaxSizeContainer_RectTransform;
 	[NonSerialized] public VerticalLayoutGroup speechToTextPanel_VerticalLayoutGroup;
 	[NonSerialized] public TextMeshProUGUI speechToTextText_Text;
@@ -54,6 +56,7 @@ public class OverlayHud : MonoBehaviour
 		gear_Text = gear.GetComponent<TextMeshProUGUI>();
 		gapTimeFront_Text = gapTimeFront.GetComponent<TextMeshProUGUI>();
 		gapTimeBack_Text = gapTimeBack.GetComponent<TextMeshProUGUI>();
+		lapDelta_Text = lapDelta.GetComponent<TextMeshProUGUI>();
 		speechToTextMaxSizeContainer_RectTransform = speechToTextMaxSizeContainer.GetComponent<RectTransform>();
 		speechToTextPanel_VerticalLayoutGroup = speechToTextPanel.GetComponent<VerticalLayoutGroup>();
 		speechToTextText_Text = speechToTextText.GetComponent<TextMeshProUGUI>();
@@ -97,6 +100,9 @@ public class OverlayHud : MonoBehaviour
 
 			gapTimeBack_Text.text = LiveData.Instance.liveDataHud.gapTimeBack;
 			gapTimeBack.SetColor( LiveData.Instance.liveDataHud.gapTimeBackColor );
+
+			lapDelta_Text.text = LiveData.Instance.liveDataHud.lapDelta;
+			lapDelta.SetColor( LiveData.Instance.liveDataHud.lapDeltaColor );
 
 			if ( LiveData.Instance.liveDataHud.speechToText == string.Empty )
 			{

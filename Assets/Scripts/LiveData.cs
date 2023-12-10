@@ -26,6 +26,7 @@ public class LiveData
 	public LiveDataPitLane liveDataPitLane = new();
 	public LiveDataHud liveDataHud = new();
 	public LiveDataTrainer liveDataTrainer = new();
+	public LiveDataWebcamStreaming liveDataWebcamStreaming = new();
 
 	public string seriesLogoTextureUrl = string.Empty;
 
@@ -55,6 +56,7 @@ public class LiveData
 		liveDataPitLane = liveData.liveDataPitLane;
 		liveDataHud = liveData.liveDataHud;
 		liveDataTrainer = liveData.liveDataTrainer;
+		liveDataWebcamStreaming = liveData.liveDataWebcamStreaming;
 
 		seriesLogoTextureUrl = liveData.seriesLogoTextureUrl;
 	}
