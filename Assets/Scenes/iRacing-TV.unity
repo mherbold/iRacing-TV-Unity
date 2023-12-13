@@ -4891,7 +4891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TextureSize: {x: 640, y: 480}
-  m_Source: 2
+  m_Source: 3
   m_Camera: {fileID: 0}
   m_Texture: {fileID: 0}
   m_WebCamDeviceIndex: 0
@@ -10647,7 +10647,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197244527}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47782a2104eb96646a6d1564156b15ba, type: 3}
   m_Name: 
