@@ -20,6 +20,7 @@ public class ImageSettings : MonoBehaviour
 
 	[NonSerialized] public string imageFilePath;
 	[NonSerialized] public Texture2D texture;
+	[NonSerialized] public Texture2D fallbackTexture;
 
 	[NonSerialized] public Vector2 positionOffset = Vector2.zero;
 	[NonSerialized] public Vector4? previousBorder = null;
@@ -73,7 +74,7 @@ public class ImageSettings : MonoBehaviour
 
 					SetTexture( null );
 				}
-				else if ( settings.imageType == SettingsImage.ImageType.ImageFile )
+				else if ( ( settings.imageType == SettingsImage.ImageType.ImageFile ) || ( settings.fallbackType == SettingsImage.ImageType.ImageFile ) )
 				{
 					var newTexture = texture;
 
@@ -94,13 +95,21 @@ public class ImageSettings : MonoBehaviour
 								newTexture = new Texture2D( 1, 1 );
 
 								newTexture.LoadImage( bytes );
+
+								newTexture.Apply();
+
+								fallbackTexture = newTexture;
 							}
 						}
 					}
 
-					SetTexture( newTexture, true );
+					if ( settings.imageType == SettingsImage.ImageType.ImageFile )
+					{
+						SetTexture( newTexture, true );
+					}
 				}
-				else
+
+				if ( settings.imageType > SettingsImage.ImageType.ImageFile )
 				{
 					imageFilePath = string.Empty;
 
@@ -302,12 +311,18 @@ public class ImageSettings : MonoBehaviour
 		}
 	}
 
-	public void SetStreamedTexture( bool forceUpdate = false )
+	public void SetStreamedTexture( bool forceUpdate = false, bool useFallbackType = false )
 	{
 		Texture2D newTexture = null;
 
-		switch ( settings.imageType )
+		var imageType = ( useFallbackType ) ? settings.fallbackType : settings.imageType;
+
+		switch ( imageType )
 		{
+			case SettingsImage.ImageType.ImageFile:
+				newTexture = fallbackTexture;
+				break;
+
 			case SettingsImage.ImageType.SeriesLogo:
 				newTexture = StreamingTextures.seriesLogoStreamedTexture.GetTexture();
 				break;
@@ -328,13 +343,33 @@ public class ImageSettings : MonoBehaviour
 				newTexture = StreamingTextures.driverStreamedTexture[ carIdx ].GetTexture();
 				break;
 
-			case SettingsImage.ImageType.MemberImage:
-				newTexture = StreamingTextures.memberImageStreamedTexture[ carIdx ].GetTexture();
-				break;
-
 			case SettingsImage.ImageType.MemberClubRegion:
 				newTexture = StreamingTextures.memberClubRegionStreamedTexture[ carIdx ].GetTexture();
 				break;
+
+			case SettingsImage.ImageType.MemberID_A:
+				newTexture = StreamingTextures.memberIdStreamedTexture_A[ carIdx ].GetTexture();
+				break;
+
+			case SettingsImage.ImageType.MemberID_B:
+				newTexture = StreamingTextures.memberIdStreamedTexture_A[ carIdx ].GetTexture();
+				break;
+
+			case SettingsImage.ImageType.MemberID_C:
+				newTexture = StreamingTextures.memberIdStreamedTexture_A[ carIdx ].GetTexture();
+				break;
+		}
+
+		if ( newTexture == null )
+		{
+			if ( !useFallbackType )
+			{
+				if ( settings.fallbackType != SettingsImage.ImageType.None )
+				{
+					SetStreamedTexture( forceUpdate, true );
+					return;
+				}
+			}
 		}
 
 		SetTexture( newTexture, forceUpdate );

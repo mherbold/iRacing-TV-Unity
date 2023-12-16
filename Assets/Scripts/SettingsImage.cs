@@ -8,18 +8,21 @@ public class SettingsImage
 {
 	public enum ImageType
 	{
-		None,
-		ImageFile,
-		SeriesLogo,
-		CarNumber,
-		Car,
-		Helmet,
-		Driver,
-		MemberImage,
-		MemberClubRegion
+		None = 0,
+		ImageFile = 1,
+		SeriesLogo = 2,
+		CarNumber = 3,
+		Car = 4,
+		Helmet = 5,
+		Driver = 6,
+		MemberClubRegion = 8,
+		MemberID_A = 9,
+		MemberID_B = 10,
+		MemberID_C = 11
 	}
 
 	public ImageType imageType = ImageType.None;
+	public ImageType fallbackType = ImageType.None;
 
 	public string filePath = string.Empty;
 

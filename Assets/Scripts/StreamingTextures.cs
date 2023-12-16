@@ -11,8 +11,10 @@ public class StreamingTextures : MonoBehaviour
 	public static StreamedTexture[] carStreamedTexture = new StreamedTexture[ LiveData.MaxNumDrivers ];
 	public static StreamedTexture[] helmetStreamedTexture = new StreamedTexture[ LiveData.MaxNumDrivers ];
 	public static StreamedTexture[] driverStreamedTexture = new StreamedTexture[ LiveData.MaxNumDrivers ];
-	public static StreamedTexture[] memberImageStreamedTexture = new StreamedTexture[ LiveData.MaxNumDrivers ];
 	public static StreamedTexture[] memberClubRegionStreamedTexture = new StreamedTexture[ LiveData.MaxNumDrivers ];
+	public static StreamedTexture[] memberIdStreamedTexture_A = new StreamedTexture[ LiveData.MaxNumDrivers ];
+	public static StreamedTexture[] memberIdStreamedTexture_B = new StreamedTexture[ LiveData.MaxNumDrivers ];
+	public static StreamedTexture[] memberIdStreamedTexture_C = new StreamedTexture[ LiveData.MaxNumDrivers ];
 
 	public static bool requestsPending;
 
@@ -26,8 +28,10 @@ public class StreamingTextures : MonoBehaviour
 			carStreamedTexture[ driverIndex ] = new StreamedTexture();
 			helmetStreamedTexture[ driverIndex ] = new StreamedTexture();
 			driverStreamedTexture[ driverIndex ] = new StreamedTexture();
-			memberImageStreamedTexture[ driverIndex ] = new StreamedTexture();
 			memberClubRegionStreamedTexture[ driverIndex ] = new StreamedTexture();
+			memberIdStreamedTexture_A[ driverIndex ] = new StreamedTexture();
+			memberIdStreamedTexture_B[ driverIndex ] = new StreamedTexture();
+			memberIdStreamedTexture_C[ driverIndex ] = new StreamedTexture();
 		}
 
 		requestsPending = false;
@@ -52,8 +56,10 @@ public class StreamingTextures : MonoBehaviour
 					yield return carStreamedTexture[ driverIndex ].Fetch();
 					yield return helmetStreamedTexture[ driverIndex ].Fetch();
 					yield return driverStreamedTexture[ driverIndex ].Fetch();
-					yield return memberImageStreamedTexture[ driverIndex ].Fetch();
 					yield return memberClubRegionStreamedTexture[ driverIndex ].Fetch();
+					yield return memberIdStreamedTexture_A[ driverIndex ].Fetch();
+					yield return memberIdStreamedTexture_B[ driverIndex ].Fetch();
+					yield return memberIdStreamedTexture_C[ driverIndex ].Fetch();
 				}
 			}
 
@@ -102,16 +108,30 @@ public class StreamingTextures : MonoBehaviour
 				requestsPending = true;
 			}
 
-			if ( memberImageStreamedTexture[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].memberImageUrl )
+			if ( memberClubRegionStreamedTexture[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].memberClubRegionUrl )
 			{
-				memberImageStreamedTexture[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].memberImageUrl );
+				memberClubRegionStreamedTexture[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].memberClubRegionUrl );
 
 				requestsPending = true;
 			}
 
-			if ( memberClubRegionStreamedTexture[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].memberClubRegionUrl )
+			if ( memberIdStreamedTexture_A[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].memberIdTextureUrl_A )
 			{
-				memberClubRegionStreamedTexture[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].memberClubRegionUrl );
+				memberIdStreamedTexture_A[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].memberIdTextureUrl_A );
+
+				requestsPending = true;
+			}
+
+			if ( memberIdStreamedTexture_B[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].memberIdTextureUrl_B )
+			{
+				memberIdStreamedTexture_B[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].memberIdTextureUrl_B );
+
+				requestsPending = true;
+			}
+
+			if ( memberIdStreamedTexture_C[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].memberIdTextureUrl_C )
+			{
+				memberIdStreamedTexture_C[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].memberIdTextureUrl_C );
 
 				requestsPending = true;
 			}

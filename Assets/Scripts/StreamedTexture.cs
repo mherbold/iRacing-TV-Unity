@@ -1,5 +1,6 @@
 ﻿
 using System.Collections;
+using System.IO;
 
 using UnityEngine;
 using UnityEngine.Networking;
@@ -36,25 +37,43 @@ public class StreamedTexture
 
 			if ( textureUrl != string.Empty )
 			{
-				using var unityWebRequest = UnityWebRequestTexture.GetTexture( textureUrl );
-
-				yield return unityWebRequest.SendWebRequest();
-
-				if ( unityWebRequest.result != UnityWebRequest.Result.Success )
+				if ( textureUrl.StartsWith( "http" ) )
 				{
-					Debug.Log( $"{textureUrl}: {unityWebRequest.error}" );
+					using var unityWebRequest = UnityWebRequestTexture.GetTexture( textureUrl );
+
+					yield return unityWebRequest.SendWebRequest();
+
+					if ( unityWebRequest.result != UnityWebRequest.Result.Success )
+					{
+						Debug.Log( $"{textureUrl}: {unityWebRequest.error}" );
+					}
+					else
+					{
+						var downloadedTexture = DownloadHandlerTexture.GetContent( unityWebRequest );
+
+						texture = new Texture2D( downloadedTexture.width, downloadedTexture.height, downloadedTexture.format, true );
+
+						texture.LoadImage( unityWebRequest.downloadHandler.data );
+
+						texture.Apply();
+
+						requestCompleted = true;
+					}
 				}
 				else
 				{
-					var downloadedTexture = DownloadHandlerTexture.GetContent( unityWebRequest );
+					if ( File.Exists( textureUrl ) )
+					{
+						var bytes = File.ReadAllBytes( textureUrl );
 
-					texture = new Texture2D( downloadedTexture.width, downloadedTexture.height, downloadedTexture.format, true );
+						texture = new Texture2D( 1, 1 );
 
-					texture.LoadImage( unityWebRequest.downloadHandler.data );
+						texture.LoadImage( bytes );
 
-					texture.Apply();
+						texture.Apply();
 
-					requestCompleted = true;
+						requestCompleted = true;
+					}
 				}
 			}
 		}
