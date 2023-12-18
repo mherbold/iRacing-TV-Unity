@@ -177,9 +177,9 @@ public class OverlayTrackMap : MonoBehaviour
 
 				overlayTrackMapCar.transform.localPosition = liveDataTrackMapCar.offset * scale + positionOffset;
 
-				overlayTrackMapCar.highlight.SetActive( liveDataTrackMapCar.showHighlight );
+				overlayTrackMapCar.currentTarget.SetActive( liveDataTrackMapCar.showHighlight );
 
-				overlayTrackMapCar.carNumber_Text.text = liveDataTrackMapCar.carNumber;
+				overlayTrackMapCar.textLayer1_Text.text = liveDataTrackMapCar.textLayer1;
 			}
 		}
 

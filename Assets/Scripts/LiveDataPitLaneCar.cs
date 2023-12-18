@@ -10,5 +10,5 @@ public class LiveDataPitLaneCar
 	public bool showHighlight = false;
 
 	public Vector3 offset = Vector3.zero;
-	public string carNumber = string.Empty;
+	public string textLayer1 = string.Empty;
 }

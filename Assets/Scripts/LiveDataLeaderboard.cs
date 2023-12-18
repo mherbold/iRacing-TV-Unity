@@ -14,8 +14,8 @@ public class LiveDataLeaderboard
 	public Vector2 splitterPosition = Vector2.zero;
 
 	public Color classColor = Color.white;
-	public string className = string.Empty;
-	public string classNameShort = string.Empty;
+	public string textLayer1 = string.Empty;
+	public string textLayer2 = string.Empty;
 
 	public LiveDataLeaderboardSlot[] liveDataLeaderboardSlots = new LiveDataLeaderboardSlot[ LiveData.MaxNumDrivers ];
 }

@@ -14,14 +14,14 @@ public class OverlayHud : MonoBehaviour
 	public GameObject background;
 	public GameObject leftSpotterIndicator;
 	public GameObject rightSpotterIndicator;
-	public TextSettings fuel;
-	public GameObject lapsToLeader;
-	public TextSettings rpm;
-	public GameObject speed;
-	public GameObject gear;
-	public TextSettings gapTimeFront;
-	public TextSettings gapTimeBack;
-	public TextSettings lapDelta;
+	public TextSettings textLayer1;
+	public TextSettings textLayer2;
+	public TextSettings textLayer3;
+	public TextSettings textLayer4;
+	public TextSettings textLayer5;
+	public TextSettings textLayer6;
+	public TextSettings textLayer7;
+	public TextSettings textLayer8;
 	public GameObject speechToTextEnable;
 	public GameObject speechToTextMaxSizeContainer;
 	public GameObject speechToTextPanel;
@@ -29,14 +29,14 @@ public class OverlayHud : MonoBehaviour
 
 	[NonSerialized] public Image leftSpotterIndicator_Image;
 	[NonSerialized] public Image rightSpotterIndicator_Image;
-	[NonSerialized] public TextMeshProUGUI fuel_Text;
-	[NonSerialized] public TextMeshProUGUI lapsToLeader_Text;
-	[NonSerialized] public TextMeshProUGUI rpm_Text;
-	[NonSerialized] public TextMeshProUGUI speed_Text;
-	[NonSerialized] public TextMeshProUGUI gear_Text;
-	[NonSerialized] public TextMeshProUGUI gapTimeFront_Text;
-	[NonSerialized] public TextMeshProUGUI gapTimeBack_Text;
-	[NonSerialized] public TextMeshProUGUI lapDelta_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer1_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer2_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer3_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer4_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer5_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer6_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer7_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer8_Text;
 	[NonSerialized] public RectTransform speechToTextMaxSizeContainer_RectTransform;
 	[NonSerialized] public VerticalLayoutGroup speechToTextPanel_VerticalLayoutGroup;
 	[NonSerialized] public TextMeshProUGUI speechToTextText_Text;
@@ -48,15 +48,14 @@ public class OverlayHud : MonoBehaviour
 	{
 		leftSpotterIndicator_Image = leftSpotterIndicator.GetComponent<Image>();
 		rightSpotterIndicator_Image = rightSpotterIndicator.GetComponent<Image>();
-
-		fuel_Text = fuel.GetComponent<TextMeshProUGUI>();
-		lapsToLeader_Text = lapsToLeader.GetComponent<TextMeshProUGUI>();
-		rpm_Text = rpm.GetComponent<TextMeshProUGUI>();
-		speed_Text = speed.GetComponent<TextMeshProUGUI>();
-		gear_Text = gear.GetComponent<TextMeshProUGUI>();
-		gapTimeFront_Text = gapTimeFront.GetComponent<TextMeshProUGUI>();
-		gapTimeBack_Text = gapTimeBack.GetComponent<TextMeshProUGUI>();
-		lapDelta_Text = lapDelta.GetComponent<TextMeshProUGUI>();
+		textLayer1_Text = textLayer1.GetComponent<TextMeshProUGUI>();
+		textLayer2_Text = textLayer2.GetComponent<TextMeshProUGUI>();
+		textLayer3_Text = textLayer3.GetComponent<TextMeshProUGUI>();
+		textLayer4_Text = textLayer4.GetComponent<TextMeshProUGUI>();
+		textLayer5_Text = textLayer5.GetComponent<TextMeshProUGUI>();
+		textLayer6_Text = textLayer6.GetComponent<TextMeshProUGUI>();
+		textLayer7_Text = textLayer7.GetComponent<TextMeshProUGUI>();
+		textLayer8_Text = textLayer8.GetComponent<TextMeshProUGUI>();
 		speechToTextMaxSizeContainer_RectTransform = speechToTextMaxSizeContainer.GetComponent<RectTransform>();
 		speechToTextPanel_VerticalLayoutGroup = speechToTextPanel.GetComponent<VerticalLayoutGroup>();
 		speechToTextText_Text = speechToTextText.GetComponent<TextMeshProUGUI>();
@@ -83,26 +82,29 @@ public class OverlayHud : MonoBehaviour
 		{
 			indexLiveData = IPC.indexLiveData;
 
-			fuel_Text.text = LiveData.Instance.liveDataHud.fuel;
-			fuel.SetColor( LiveData.Instance.liveDataHud.fuelColor );
+			textLayer1_Text.text = LiveData.Instance.liveDataHud.textLayer1;
+			textLayer1.SetColor( LiveData.Instance.liveDataHud.textLayer1Color );
 
-			lapsToLeader_Text.text = LiveData.Instance.liveDataHud.lapsToLeader;
+			textLayer2_Text.text = LiveData.Instance.liveDataHud.textLayer2;
+			textLayer2.SetColor( LiveData.Instance.liveDataHud.textLayer2Color );
 
-			rpm_Text.text = LiveData.Instance.liveDataHud.rpm;
-			rpm.SetColor( LiveData.Instance.liveDataHud.rpmColor );
+			textLayer3_Text.text = LiveData.Instance.liveDataHud.textLayer3;
+			textLayer3.SetColor( LiveData.Instance.liveDataHud.textLayer3Color );
 
-			speed_Text.text = LiveData.Instance.liveDataHud.speed;
+			textLayer4_Text.text = LiveData.Instance.liveDataHud.textLayer4;
+			textLayer4.SetColor( LiveData.Instance.liveDataHud.textLayer4Color );
 
-			gear_Text.text = LiveData.Instance.liveDataHud.gear;
+			textLayer5_Text.text = LiveData.Instance.liveDataHud.textLayer5;
+			textLayer5.SetColor( LiveData.Instance.liveDataHud.textLayer5Color );
 
-			gapTimeFront_Text.text = LiveData.Instance.liveDataHud.gapTimeFront;
-			gapTimeFront.SetColor( LiveData.Instance.liveDataHud.gapTimeFrontColor );
+			textLayer6_Text.text = LiveData.Instance.liveDataHud.textLayer6;
+			textLayer6.SetColor( LiveData.Instance.liveDataHud.textLayer6Color );
 
-			gapTimeBack_Text.text = LiveData.Instance.liveDataHud.gapTimeBack;
-			gapTimeBack.SetColor( LiveData.Instance.liveDataHud.gapTimeBackColor );
+			textLayer7_Text.text = LiveData.Instance.liveDataHud.textLayer7;
+			textLayer7.SetColor( LiveData.Instance.liveDataHud.textLayer7Color );
 
-			lapDelta_Text.text = LiveData.Instance.liveDataHud.lapDelta;
-			lapDelta.SetColor( LiveData.Instance.liveDataHud.lapDeltaColor );
+			textLayer8_Text.text = LiveData.Instance.liveDataHud.textLayer8;
+			textLayer8.SetColor( LiveData.Instance.liveDataHud.textLayer8Color );
 
 			if ( LiveData.Instance.liveDataHud.speechToText == string.Empty )
 			{

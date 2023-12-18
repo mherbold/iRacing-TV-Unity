@@ -73,9 +73,9 @@ public class OverlayPitLane : MonoBehaviour
 
 				overlayPitLaneCar.transform.localPosition = liveDataPitLaneCar.offset;
 
-				overlayPitLaneCar.highlight.SetActive( liveDataPitLaneCar.showHighlight );
+				overlayPitLaneCar.currentTarget.SetActive( liveDataPitLaneCar.showHighlight );
 
-				overlayPitLaneCar.carNumber_Text.text = liveDataPitLaneCar.carNumber;
+				overlayPitLaneCar.textLayer1_Text.text = liveDataPitLaneCar.textLayer1;
 			}
 		}
 	}

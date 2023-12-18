@@ -7,27 +7,22 @@ using UnityEngine;
 public class LiveDataLeaderboardSlot
 {
 	public bool show = false;
-	public bool showHighlight = false;
+	public bool showCurrentTarget = false;
 	public bool showPreferredCar = false;
 
 	public Vector2 offset = Vector2.zero;
 
-	public string positionText = string.Empty;
-	public Color positionColor = Color.white;
+	public string textLayer1 = string.Empty;
+	public Color textLayer1Color = Color.white;
 
-	public string carNumberTextureUrl = string.Empty;
-	public string carTextureUrl = string.Empty;
-	public string helmetTextureUrl = string.Empty;
-	public string driverTextureUrl = string.Empty;
+	public string textLayer2 = string.Empty;
+	public Color textLayer2Color = Color.white;
 
-	public string carNumberText = string.Empty;
-	public Color carNumberColor = Color.white;
+	public string textLayer3 = string.Empty;
+	public Color textLayer3Color = Color.white;
 
-	public string driverNameText = string.Empty;
-	public Color driverNameColor = Color.white;
+	public string textLayer4 = string.Empty;
+	public Color textLayer4Color = Color.white;
 
-	public string telemetryText = string.Empty;
-	public Color telemetryColor = Color.white;
-
-	public string speedText = string.Empty;
+	public string currentTargetTextLayer1 = string.Empty;
 }

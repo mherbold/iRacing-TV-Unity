@@ -108,9 +108,9 @@ public class StreamingTextures : MonoBehaviour
 				requestsPending = true;
 			}
 
-			if ( memberClubRegionStreamedTexture[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].memberClubRegionUrl )
+			if ( memberClubRegionStreamedTexture[ driverIndex ].textureUrl != LiveData.Instance.liveDataDrivers[ driverIndex ].memberClubRegionTextureUrl )
 			{
-				memberClubRegionStreamedTexture[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].memberClubRegionUrl );
+				memberClubRegionStreamedTexture[ driverIndex ].ChangeTexture( LiveData.Instance.liveDataDrivers[ driverIndex ].memberClubRegionTextureUrl );
 
 				requestsPending = true;
 			}

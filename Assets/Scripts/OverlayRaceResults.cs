@@ -88,8 +88,8 @@ public class OverlayRaceResults : MonoBehaviour
 			layer1_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 			layer2_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 
-			className_Text.text = liveDataLeaderboard.className;
-			shortClassName_Text.text = liveDataLeaderboard.classNameShort;
+			className_Text.text = liveDataLeaderboard.textLayer1;
+			shortClassName_Text.text = liveDataLeaderboard.textLayer2;
 
 			// leaderboard
 
@@ -119,18 +119,18 @@ public class OverlayRaceResults : MonoBehaviour
 
 				// update position text
 
-				overlayLeaderboardSlot.position_Text.text = liveDataLeaderboardSlot.positionText;
-				overlayLeaderboardSlot.position.SetColor( liveDataLeaderboardSlot.positionColor );
+				overlayLeaderboardSlot.position_Text.text = liveDataLeaderboardSlot.textLayer1;
+				overlayLeaderboardSlot.position.SetColor( liveDataLeaderboardSlot.textLayer1Color );
 
 				// driver name
 
-				overlayLeaderboardSlot.driverName_Text.text = liveDataLeaderboardSlot.driverNameText;
-				overlayLeaderboardSlot.driverName.SetColor( liveDataLeaderboardSlot.driverNameColor );
+				overlayLeaderboardSlot.driverName_Text.text = liveDataLeaderboardSlot.textLayer3;
+				overlayLeaderboardSlot.driverName.SetColor( liveDataLeaderboardSlot.textLayer3Color );
 
 				// telemetry
 
-				overlayLeaderboardSlot.telemetry_Text.text = liveDataLeaderboardSlot.telemetryText;
-				overlayLeaderboardSlot.telemetry.SetColor( liveDataLeaderboardSlot.telemetryColor );
+				overlayLeaderboardSlot.telemetry_Text.text = liveDataLeaderboardSlot.textLayer4;
+				overlayLeaderboardSlot.telemetry.SetColor( liveDataLeaderboardSlot.textLayer4Color );
 			}
 		}
 	}

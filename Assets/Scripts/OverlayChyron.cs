@@ -17,21 +17,21 @@ public class OverlayChyron : MonoBehaviour
 	public GameObject layer5;
 	public GameObject layer6;
 	public GameObject layer7;
-	public GameObject driverName;
-	public GameObject speedLabel;
-	public GameObject speed;
-	public GameObject gearLabel;
-	public GameObject gear;
-	public GameObject rpmLabel;
-	public GameObject rpm;
-	public GameObject ratingLabel;
-	public GameObject rating;
-	public GameObject licenseLabel;
-	public GameObject license;
-	public GameObject hometownLabel;
-	public GameObject hometown;
-	public GameObject randomLabel;
-	public GameObject random;
+	public GameObject textLayer1;
+	public GameObject textLayer2;
+	public GameObject textLayer3;
+	public GameObject textLayer4;
+	public GameObject textLayer5;
+	public GameObject textLayer6;
+	public GameObject textLayer7;
+	public GameObject textLayer8;
+	public GameObject textLayer9;
+	public GameObject textLayer10;
+	public GameObject textLayer11;
+	public GameObject textLayer12;
+	public GameObject textLayer13;
+	public GameObject textLayer14;
+	public GameObject textLayer15;
 
 	[NonSerialized] public ImageSettings layer1_ImageSettings;
 	[NonSerialized] public ImageSettings layer2_ImageSettings;
@@ -40,21 +40,21 @@ public class OverlayChyron : MonoBehaviour
 	[NonSerialized] public ImageSettings layer5_ImageSettings;
 	[NonSerialized] public ImageSettings layer6_ImageSettings;
 	[NonSerialized] public ImageSettings layer7_ImageSettings;
-	[NonSerialized] public TextMeshProUGUI driverName_Text;
-	[NonSerialized] public TextMeshProUGUI speedLabel_Text;
-	[NonSerialized] public TextMeshProUGUI speed_Text;
-	[NonSerialized] public TextMeshProUGUI gearLabel_Text;
-	[NonSerialized] public TextMeshProUGUI gear_Text;
-	[NonSerialized] public TextMeshProUGUI rpmLabel_Text;
-	[NonSerialized] public TextMeshProUGUI rpm_Text;
-	[NonSerialized] public TextMeshProUGUI ratingLabel_Text;
-	[NonSerialized] public TextMeshProUGUI rating_Text;
-	[NonSerialized] public TextMeshProUGUI licenseLabel_Text;
-	[NonSerialized] public TextMeshProUGUI license_Text;
-	[NonSerialized] public TextMeshProUGUI hometownLabel_Text;
-	[NonSerialized] public TextMeshProUGUI hometown_Text;
-	[NonSerialized] public TextMeshProUGUI randomLabel_Text;
-	[NonSerialized] public TextMeshProUGUI random_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer1_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer2_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer3_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer4_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer5_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer6_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer7_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer8_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer9_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer10_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer11_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer12_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer13_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer14_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer15_Text;
 
 	[NonSerialized] public long indexSettings;
 	[NonSerialized] public long indexLiveData;
@@ -68,22 +68,21 @@ public class OverlayChyron : MonoBehaviour
 		layer5_ImageSettings = layer5.GetComponent<ImageSettings>();
 		layer6_ImageSettings = layer6.GetComponent<ImageSettings>();
 		layer7_ImageSettings = layer7.GetComponent<ImageSettings>();
-
-		driverName_Text = driverName.GetComponent<TextMeshProUGUI>();
-		speedLabel_Text = speedLabel.GetComponent<TextMeshProUGUI>();
-		speed_Text = speed.GetComponent<TextMeshProUGUI>();
-		gearLabel_Text = gearLabel.GetComponent<TextMeshProUGUI>();
-		gear_Text = gear.GetComponent<TextMeshProUGUI>();
-		rpmLabel_Text = rpmLabel.GetComponent<TextMeshProUGUI>();
-		rpm_Text = rpm.GetComponent<TextMeshProUGUI>();
-		ratingLabel_Text = ratingLabel.GetComponent<TextMeshProUGUI>();
-		rating_Text = rating.GetComponent<TextMeshProUGUI>();
-		licenseLabel_Text = licenseLabel.GetComponent<TextMeshProUGUI>();
-		license_Text = license.GetComponent<TextMeshProUGUI>();
-		hometownLabel_Text = hometownLabel.GetComponent<TextMeshProUGUI>();
-		hometown_Text = hometown.GetComponent<TextMeshProUGUI>();
-		randomLabel_Text = randomLabel.GetComponent<TextMeshProUGUI>();
-		random_Text = random.GetComponent<TextMeshProUGUI>();
+		textLayer1_Text = textLayer1.GetComponent<TextMeshProUGUI>();
+		textLayer2_Text = textLayer2.GetComponent<TextMeshProUGUI>();
+		textLayer3_Text = textLayer3.GetComponent<TextMeshProUGUI>();
+		textLayer4_Text = textLayer4.GetComponent<TextMeshProUGUI>();
+		textLayer5_Text = textLayer5.GetComponent<TextMeshProUGUI>();
+		textLayer6_Text = textLayer6.GetComponent<TextMeshProUGUI>();
+		textLayer7_Text = textLayer7.GetComponent<TextMeshProUGUI>();
+		textLayer8_Text = textLayer8.GetComponent<TextMeshProUGUI>();
+		textLayer9_Text = textLayer9.GetComponent<TextMeshProUGUI>();
+		textLayer10_Text = textLayer10.GetComponent<TextMeshProUGUI>();
+		textLayer11_Text = textLayer11.GetComponent<TextMeshProUGUI>();
+		textLayer12_Text = textLayer12.GetComponent<TextMeshProUGUI>();
+		textLayer13_Text = textLayer13.GetComponent<TextMeshProUGUI>();
+		textLayer14_Text = textLayer14.GetComponent<TextMeshProUGUI>();
+		textLayer15_Text = textLayer15.GetComponent<TextMeshProUGUI>();
 	}
 
 	public void Update()
@@ -101,22 +100,6 @@ public class OverlayChyron : MonoBehaviour
 		{
 			indexLiveData = IPC.indexLiveData;
 
-			driverName_Text.text = LiveData.Instance.liveDataChyron.driverNameText;
-			speedLabel_Text.text = LiveData.Instance.liveDataChyron.speedLabelText;
-			speed_Text.text = LiveData.Instance.liveDataChyron.speedText;
-			gearLabel_Text.text = LiveData.Instance.liveDataChyron.gearLabelText;
-			gear_Text.text = LiveData.Instance.liveDataChyron.gearText;
-			rpmLabel_Text.text = LiveData.Instance.liveDataChyron.rpmLabelText;
-			rpm_Text.text = LiveData.Instance.liveDataChyron.rpmText;
-			ratingLabel_Text.text = LiveData.Instance.liveDataChyron.ratingLabelText;
-			rating_Text.text = LiveData.Instance.liveDataChyron.ratingText;
-			licenseLabel_Text.text = LiveData.Instance.liveDataChyron.licenseLabelText;
-			license_Text.text = LiveData.Instance.liveDataChyron.licenseText;
-			hometownLabel_Text.text = LiveData.Instance.liveDataChyron.hometownLabelText;
-			hometown_Text.text = LiveData.Instance.liveDataChyron.hometownText;
-			randomLabel_Text.text = LiveData.Instance.liveDataChyron.randomLabelText;
-			random_Text.text = LiveData.Instance.liveDataChyron.randomText;
-
 			layer1_ImageSettings.carIdx = LiveData.Instance.liveDataChyron.carIdx;
 			layer2_ImageSettings.carIdx = LiveData.Instance.liveDataChyron.carIdx;
 			layer3_ImageSettings.carIdx = LiveData.Instance.liveDataChyron.carIdx;
@@ -124,6 +107,22 @@ public class OverlayChyron : MonoBehaviour
 			layer5_ImageSettings.carIdx = LiveData.Instance.liveDataChyron.carIdx;
 			layer6_ImageSettings.carIdx = LiveData.Instance.liveDataChyron.carIdx;
 			layer7_ImageSettings.carIdx = LiveData.Instance.liveDataChyron.carIdx;
+
+			textLayer1_Text.text = LiveData.Instance.liveDataChyron.textLayer1;
+			textLayer2_Text.text = LiveData.Instance.liveDataChyron.textLayer2;
+			textLayer3_Text.text = LiveData.Instance.liveDataChyron.textLayer3;
+			textLayer4_Text.text = LiveData.Instance.liveDataChyron.textLayer4;
+			textLayer5_Text.text = LiveData.Instance.liveDataChyron.textLayer5;
+			textLayer6_Text.text = LiveData.Instance.liveDataChyron.textLayer6;
+			textLayer7_Text.text = LiveData.Instance.liveDataChyron.textLayer7;
+			textLayer8_Text.text = LiveData.Instance.liveDataChyron.textLayer8;
+			textLayer9_Text.text = LiveData.Instance.liveDataChyron.textLayer9;
+			textLayer10_Text.text = LiveData.Instance.liveDataChyron.textLayer10;
+			textLayer11_Text.text = LiveData.Instance.liveDataChyron.textLayer11;
+			textLayer12_Text.text = LiveData.Instance.liveDataChyron.textLayer12;
+			textLayer13_Text.text = LiveData.Instance.liveDataChyron.textLayer13;
+			textLayer14_Text.text = LiveData.Instance.liveDataChyron.textLayer14;
+			textLayer15_Text.text = LiveData.Instance.liveDataChyron.textLayer15;
 		}
 	}
 }

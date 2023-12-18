@@ -10,32 +10,32 @@ public class OverlayRaceStatus : MonoBehaviour
 	public IPC ipc;
 
 	public GameObject enable;
-	public GameObject sessionName;
-	public GameObject lapsRemaining;
 	public GameObject blackLight;
 	public GameObject greenLight;
 	public GameObject whiteLight;
 	public GameObject yellowLight;
-	public GameObject units;
-	public GameObject currentLap;
+	public GameObject textLayer1;
+	public GameObject textLayer2;
+	public GameObject textLayer3;
+	public GameObject textLayer4;
 	public GameObject greenFlag;
 	public GameObject yellowFlag;
 	public GameObject checkeredFlag;
 
-	[NonSerialized] public TextMeshProUGUI sessionName_Text;
-	[NonSerialized] public TextMeshProUGUI lapsRemaining_Text;
-	[NonSerialized] public TextMeshProUGUI units_Text;
-	[NonSerialized] public TextMeshProUGUI currentLap_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer1_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer2_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer3_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer4_Text;
 
 	[NonSerialized] public long indexSettings;
 	[NonSerialized] public long indexLiveData;
 
 	public void Awake()
 	{
-		sessionName_Text = sessionName.GetComponent<TextMeshProUGUI>();
-		lapsRemaining_Text = lapsRemaining.GetComponent<TextMeshProUGUI>();
-		units_Text = units.GetComponent<TextMeshProUGUI>();
-		currentLap_Text = currentLap.GetComponent<TextMeshProUGUI>();
+		textLayer1_Text = textLayer1.GetComponent<TextMeshProUGUI>();
+		textLayer2_Text = textLayer2.GetComponent<TextMeshProUGUI>();
+		textLayer3_Text = textLayer3.GetComponent<TextMeshProUGUI>();
+		textLayer4_Text = textLayer4.GetComponent<TextMeshProUGUI>();
 	}
 
 	public void Update()
@@ -53,18 +53,15 @@ public class OverlayRaceStatus : MonoBehaviour
 		{
 			indexLiveData = IPC.indexLiveData;
 
-			sessionName_Text.text = LiveData.Instance.liveDataRaceStatus.sessionNameText;
-
-			lapsRemaining_Text.text = LiveData.Instance.liveDataRaceStatus.lapsRemainingText;
-
 			blackLight.SetActive( LiveData.Instance.liveDataRaceStatus.showBlackLight );
 			greenLight.SetActive( LiveData.Instance.liveDataRaceStatus.showGreenLight );
 			whiteLight.SetActive( LiveData.Instance.liveDataRaceStatus.showWhiteLight );
 			yellowLight.SetActive( LiveData.Instance.liveDataRaceStatus.showYellowLight );
 
-			units_Text.text = LiveData.Instance.liveDataRaceStatus.unitsText;
-
-			currentLap_Text.text = LiveData.Instance.liveDataRaceStatus.currentLapText;
+			textLayer1_Text.text = LiveData.Instance.liveDataRaceStatus.textLayer1;
+			textLayer2_Text.text = LiveData.Instance.liveDataRaceStatus.textLayer2;
+			textLayer3_Text.text = LiveData.Instance.liveDataRaceStatus.textLayer3;
+			textLayer4_Text.text = LiveData.Instance.liveDataRaceStatus.textLayer4;
 
 			greenFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showGreenFlag );
 			yellowFlag.SetActive( LiveData.Instance.liveDataRaceStatus.showYellowFlag );

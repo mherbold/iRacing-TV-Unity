@@ -16,8 +16,8 @@ public class OverlayLeaderboard : MonoBehaviour
 	public GameObject layer1;
 	public GameObject layer2;
 	public GameObject positionSplitter;
-	public GameObject className;
-	public GameObject shortClassName;
+	public GameObject textLayer1;
+	public GameObject textLayer2;
 	public GameObject slotTemplate;
 
 	[NonSerialized] public ImageSettings background_ImageSettings;
@@ -25,8 +25,8 @@ public class OverlayLeaderboard : MonoBehaviour
 	[NonSerialized] public ImageSettings layer2_ImageSettings;
 	[NonSerialized] public ImageSettings positionSplitter_ImageSettings;
 
-	[NonSerialized] public TextMeshProUGUI className_Text;
-	[NonSerialized] public TextMeshProUGUI shortClassName_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer1_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer2_Text;
 
 	[NonSerialized] public GameObject[] slots;
 
@@ -43,9 +43,8 @@ public class OverlayLeaderboard : MonoBehaviour
 		layer1_ImageSettings = layer1.GetComponent<ImageSettings>();
 		layer2_ImageSettings = layer2.GetComponent<ImageSettings>();
 		positionSplitter_ImageSettings = positionSplitter.GetComponent<ImageSettings>();
-
-		className_Text = className.GetComponent<TextMeshProUGUI>();
-		shortClassName_Text = shortClassName.GetComponent<TextMeshProUGUI>();
+		textLayer1_Text = textLayer1.GetComponent<TextMeshProUGUI>();
+		textLayer2_Text = textLayer2.GetComponent<TextMeshProUGUI>();
 
 		slots = new GameObject[ LiveData.MaxNumDrivers ];
 
@@ -65,7 +64,7 @@ public class OverlayLeaderboard : MonoBehaviour
 			overlayLeaderboardSlots[ slotIndex ].layer1_ImageSettings.carIdx = slotIndex;
 			overlayLeaderboardSlots[ slotIndex ].layer2_ImageSettings.carIdx = slotIndex;
 			overlayLeaderboardSlots[ slotIndex ].layer3_ImageSettings.carIdx = slotIndex;
-			overlayLeaderboardSlots[ slotIndex ].highlight_ImageSettings.carIdx = slotIndex;
+			overlayLeaderboardSlots[ slotIndex ].currentTarget_ImageSettings.carIdx = slotIndex;
 		}
 	}
 
@@ -98,8 +97,8 @@ public class OverlayLeaderboard : MonoBehaviour
 			positionSplitter_ImageSettings.SetPosition( new Vector2( liveDataLeaderboard.splitterPosition.x, -liveDataLeaderboard.splitterPosition.y ) );
 			positionSplitter_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 
-			className_Text.text = liveDataLeaderboard.className;
-			shortClassName_Text.text = liveDataLeaderboard.classNameShort;
+			textLayer1_Text.text = liveDataLeaderboard.textLayer1;
+			textLayer2_Text.text = liveDataLeaderboard.textLayer2;
 
 			// leaderboard
 
@@ -120,7 +119,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 				// class colors
 
-				overlayLeaderboardSlot.highlight_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
+				overlayLeaderboardSlot.currentTarget_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 				overlayLeaderboardSlot.layer1_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 				overlayLeaderboardSlot.layer2_ImageSettings.SetClassColor( liveDataLeaderboard.classColor );
 
@@ -128,32 +127,25 @@ public class OverlayLeaderboard : MonoBehaviour
 
 				overlayLeaderboardSlot.transform.localPosition = liveDataLeaderboardSlot.offset;
 
-				// update position text
+				//
 
-				overlayLeaderboardSlot.position_Text.text = liveDataLeaderboardSlot.positionText;
-				overlayLeaderboardSlot.position.SetColor( liveDataLeaderboardSlot.positionColor );
+				overlayLeaderboardSlot.textLayer1_Text.text = liveDataLeaderboardSlot.textLayer1;
+				overlayLeaderboardSlot.textLayer1.SetColor( liveDataLeaderboardSlot.textLayer1Color );
 
-				// car number
+				overlayLeaderboardSlot.textLayer2_Text.text = liveDataLeaderboardSlot.textLayer2;
+				overlayLeaderboardSlot.textLayer2.SetColor( liveDataLeaderboardSlot.textLayer2Color );
 
-				overlayLeaderboardSlot.carNumber_Text.text = liveDataLeaderboardSlot.carNumberText;
-				overlayLeaderboardSlot.carNumber.SetColor( liveDataLeaderboardSlot.carNumberColor );
+				overlayLeaderboardSlot.textLayer3_Text.text = liveDataLeaderboardSlot.textLayer3;
+				overlayLeaderboardSlot.textLayer3.SetColor( liveDataLeaderboardSlot.textLayer3Color );
 
-				// driver name
+				overlayLeaderboardSlot.textLayer4_Text.text = liveDataLeaderboardSlot.textLayer4;
+				overlayLeaderboardSlot.textLayer4.SetColor( liveDataLeaderboardSlot.textLayer4Color );
 
-				overlayLeaderboardSlot.driverName_Text.text = liveDataLeaderboardSlot.driverNameText;
-				overlayLeaderboardSlot.driverName.SetColor( liveDataLeaderboardSlot.driverNameColor );
+				// current target
 
-				// telemetry
+				overlayLeaderboardSlot.currentTarget.SetActive( liveDataLeaderboardSlot.showCurrentTarget );
 
-				overlayLeaderboardSlot.telemetry_Text.text = liveDataLeaderboardSlot.telemetryText;
-				overlayLeaderboardSlot.telemetry.SetColor( liveDataLeaderboardSlot.telemetryColor );
-
-				// highlight
-
-				overlayLeaderboardSlot.highlight.SetActive( liveDataLeaderboardSlot.showHighlight );
-				overlayLeaderboardSlot.speed.SetActive( liveDataLeaderboardSlot.showHighlight );
-
-				overlayLeaderboardSlot.speed_Text.text = liveDataLeaderboardSlot.speedText;
+				overlayLeaderboardSlot.currentTargetTextLayer1_Text.text = liveDataLeaderboardSlot.currentTargetTextLayer1;
 
 				// preferred car
 
