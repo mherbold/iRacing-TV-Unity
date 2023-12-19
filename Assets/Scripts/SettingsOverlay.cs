@@ -41,6 +41,9 @@ public class SettingsOverlay
 	public bool chyronEnabled = true;
 	public Vector2 chyronPosition = new( 0, 0 );
 
+	public bool battleChyronEnabled = true;
+	public Vector2 battleChyronPosition = new( 0, 0 );
+
 	public bool subtitleEnabled = true;
 	public Vector2 subtitlePosition = Vector2.zero;
 	public Vector2 subtitleMaxSize = Vector2.zero;

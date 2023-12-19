@@ -6,6 +6,7 @@ public class LiveData
 {
 	public const int MaxNumDrivers = 64;
 	public const int MaxNumClasses = 8;
+	public const int MaxNumCustom = 6;
 
 	public static LiveData Instance { get; private set; }
 
@@ -19,6 +20,7 @@ public class LiveData
 	public LiveDataLeaderboard[] liveDataLeaderboards = null;
 	public LiveDataVoiceOf liveDataVoiceOf = new();
 	public LiveDataChyron liveDataChyron = new();
+	public LiveDataBattleChyron liveDataBattleChyron = new();
 	public LiveDataSubtitle liveDataSubtitle = new();
 	public LiveDataIntro liveDataIntro = new();
 	public LiveDataStartLights liveDataStartLights = new();
@@ -27,6 +29,7 @@ public class LiveData
 	public LiveDataHud liveDataHud = new();
 	public LiveDataTrainer liveDataTrainer = new();
 	public LiveDataWebcamStreaming liveDataWebcamStreaming = new();
+	public LiveDataCustom[] liveDataCustom = new LiveDataCustom[ MaxNumCustom ];
 
 	public string seriesLogoTextureUrl = string.Empty;
 
@@ -49,6 +52,7 @@ public class LiveData
 		liveDataLeaderboards = liveData.liveDataLeaderboards;
 		liveDataVoiceOf = liveData.liveDataVoiceOf;
 		liveDataChyron = liveData.liveDataChyron;
+		liveDataBattleChyron = liveData.liveDataBattleChyron;
 		liveDataSubtitle = liveData.liveDataSubtitle;
 		liveDataIntro = liveData.liveDataIntro;
 		liveDataStartLights = liveData.liveDataStartLights;
@@ -57,6 +61,7 @@ public class LiveData
 		liveDataHud = liveData.liveDataHud;
 		liveDataTrainer = liveData.liveDataTrainer;
 		liveDataWebcamStreaming = liveData.liveDataWebcamStreaming;
+		liveDataCustom = liveData.liveDataCustom;
 
 		seriesLogoTextureUrl = liveData.seriesLogoTextureUrl;
 	}

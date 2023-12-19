@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\WebCam.cs" />
+    <Compile Include="Assets\Scripts\OverlayBattleChyron.cs" />
     <Compile Include="Assets\Scripts\SteamVROverlay.cs" />
     <Compile Include="Assets\Scripts\SettingsImage.cs" />
     <Compile Include="Assets\Scripts\OverlayTrackMap.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Assets\Scripts\LiveDataTrackMapCar.cs" />
     <Compile Include="Assets\Scripts\LiveDataVoiceOf.cs" />
     <Compile Include="Assets\Scripts\OverlaySubtitle.cs" />
+    <Compile Include="Assets\Scripts\LiveDataBattleChyron.cs" />
     <Compile Include="Assets\Scripts\LiveDataLeaderboardSlot.cs" />
     <Compile Include="Assets\Scripts\OverlayPitLaneCar.cs" />
     <Compile Include="Assets\Scripts\LiveDataPitLane.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Assets\Scripts\LiveDataIntroDriver.cs" />
     <Compile Include="Assets\Scripts\OverlayRaceResults.cs" />
     <Compile Include="Assets\Scripts\StreamingTextures.cs" />
+    <Compile Include="Assets\Scripts\LiveDataCustom.cs" />
     <Compile Include="Assets\Scripts\OverlayLeaderboardSlot.cs" />
     <Compile Include="Assets\Scripts\LiveDataLeaderboard.cs" />
     <Compile Include="Assets\Scripts\LiveDataIntro.cs" />

@@ -12,6 +12,7 @@ public class LiveDataControlPanel
 	public bool startLightsOn;
 	public bool voiceOfOn;
 	public bool chyronOn;
+	public bool battleChyronOn;
 	public bool subtitlesOn;
 	public bool introOn;
 

@@ -2,7 +2,7 @@
 using System;
 
 [Serializable]
-public class LiveDataChyron
+public class LiveDataBattleChyron
 {
 	public bool show = false;
 
