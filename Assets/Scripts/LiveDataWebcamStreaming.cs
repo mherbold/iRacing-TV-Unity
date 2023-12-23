@@ -8,4 +8,5 @@ public class LiveDataWebcamStreaming
 {
 	public bool enabled = false;
 	public string webserverURL = string.Empty;
+	public string roomCode = string.Empty;
 }

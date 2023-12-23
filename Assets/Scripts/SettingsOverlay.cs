@@ -67,6 +67,10 @@ public class SettingsOverlay
 	public Vector2 hudSpeechToTextPosition = Vector2.zero;
 	public Vector2 hudSpeechToTextMaxSize = Vector2.zero;
 	public Vector2Int hudSpeechToTextTextPadding = Vector2Int.zero;
+	public Vector2 hudLocalWebcamPosition = Vector2.zero;
+	public Vector2 hudLocalWebcamSize = Vector2.zero;
+	public Vector2 hudRemoteWebcamPosition = Vector2.zero;
+	public Vector2 hudRemoteWebcamSize = Vector2.zero;
 
 	public bool trainerEnabled = false;
 	public Vector2 trainerPosition = Vector2.zero;
