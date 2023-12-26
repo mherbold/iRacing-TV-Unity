@@ -93,6 +93,27 @@ public class OverlayIntro : MonoBehaviour
 			}
 			else
 			{
+				for ( var driverIndex = 0; driverIndex < LiveData.MaxNumDrivers; driverIndex++ )
+				{
+					var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ driverIndex ];
+
+					var overlayIntroDriver = overlayIntroDrivers[ driverIndex ];
+
+					overlayIntroDriver.layer1_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+					overlayIntroDriver.layer2_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+					overlayIntroDriver.layer3_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+					overlayIntroDriver.layer4_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+					overlayIntroDriver.layer5_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+					overlayIntroDriver.layer6_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
+
+					overlayIntroDriver.textLayer1_Text.text = liveDataIntroDriver.textLayer1;
+					overlayIntroDriver.textLayer3_Text.text = liveDataIntroDriver.textLayer2;
+					overlayIntroDriver.textLayer2_Text.text = liveDataIntroDriver.textLayer3;
+					overlayIntroDriver.textLayer4_Text.text = liveDataIntroDriver.textLayer4;
+					overlayIntroDriver.textLayer5_Text.text = liveDataIntroDriver.textLayer5;
+					overlayIntroDriver.textLayer6_Text.text = liveDataIntroDriver.textLayer6;
+				}
+
 				if ( !wasActive )
 				{
 					wasActive = true;
@@ -106,24 +127,6 @@ public class OverlayIntro : MonoBehaviour
 
 					for ( var driverIndex = 0; driverIndex < LiveData.MaxNumDrivers; driverIndex++ )
 					{
-						var liveDataIntroDriver = LiveData.Instance.liveDataIntro.liveDataIntroDrivers[ driverIndex ];
-
-						var overlayIntroDriver = overlayIntroDrivers[ driverIndex ];
-
-						overlayIntroDriver.layer1_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-						overlayIntroDriver.layer2_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-						overlayIntroDriver.layer3_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-						overlayIntroDriver.layer4_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-						overlayIntroDriver.layer5_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-						overlayIntroDriver.layer6_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
-
-						overlayIntroDriver.textLayer1_Text.text = liveDataIntroDriver.textLayer1;
-						overlayIntroDriver.textLayer3_Text.text = liveDataIntroDriver.textLayer2;
-						overlayIntroDriver.textLayer2_Text.text = liveDataIntroDriver.textLayer3;
-						overlayIntroDriver.textLayer4_Text.text = liveDataIntroDriver.textLayer4;
-						overlayIntroDriver.textLayer5_Text.text = liveDataIntroDriver.textLayer5;
-						overlayIntroDriver.textLayer6_Text.text = liveDataIntroDriver.textLayer6;
-
 						drivers[ driverIndex ].transform.localPosition = Vector3.zero;
 						drivers[ driverIndex ].transform.localRotation = Quaternion.identity;
 					}
