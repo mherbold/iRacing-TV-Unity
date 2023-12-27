@@ -32,6 +32,7 @@ public class LiveData
 	public LiveDataCustom[] liveDataCustom = new LiveDataCustom[ MaxNumCustom ];
 
 	public string seriesLogoTextureUrl = string.Empty;
+	public string trackLogoTextureUrl = string.Empty;
 
 	static LiveData()
 	{
@@ -64,5 +65,6 @@ public class LiveData
 		liveDataCustom = liveData.liveDataCustom;
 
 		seriesLogoTextureUrl = liveData.seriesLogoTextureUrl;
+		trackLogoTextureUrl = liveData.trackLogoTextureUrl;
 	}
 }

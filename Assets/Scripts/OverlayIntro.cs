@@ -107,8 +107,8 @@ public class OverlayIntro : MonoBehaviour
 					overlayIntroDriver.layer6_ImageSettings.carIdx = liveDataIntroDriver.carIdx;
 
 					overlayIntroDriver.textLayer1_Text.text = liveDataIntroDriver.textLayer1;
-					overlayIntroDriver.textLayer3_Text.text = liveDataIntroDriver.textLayer2;
-					overlayIntroDriver.textLayer2_Text.text = liveDataIntroDriver.textLayer3;
+					overlayIntroDriver.textLayer2_Text.text = liveDataIntroDriver.textLayer2;
+					overlayIntroDriver.textLayer3_Text.text = liveDataIntroDriver.textLayer3;
 					overlayIntroDriver.textLayer4_Text.text = liveDataIntroDriver.textLayer4;
 					overlayIntroDriver.textLayer5_Text.text = liveDataIntroDriver.textLayer5;
 					overlayIntroDriver.textLayer6_Text.text = liveDataIntroDriver.textLayer6;

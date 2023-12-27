@@ -327,6 +327,14 @@ public class ImageSettings : MonoBehaviour
 				newTexture = StreamingTextures.seriesLogoStreamedTexture.GetTexture();
 				break;
 
+			case SettingsImage.ImageType.TrackLogo:
+				newTexture = StreamingTextures.trackLogoStreamedTexture.GetTexture();
+				break;
+
+			case SettingsImage.ImageType.CarLogo:
+				newTexture = StreamingTextures.carLogoStreamedTexture[ carIdx ].GetTexture();
+				break;
+
 			case SettingsImage.ImageType.CarNumber:
 				newTexture = StreamingTextures.carNumberStreamedTexture[ carIdx ].GetTexture();
 				break;
@@ -335,12 +343,12 @@ public class ImageSettings : MonoBehaviour
 				newTexture = StreamingTextures.carStreamedTexture[ carIdx ].GetTexture();
 				break;
 
-			case SettingsImage.ImageType.Helmet:
-				newTexture = StreamingTextures.helmetStreamedTexture[ carIdx ].GetTexture();
-				break;
-
 			case SettingsImage.ImageType.Driver:
 				newTexture = StreamingTextures.driverStreamedTexture[ carIdx ].GetTexture();
+				break;
+
+			case SettingsImage.ImageType.Helmet:
+				newTexture = StreamingTextures.helmetStreamedTexture[ carIdx ].GetTexture();
 				break;
 
 			case SettingsImage.ImageType.MemberClubRegion:
