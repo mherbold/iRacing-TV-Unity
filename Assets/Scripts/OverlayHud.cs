@@ -22,6 +22,14 @@ public class OverlayHud : MonoBehaviour
 	public TextSettings textLayer6;
 	public TextSettings textLayer7;
 	public TextSettings textLayer8;
+	public TextSettings textLayer9;
+	public TextSettings textLayer10;
+	public TextSettings textLayer11;
+	public TextSettings textLayer12;
+	public TextSettings textLayer13;
+	public TextSettings textLayer14;
+	public TextSettings textLayer15;
+	public TextSettings textLayer16;
 	public GameObject speechToTextEnable;
 	public GameObject speechToTextMaxSizeContainer;
 	public GameObject speechToTextPanel;
@@ -37,6 +45,14 @@ public class OverlayHud : MonoBehaviour
 	[NonSerialized] public TextMeshProUGUI textLayer6_Text;
 	[NonSerialized] public TextMeshProUGUI textLayer7_Text;
 	[NonSerialized] public TextMeshProUGUI textLayer8_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer9_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer10_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer11_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer12_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer13_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer14_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer15_Text;
+	[NonSerialized] public TextMeshProUGUI textLayer16_Text;
 	[NonSerialized] public RectTransform speechToTextMaxSizeContainer_RectTransform;
 	[NonSerialized] public VerticalLayoutGroup speechToTextPanel_VerticalLayoutGroup;
 	[NonSerialized] public TextMeshProUGUI speechToTextText_Text;
@@ -56,6 +72,14 @@ public class OverlayHud : MonoBehaviour
 		textLayer6_Text = textLayer6.GetComponent<TextMeshProUGUI>();
 		textLayer7_Text = textLayer7.GetComponent<TextMeshProUGUI>();
 		textLayer8_Text = textLayer8.GetComponent<TextMeshProUGUI>();
+		textLayer9_Text = textLayer9.GetComponent<TextMeshProUGUI>();
+		textLayer10_Text = textLayer10.GetComponent<TextMeshProUGUI>();
+		textLayer11_Text = textLayer11.GetComponent<TextMeshProUGUI>();
+		textLayer12_Text = textLayer12.GetComponent<TextMeshProUGUI>();
+		textLayer13_Text = textLayer13.GetComponent<TextMeshProUGUI>();
+		textLayer14_Text = textLayer14.GetComponent<TextMeshProUGUI>();
+		textLayer15_Text = textLayer15.GetComponent<TextMeshProUGUI>();
+		textLayer16_Text = textLayer16.GetComponent<TextMeshProUGUI>();
 		speechToTextMaxSizeContainer_RectTransform = speechToTextMaxSizeContainer.GetComponent<RectTransform>();
 		speechToTextPanel_VerticalLayoutGroup = speechToTextPanel.GetComponent<VerticalLayoutGroup>();
 		speechToTextText_Text = speechToTextText.GetComponent<TextMeshProUGUI>();
@@ -105,6 +129,30 @@ public class OverlayHud : MonoBehaviour
 
 			textLayer8_Text.text = LiveData.Instance.liveDataHud.textLayer8;
 			textLayer8.SetColor( LiveData.Instance.liveDataHud.textLayer8Color );
+
+			textLayer9_Text.text = LiveData.Instance.liveDataHud.textLayer9;
+			textLayer9.SetColor( LiveData.Instance.liveDataHud.textLayer9Color );
+
+			textLayer10_Text.text = LiveData.Instance.liveDataHud.textLayer10;
+			textLayer10.SetColor( LiveData.Instance.liveDataHud.textLayer10Color );
+
+			textLayer11_Text.text = LiveData.Instance.liveDataHud.textLayer11;
+			textLayer11.SetColor( LiveData.Instance.liveDataHud.textLayer11Color );
+
+			textLayer12_Text.text = LiveData.Instance.liveDataHud.textLayer12;
+			textLayer12.SetColor( LiveData.Instance.liveDataHud.textLayer12Color );
+
+			textLayer13_Text.text = LiveData.Instance.liveDataHud.textLayer13;
+			textLayer13.SetColor( LiveData.Instance.liveDataHud.textLayer13Color );
+
+			textLayer14_Text.text = LiveData.Instance.liveDataHud.textLayer14;
+			textLayer14.SetColor( LiveData.Instance.liveDataHud.textLayer14Color );
+
+			textLayer15_Text.text = LiveData.Instance.liveDataHud.textLayer15;
+			textLayer15.SetColor( LiveData.Instance.liveDataHud.textLayer15Color );
+
+			textLayer16_Text.text = LiveData.Instance.liveDataHud.textLayer16;
+			textLayer16.SetColor( LiveData.Instance.liveDataHud.textLayer16Color );
 
 			if ( LiveData.Instance.liveDataHud.speechToText == string.Empty )
 			{
