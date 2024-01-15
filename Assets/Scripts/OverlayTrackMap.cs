@@ -62,7 +62,7 @@ public class OverlayTrackMap : MonoBehaviour
 
 	public void Update()
 	{
-		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.trackMapOn && LiveData.Instance.liveDataTrackMap.show && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
+		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.trackMapOn && LiveData.Instance.liveDataTrackMap.show && !LiveData.Instance.liveDataIntro.show && !LiveData.Instance.liveDataRaceResult.show && ipc.isConnected && LiveData.Instance.isConnected );
 
 		if ( border == null )
 		{

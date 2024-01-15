@@ -24,6 +24,9 @@ public class SettingsOverlay
 	public bool leaderboardEnabled = true;
 	public Vector2 leaderboardPosition = Vector2.zero;
 
+	public bool raceResultEnabled = true;
+	public Vector2 raceResultPosition = Vector2.zero;
+
 	public bool trackMapEnabled = true;
 	public Vector2 trackMapPosition = Vector2.zero;
 	public Vector2 trackMapSize = Vector2.zero;

@@ -18,6 +18,7 @@ public class LiveData
 	public LiveDataDriver[] liveDataDrivers = new LiveDataDriver[ MaxNumDrivers ];
 	public LiveDataRaceStatus liveDataRaceStatus = new();
 	public LiveDataLeaderboard[] liveDataLeaderboards = null;
+	public LiveDataRaceResult liveDataRaceResult = new();
 	public LiveDataVoiceOf liveDataVoiceOf = new();
 	public LiveDataChyron liveDataChyron = new();
 	public LiveDataBattleChyron liveDataBattleChyron = new();
@@ -51,6 +52,7 @@ public class LiveData
 		liveDataDrivers = liveData.liveDataDrivers;
 		liveDataRaceStatus = liveData.liveDataRaceStatus;
 		liveDataLeaderboards = liveData.liveDataLeaderboards;
+		liveDataRaceResult = liveData.liveDataRaceResult;
 		liveDataVoiceOf = liveData.liveDataVoiceOf;
 		liveDataChyron = liveData.liveDataChyron;
 		liveDataBattleChyron = liveData.liveDataBattleChyron;

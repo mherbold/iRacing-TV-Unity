@@ -79,7 +79,7 @@ public class OverlayLeaderboard : MonoBehaviour
 
 		var liveDataLeaderboard = LiveData.Instance.liveDataLeaderboards[ classIndex ];
 
-		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.leaderboardOn && liveDataLeaderboard.show && !LiveData.Instance.liveDataIntro.show && ipc.isConnected && LiveData.Instance.isConnected );
+		enable.SetActive( LiveData.Instance.liveDataControlPanel.masterOn && LiveData.Instance.liveDataControlPanel.leaderboardOn && liveDataLeaderboard.show && !LiveData.Instance.liveDataIntro.show && !LiveData.Instance.liveDataRaceResult.show && ipc.isConnected && LiveData.Instance.isConnected );
 
 		if ( ( indexSettings != IPC.indexSettings ) || ( indexLiveData != IPC.indexLiveData ) )
 		{
