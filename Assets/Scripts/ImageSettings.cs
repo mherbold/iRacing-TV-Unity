@@ -360,11 +360,11 @@ public class ImageSettings : MonoBehaviour
 				break;
 
 			case SettingsImage.ImageType.MemberID_B:
-				newTexture = StreamingTextures.memberIdStreamedTexture_A[ carIdx ].GetTexture();
+				newTexture = StreamingTextures.memberIdStreamedTexture_B[ carIdx ].GetTexture();
 				break;
 
 			case SettingsImage.ImageType.MemberID_C:
-				newTexture = StreamingTextures.memberIdStreamedTexture_A[ carIdx ].GetTexture();
+				newTexture = StreamingTextures.memberIdStreamedTexture_C[ carIdx ].GetTexture();
 				break;
 		}
 
